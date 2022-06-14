@@ -38,6 +38,7 @@
                                             $grand_total = $grand_total + $ambil_data->nilai_matkul_cpl;
                                             $id_cpl = $data->id_cpl;
                                             $id_matkul = $ambil_data->id_matkul;
+                                            $id_pengampu = $ambil_data->id_pengampu;
                                             $id_jurusan = $ambil_data->id_jurusan;
 
                                             $sql = $this->db->query("SELECT cpl_mk.id_cpl FROM cpl_mk JOIN matkul ON cpl_mk.id_matkul=matkul.id_matkul JOIN jurusan ON matkul.id_jurusan = jurusan.id_jurusan where cpl_mk.id_cpl = '$id_cpl'");

@@ -25,7 +25,6 @@ class C_statistik extends CI_Controller{
 		$this->load->view('kurikulum/statistik/v_statistik', $data);
 		$this->load->view('templates_admin/footer');
 	}
-
 	public function ambil_data($id_cpl)
 	{
 		$data['setting'] = $this->M_setting->tampil();
