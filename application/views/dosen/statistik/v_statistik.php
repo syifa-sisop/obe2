@@ -52,7 +52,7 @@
                                         foreach($nilai_cpl as $nilai_cpl):?>
                                         <tr>
                                            <td><?php echo $no++; ?></td>
-                                           <td><?= $nilai_cpl->nama_matkul?></td>
+                                           <td><?= $nilai_cpl->nama_matkul?> Kelas <?= $nilai_cpl->kelas?></td>
                                            <td><?= $nilai_cpl->kode_cpl?></td>
                                            <td><?= $nilai_cpl->nilai_matkul_cpl?></td>
                                         </tr>

@@ -165,7 +165,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
+                    <!--<li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">settings</i>
                             <span>Pengaturan User</span>
@@ -181,7 +181,7 @@
                                 <a href="pages/medias/carousel.html">Tim Kurikulum</a>
                             </li>
                         </ul>
-                    </li>
+                    </li>-->
 
                     <li>
                         <a href="<?php echo base_url('C_registrasi/logout') ?>">

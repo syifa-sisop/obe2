@@ -10,7 +10,7 @@ class C_dosen extends CI_Controller{
 	public function index()
 	{
 		
-		$data['prodi2'] = $this->M_prodi->tampil_prodi()->result_array();
+    	$data['prodi2'] = $this->M_prodi->tampil_prodi()->result_array();
         $data['prodi'] = $this->M_prodi->tampil_prodi()->result();
 		$this->load->view('templates_admin/header');
 		$this->load->view('templates_admin/sidebar');

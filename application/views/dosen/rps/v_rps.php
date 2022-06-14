@@ -510,7 +510,7 @@
 
                  <?php foreach($print as $print):?>
                                Tentang Mata Kuliah     <?php echo anchor('dosen/C_rps/print/'.$print['id_matkul'].'/'.$print['id_pengampu'] ,'<button class="btn btn-sm btn-primary mb-3" target="_blank" ><i class="material-icons">print</i></button>')?>
-                               <a class="btn btn-success" href="<?php echo base_url('kurikulum/C_rps/export/'. $print['id_matkul']) ?>" target="_blank">Export Excel</a>
+                               <a class="btn btn-success" href="<?php echo base_url('admin/C_rps/export/'. $print['id_matkul']) ?>" target="_blank">Export Excel</a>
                   <?php endforeach;?>
                   
                             </h2>

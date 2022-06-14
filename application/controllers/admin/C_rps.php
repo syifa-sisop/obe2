@@ -123,7 +123,6 @@ class C_rps extends CI_Controller{
 		$this->load->view('templates_admin/header');
 		$this->load->view('kurikulum/rps/v_print', $data);
 		$this->load->view('templates_admin/footer');
-		
 	}
 
 	public function export($id_matkul)
@@ -207,11 +206,11 @@ class C_rps extends CI_Controller{
 		$baris = 5;
 		$baris2 = 7;
 		$baris3 = 10;
-		foreach($data['matkul'] as $data){
-			foreach($rinci as $rinci){
+		
+		foreach($rinci as $rinci){
 				$objPHPExcel->getActiveSheet()->setCellValue('F'.$baris2, $rinci->nama_dosen);
 			}
-		
+		foreach($data['matkul'] as $data){
 			$objPHPExcel->getActiveSheet()->setCellValue('A'.$baris, $data->nama_matkul);
 			$objPHPExcel->getActiveSheet()->setCellValue('B'.$baris, $data->kode_matkul);
 			$objPHPExcel->getActiveSheet()->setCellValue('C'.$baris, $data->rumpun_mk);

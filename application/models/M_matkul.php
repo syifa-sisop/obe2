@@ -102,7 +102,6 @@ class M_matkul extends CI_Model{
         $query = $this->db->get();
         return $query;
     }
-
     public function tampil4()
     {
         $session = $_SESSION;
@@ -114,6 +113,7 @@ class M_matkul extends CI_Model{
                  $this->db->join('pengampu_mk','dosen.id_dosen = pengampu_mk.id_dosen', 'LEFT');
                  $this->db->join('matkul','pengampu_mk.id_matkul = matkul.id_matkul', 'LEFT');
                  $this->db->join('tahun_ajaran','matkul.id_tahun = tahun_ajaran.id_tahun', 'LEFT');
+                 $this->db->order_by("tahun_ajaran.semester_ajaran", "asc");
                  $this->db->where('dosen.id_user',$id_user);
                  //$this->db->where('tahun_ajaran.status_ajaran = "Aktif"');
         $query = $this->db->get();

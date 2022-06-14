@@ -8,7 +8,6 @@ class C_histori extends CI_Controller{
 	}
 	public function index($id_matkul, $id_pengampu)
 	{
-		
 		$data['jurusan'] = $this->M_jurusan->tampil()->result();
 		$data['user'] = $this->M_profil->tampil_dosen()->result();
 		$data['user2'] = $this->M_profil->tampil_dosen()->result_array();

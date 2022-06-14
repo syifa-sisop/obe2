@@ -36,7 +36,9 @@ class M_nilai extends CI_Model{
     public function tampil_data3($id_jurusan)
     {
         $this->db->select('*');
-                $this->db->from('nilai_matkul_cpl');
+                $this->db->from('pengampu_mk');
+                $this->db->join('nilai_matkul_cpl','pengampu_mk.id_pengampu = nilai_matkul_cpl.id_pengampu', 'LEFT');
+                //$this->db->from('nilai_matkul_cpl');
                 $this->db->join('cpl_mk','nilai_matkul_cpl.id_cplmk = cpl_mk.id_cplmk', 'LEFT');
                 $this->db->join('cpl','cpl_mk.id_cpl = cpl.id_cpl', 'LEFT');
                 $this->db->join('matkul','nilai_matkul_cpl.id_matkul = matkul.id_matkul', 'LEFT');
