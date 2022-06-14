@@ -12,7 +12,6 @@
                             <h2>
                                  Daftar Mata Kuliah
                             </h2>
-
                         </div>
                         <div class="body">
                             <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
@@ -44,7 +43,7 @@
                                             </td>
 
                                             <td width="20px">
-                                              <a class="btn btn-success" href="<?php echo base_url('kurikulum/C_rps/export/'. $matkul->id_matkul) ?>" target="_blank">Export Excel</a>
+                                              <a class="btn btn-success" href="<?php echo base_url('admin/C_rps/export/'. $matkul->id_matkul) ?>" target="_blank">Export Excel</a>
                                             </td>
                                            
                                         </tr>

@@ -49,10 +49,10 @@ class M_matkul extends CI_Model{
         $this->db->select('*');
                 $this->db->from('matkul');
                 $this->db->join('tahun_ajaran','matkul.id_tahun = tahun_ajaran.id_tahun', 'LEFT');
-                $this->db->join('pengampu_mk','matkul.id_matkul = pengampu_mk.id_matkul', 'LEFT');
+                //$this->db->join('pengampu_mk','matkul.id_matkul = pengampu_mk.id_matkul', 'LEFT');
                 $this->db->where('matkul.id_jurusan',$jurusan);
                 $this->db->where('tahun_ajaran.id_tahun', $id_tahun);
-                $this->db->limit(1);
+                //$this->db->limit(1);
         $query = $this->db->get();
         return $query;
     }

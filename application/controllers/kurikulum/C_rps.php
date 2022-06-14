@@ -1,7 +1,6 @@
 <?php 
 
 class C_rps extends CI_Controller{
-
 	public function index()
 	{
 		$data['jurusan'] = $this->M_jurusan->tampil()->result();
