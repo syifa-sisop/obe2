@@ -15,6 +15,7 @@ class C_statistik extends CI_Controller{
         $data['nilai_cpl'] = $this->M_nilai->tampil_data()->result();
         $data['nilai_cpl2'] = $this->M_nilai->tampil_data()->result_array();
         $data['cpl'] = $this->M_nilai->tampil_cpl()->result();
+        $data['cpl_baru'] = $this->M_nilai->tampil_cpl_baru()->result();
         $data['cpl2'] = $this->M_nilai->tampil_cpl()->result_array();
         $data['total'] = $this->M_nilai->tampil_total()->result();
 

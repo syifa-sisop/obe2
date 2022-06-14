@@ -51,7 +51,7 @@
 
                                     <a class="btn btn-warning" href="<?php echo base_url('kurikulum/C_matriks/pdf_profil') ?>" target="_blank"><i class="material-icons">insert_drive_file</i> Export (Pdf)</a>
 
-                                    <a class="btn btn-success" href="<?php echo base_url() ?>" target="_blank"><i class="material-icons">insert_drive_file</i> Export (Excel)</a>
+                                    <a class="btn btn-success" href="#" target="_blank"><i class="material-icons">insert_drive_file</i> Export (Excel)</a>
 
                                     <br></b><br>
                                     <div class="table-responsive">
@@ -80,7 +80,7 @@
                                         
                                     </thead>
 
-                                    <tbody>
+                                    <!-- <tbody>
                                         <?php 
                                         $no = 0;
                                         foreach($cpll as $cpl4): 
@@ -93,8 +93,8 @@
                                            <?php foreach ($profil as $key => $id) { ?> 
                                            <td>
 
-                                            <!-- <input type="checkbox" id="md_checkbox_33 <?php echo $no; ?>"  class="filled-in chk-col-red" 
-                                            <?php   echo ($cpl4->id_lulusan == $id->id_lulusan  ? "checked" : '');?> onclick="return false;" /> -->
+                                             <input type="checkbox" id="md_checkbox_33 <?php echo $no; ?>"  class="filled-in chk-col-red" 
+                                            <?php   echo ($cpl4->id_lulusan == $id->id_lulusan  ? "checked" : '');?> onclick="return false;" /> 
                                             <input type="checkbox" id="md_checkbox_33<?php echo $no; ?>"  class="filled-in chk-col-red" onclick="return false;" />
                                             <label for="md_checkbox_33 <?php echo $no; ?>"></label><?php } ?>
                                            </td>
@@ -124,6 +124,28 @@
                                         </tr>  
                                         <?php endforeach;?> 
                                                                                 
+                                    </tbody> -->
+
+                                    <tbody>
+                                        <?php 
+                                        $no = 0;
+                                        foreach($cpll as $cpl4): 
+                                        $no++;
+                                        ?>
+                                           
+                                        <tr>
+                                           <td class="align-justify"><?= $cpl4->kode_cpl?>. <?= $cpl4->cpl?></td>      
+                                           <?php foreach ($profil as $key => $id) { ?> 
+                                           <td>
+                                            <input type="checkbox" id="md_checkbox_33 <?php echo $no; ?>"  class="filled-in chk-col-red" 
+                                            <?php   echo ($cpl4->id_lulusan == $id->id_lulusan  ? "checked" : '');?> onclick="return false;" />
+                                            <label for="md_checkbox_33 <?php echo $no; ?>"></label><?php } ?>
+                                           </td>
+
+                                           
+                                        </tr>  
+                                        <?php endforeach;?> 
+                                                                                
                                     </tbody>
                                 </table>
                                     </div>
@@ -137,7 +159,7 @@
 
                                     <a class="btn btn-warning" href="<?php echo base_url('kurikulum/C_matriks/pdf_kajian') ?>" target="_blank"><i class="material-icons">insert_drive_file</i> Export (Pdf)</a>
 
-                                    <a class="btn btn-success" href="<?php echo base_url() ?>" target="_blank"><i class="material-icons">insert_drive_file</i> Export (Excel)</a>
+                                    <a class="btn btn-success" href="#" target="_blank"><i class="material-icons">insert_drive_file</i> Export (Excel)</a>
 
                                     <br></b><br>
 
@@ -190,7 +212,7 @@
                                 <div role="tabpanel" class="tab-pane fade" id="messages_with_icon_title">
                                     <a class="btn btn-warning" href="<?php echo base_url('kurikulum/C_matriks/pdf_matkul') ?>" target="_blank"><i class="material-icons">insert_drive_file</i> Export (Pdf)</a>
 
-                                    <a class="btn btn-success" href="<?php echo base_url() ?>" target="_blank"><i class="material-icons">insert_drive_file</i> Export (Excel)</a>
+                                    <a class="btn btn-success" href="#" target="_blank"><i class="material-icons">insert_drive_file</i> Export (Excel)</a>
                                     <br></b><br>
                                     <div class="table-responsive">
                                         <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
@@ -245,7 +267,7 @@
 
                                     <a class="btn btn-warning" href="<?php echo base_url('kurikulum/C_matriks/pdf_kajianmk') ?>" target="_blank"><i class="material-icons">insert_drive_file</i> Export (Pdf)</a>
 
-                                    <a class="btn btn-success" href="<?php echo base_url() ?>" target="_blank"><i class="material-icons">insert_drive_file</i> Export (Excel)</a>
+                                    <a class="btn btn-success" href="#" target="_blank"><i class="material-icons">insert_drive_file</i> Export (Excel)</a>
 
                                     <br></b><br>
 
@@ -393,7 +415,7 @@
                                 <div class="form-group after-add-more" id="after-add-more">
                                     <?php 
                                     $no = 0;
-                                    foreach($cpll as $cpll):
+                                    foreach($cpl2 as $cpll):
                                     $no++;
                                     ?>
 

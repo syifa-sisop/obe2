@@ -130,7 +130,7 @@ class M_lulusan extends CI_Model{
                 $this->db->from('matkul');
                 $this->db->join('kajian_matkul','matkul.id_matkul = kajian_matkul.id_matkul', 'LEFT');
                 $this->db->join('tahun_ajaran','matkul.id_tahun = tahun_ajaran.id_tahun', 'LEFT');
-                $this->db->join('pengampu_mk','matkul.id_matkul = pengampu_mk.id_matkul', 'LEFT');
+                //$this->db->join('pengampu_mk','matkul.id_matkul = pengampu_mk.id_matkul', 'LEFT');
                 $this->db->where('matkul.id_jurusan',$jurusan);
                 $this->db->where('tahun_ajaran.status_ajaran = "Aktif"');
         $query = $this->db->get();

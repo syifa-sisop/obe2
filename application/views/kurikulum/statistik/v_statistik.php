@@ -84,7 +84,7 @@
 
                                          <?php 
                                         $no = 0;
-                                        foreach($cpl as $cpl): 
+                                        foreach($cpl_baru as $cpl): 
                                         $no++;
                                         ?>
                                            
@@ -127,7 +127,7 @@
                                             ],
                                             datasets: [{
                                                 label: 'Nilai CPL',
-                                                backgroundColor: '#3f9e34',
+                                                backgroundColor: '#3CB371',
                                                 borderColor: '##93C3D2',
                                                 data: [
                                                   <?php

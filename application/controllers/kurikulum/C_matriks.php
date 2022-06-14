@@ -30,8 +30,8 @@ class C_matriks extends CI_Controller{
         $data['kajian2'] = $this->M_kajian->tampil()->result_array();
         $data['cpl_kajian'] = $this->M_lulusan->tampil_kajian()->result();
 
-        $data['matkul'] = $this->M_matkul->tampil_matkul()->result();
-        $data['matkul2'] = $this->M_matkul->tampil_matkul()->result_array();
+        $data['matkul'] = $this->M_matkul->tampil_matkul_baru()->result();
+        $data['matkul2'] = $this->M_matkul->tampil_matkul_baru()->result_array();
         $data['cpl_matkul'] = $this->M_lulusan->tampil_matkul()->result();
         $data['cpl_matkul2'] = $this->M_lulusan->tampil_matkul()->result_array();
 

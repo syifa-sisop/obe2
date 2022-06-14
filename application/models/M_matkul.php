@@ -42,6 +42,20 @@ class M_matkul extends CI_Model{
         return $query;
     }
 
+    public function tampil_matkul_baru()
+    {
+        $session = $_SESSION;
+        $jurusan = $this->session->userdata('id_jurusan');
+        $this->db->select('*');
+                $this->db->from('matkul');
+                $this->db->join('tahun_ajaran','matkul.id_tahun = tahun_ajaran.id_tahun', 'LEFT');
+                //$this->db->join('pengampu_mk','matkul.id_matkul = pengampu_mk.id_matkul', 'LEFT');
+                $this->db->where('matkul.id_jurusan',$jurusan);
+                $this->db->where('tahun_ajaran.status_ajaran = "Aktif"');
+        $query = $this->db->get();
+        return $query;
+    }
+
     public function tampil_matkul_thn($id_tahun)
     {
         $session = $_SESSION;

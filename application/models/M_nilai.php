@@ -13,6 +13,7 @@ class M_nilai extends CI_Model{
                 $this->db->join('cpl','cpl_mk.id_cpl = cpl.id_cpl', 'LEFT');
                 $this->db->join('matkul','pengampu_mk.id_matkul = matkul.id_matkul', 'LEFT');
                 $this->db->join('jurusan','matkul.id_jurusan = jurusan.id_jurusan', 'LEFT');
+                $this->db->order_by("matkul.nama_matkul", "asc");
                 $this->db->where('nilai_matkul_cpl.id_jurusan',$jurusan);
         $query = $this->db->get();
         return $query;
@@ -72,6 +73,19 @@ class M_nilai extends CI_Model{
                 $this->db->from('cpl');
                 //$this->db->join('total','cpl.id_cpl = total.id_cpl', 'LEFT');
                 $this->db->order_by("cpl.total_cpl", "desc");
+                $this->db->where('cpl.id_jurusan', $jurusan);
+        $query = $this->db->get();
+        return $query;
+    }
+
+    public function tampil_cpl_baru()
+    {
+        $session = $_SESSION;
+        $jurusan = $this->session->userdata('id_jurusan');
+        $this->db->select('*');
+                $this->db->from('cpl');
+                //$this->db->join('total','cpl.id_cpl = total.id_cpl', 'LEFT');
+                //$this->db->order_by("cpl.ko", "asc");
                 $this->db->where('cpl.id_jurusan', $jurusan);
         $query = $this->db->get();
         return $query;
