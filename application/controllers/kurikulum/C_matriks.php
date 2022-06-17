@@ -15,6 +15,7 @@ class C_matriks extends CI_Controller{
         $data['id'] = $this->M_setting->tampil_profil()->row();
         $data['profil'] = $this->M_setting->tampil_profil()->result();
         $data['profil2'] = $this->M_setting->tampil_profil()->result_array();
+		$data['profilcpl'] = $this->M_setting->tampil_profil2()->result();
         $data['cpl'] = $this->M_lulusan->tampil_cpl()->result_array();
         $data['cpl2'] = $this->M_lulusan->tampil_cpl()->result();
         $data['cpl3'] = $this->M_lulusan->tampil_cpl3()->result_array();

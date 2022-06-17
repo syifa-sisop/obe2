@@ -57,8 +57,8 @@ class M_lulusan extends CI_Model{
         $jurusan = $this->session->userdata('id_jurusan');
         $this->db->select('*');
                 $this->db->from('cpl');
-                $this->db->join('profil_cpl','cpl.id_cpl = profil_cpl.id_cpl', 'LEFT');
-                $this->db->order_by("cpl.id_cpl", "asc");
+                // $this->db->join('profil_cpl','cpl.id_cpl = profil_cpl.id_cpl', 'LEFT');
+                // $this->db->order_by("cpl.id_cpl", "asc");
                 $this->db->where('cpl.id_jurusan', $jurusan);
         $query = $this->db->get();
         return $query;

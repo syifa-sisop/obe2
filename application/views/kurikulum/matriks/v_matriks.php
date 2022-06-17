@@ -80,53 +80,47 @@
                                         
                                     </thead>
 
-                                    <!-- <tbody>
+                                    <tbody>
                                         <?php 
-                                        $no = 0;
+                                        $i = 0; $j = 0;
                                         foreach($cpll as $cpl4): 
-                                        $no++;
+                                        $i++;
                                         ?>
                                            
                                         <tr>
                                            
                                            <td class="align-justify"><?= $cpl4->kode_cpl?>. <?= $cpl4->cpl?></td>     
-                                           <?php foreach ($profil as $key => $id) { ?> 
-                                           <td>
+                                           <?php foreach ($profil as $key => $id) { 
+                                            $j++;
 
-                                             <input type="checkbox" id="md_checkbox_33 <?php echo $no; ?>"  class="filled-in chk-col-red" 
-                                            <?php   echo ($cpl4->id_lulusan == $id->id_lulusan  ? "checked" : '');?> onclick="return false;" /> 
-                                            <input type="checkbox" id="md_checkbox_33<?php echo $no; ?>"  class="filled-in chk-col-red" onclick="return false;" />
-                                            <label for="md_checkbox_33 <?php echo $no; ?>"></label><?php } ?>
-                                           </td>
+                                            ?>
+                                           <td>
+                                            <input type="checkbox" id="md_checkbox_33 <?= $i; ?><?= $j; ?>"  />
+                                            <label for="md_checkbox_33 <?=$i; ?><?= $j;?>"></label>
                                             <script>
-                                                console.log("TEST")
-                                                // $(document).ready(function() {
-                                                    // $('#submit').click(function() {
-                                                        // if ($('#male').is(":checked")) {
-                                                        //     alert($('#male').val());
-                                                        // }
-                                                        if(<?= $cpl4->id_lulusan?> == ){
-                                                            console.log("OKE")
+                                                <?php 
+                                                    foreach($profilcpl as $pcpl){
+                                                ?>
+                                                        console.log("<?=$pcpl->id_cpl;?>")
+                                                        if(<?= $id->id_lulusan?> == <?=$pcpl->id_lulusan;?>){
+                                                            if(<?= $cpl4->id_cpl?> == <?=$pcpl->id_cpl;?>){
+                                                                document.getElementById('md_checkbox_33 <?= $i; ?><?= $j; ?>').checked = true;
+                                                            }
                                                         }
-                                                        test = document.getElementById('md_checkbox33<?php echo $no; ?>').value;
-                                                        console.log(test)
-                                                        console.log(<?php echo $no; ?>)
-                                                        // else if ($('#female').is(":checked")) {
-                                                        //     alert($('#female').val());
-                                                        // }
-                                                    // })
-                                                // });
-                                                // function check() {
-                                                //     document.getElementById("myCheck").checked = true;
-                                                // }
+                                                <?php 
+                                                    }
+                                                ?>
                                             </script>
+                                            <?php } ?>
+                                           </td>
+                                            
                                            
                                         </tr>  
                                         <?php endforeach;?> 
                                                                                 
-                                    </tbody> -->
+                                    </tbody>
 
-                                    <tbody>
+                                    <!-- <tbody>
                                         <?php 
                                         $no = 0;
                                         foreach($cpll as $cpl4): 
@@ -146,7 +140,7 @@
                                         </tr>  
                                         <?php endforeach;?> 
                                                                                 
-                                    </tbody>
+                                    </tbody> -->
                                 </table>
                                     </div>
                                 </div>
