@@ -80,25 +80,42 @@
 
                                     <tbody>
                                         <?php 
-                                        $no = 0;
-                                        foreach($cpl as $cpl4): 
-                                        $no++;
+                                        $i = 0; $j = 0;
+                                        foreach($cpll as $cpl4): 
+                                        $i++;
                                         ?>
                                            
                                         <tr>
-                                           <td class="align-justify"><?= $cpl4->kode_cpl?>. <?= $cpl4->cpl?></td>  
-                                           <?php foreach ($profil as $key => $id) { ?> 
-                                            
-                                           <td>
-                                            <input type="checkbox" id="md_checkbox_33 <?php echo $no; ?>"  class="filled-in chk-col-red" 
-                                            <?php echo ($cpl4->id_lulusan == $id->id_lulusan  ? "checked" : '');?> onclick="return false;" />
-                                            <label for="md_checkbox_33 <?php echo $no; ?>"></label><?php } ?>
-                                           </td>
+                                           
+                                           <td class="align-justify"><?= $cpl4->kode_cpl?>. <?= $cpl4->cpl?></td>     
+                                           <?php foreach ($profil as $key => $id) { 
+                                            $j++;
 
+                                            ?>
+                                           <td>
+                                            <input type="checkbox" id="md_checkbox_33 <?= $i; ?><?= $j; ?>"  />
+                                            <label for="md_checkbox_33 <?=$i; ?><?= $j;?>"></label>
+                                            <script>
+                                                <?php 
+                                                    foreach($profilcpl as $pcpl){
+                                                ?>
+                                                        console.log("<?=$pcpl->id_cpl;?>")
+                                                        if(<?= $id->id_lulusan?> == <?=$pcpl->id_lulusan;?>){
+                                                            if(<?= $cpl4->id_cpl?> == <?=$pcpl->id_cpl;?>){
+                                                                document.getElementById('md_checkbox_33 <?= $i; ?><?= $j; ?>').checked = true;
+                                                            }
+                                                        }
+                                                <?php 
+                                                    }
+                                                ?>
+                                            </script>
+                                            <?php } ?>
+                                           </td>
+                                            
                                            
                                         </tr>  
-                                        
-                                           <?php endforeach;?>                                          
+                                        <?php endforeach;?> 
+                                                                                
                                     </tbody>
                                 </table>
                                     </div>
@@ -135,19 +152,35 @@
                                     <tbody>
 
                                          <?php 
-                                        $no = 0;
+                                        $i = 0; $j = 0;
                                         foreach($cpl_kajian as $cpl_kajian): 
-                                        $no++;
+                                        $i++;
                                         ?>
                                            
                                         <tr>
                                            <td class="align-justify"><?= $cpl_kajian->kode_cpl?>. <?= $cpl_kajian->cpl?></td>  
-                                           <?php foreach ($kajian2 as $key => $value) { ?> 
+                                           <?php foreach ($kajian2 as $key => $value) { 
+                                            $j++;
+                                            ?> 
                                             
                                            <td>
-                                            <input type="checkbox" id="md_checkbox_33 <?php echo $no; ?>"  class="filled-in chk-col-red" 
-                                            <?php echo ($cpl_kajian->id_kajian == $value['id_kajian'] ? "checked" : '');?> onclick="return false;" />
-                                            <label for="md_checkbox_33 <?php echo $no; ?>"></label><?php } ?>
+                                            <input type="checkbox" id="md_checkbox_31 <?= $i; ?><?= $j; ?>"  />
+                                            <label for="md_checkbox_31 <?=$i; ?><?= $j;?>"></label>
+                                            <script>
+                                                <?php 
+                                                    foreach($kajiancpl as $kcpl){
+                                                ?>
+                                                        console.log("<?=$kcpl->id_cpl;?>")
+                                                        if(<?= $value['id_kajian']?> == <?=$kcpl->id_kajian;?>){
+                                                            if(<?= $cpl_kajian->id_cpl?> == <?=$kcpl->id_cpl;?>){
+                                                                document.getElementById('md_checkbox_31 <?= $i; ?><?= $j; ?>').checked = true;
+                                                            }
+                                                        }
+                                                <?php 
+                                                    }
+                                                ?>
+                                            </script>
+                                            <?php } ?>
                                            </td>
 
                                            
@@ -186,20 +219,35 @@
                                     <tbody> 
 
                                          <?php 
-                                        $no = 0;
+                                        $i = 0; $j = 0;
                                         foreach($cpl_matkul as $cpl_mk): 
-                                        $no++;
+                                        $i++;
                                         ?>
                                            
                                         <tr>
                                            <td class="align-justify"><?= $cpl_mk->kode_cpl?>. <?= $cpl_mk->cpl?></td>  
                                            <?php foreach ($matkul2 as $key => $matkull) { 
-                                            //echo $matkull['id_matkul'];
+                                            $j++;
                                             ?> 
-                                            <td>
-                                            <input type="checkbox" id="md_checkbox_33 <?php echo $no; ?>"  class="filled-in chk-col-red" 
-                                            <?php  echo ($cpl_mk->id_matkul == $matkull['id_matkul'] ? "checked" : '');?> onclick="return false;" />
-                                            <label for="md_checkbox_33 <?php echo $no; ?>"></label><?php } ?>
+
+                                           <td>
+                                            <input type="checkbox" id="md_checkbox_32 <?= $i; ?><?= $j; ?>"  />
+                                            <label for="md_checkbox_32 <?=$i; ?><?= $j;?>"></label>
+                                            <script>
+                                                <?php 
+                                                    foreach($matkulcpl as $mcpl){
+                                                ?>
+                                                        console.log("<?=$mcpl->id_cpl;?>")
+                                                        if(<?= $matkull['id_matkul']?> == <?=$mcpl->id_matkul;?>){
+                                                            if(<?= $cpl_mk->id_cpl?> == <?=$mcpl->id_cpl;?>){
+                                                                document.getElementById('md_checkbox_32 <?= $i; ?><?= $j; ?>').checked = true;
+                                                            }
+                                                        }
+                                                <?php 
+                                                    }
+                                                ?>
+                                            </script>
+                                            <?php } ?>
                                            </td>
                         
                                         </tr>  
@@ -239,20 +287,35 @@
 
                                     <tbody>
                                         <?php 
-                                        $no = 0;
+                                        $i = 0; $j = 0;
                                         foreach($kajian_matkul as $kajian_mk): 
-                                        $no++;
+                                        $i++;
                                         ?>
                                            
                                         <tr>
                                            <td class="align-justify"><?= $kajian_mk->nama_matkul?></td>  
                                            <?php  foreach ($kajian2 as $key => $kajian_baru) { 
-                                            //echo $matkull['id_matkul'];
+                                            $j++;
                                             ?> 
+
                                             <td>
-                                            <input type="checkbox" id="md_checkbox_33 <?php echo $no; ?>"  class="filled-in chk-col-red" 
-                                            <?php  echo ($kajian_mk->id_kajian == $kajian_baru['id_kajian'] ? "checked" : '');?> onclick="return false;" />
-                                            <label for="md_checkbox_33 <?php echo $no; ?>"></label><?php  } ?>
+                                            <input type="checkbox" id="md_checkbox_34 <?= $i; ?><?= $j; ?>"  />
+                                            <label for="md_checkbox_34 <?=$i; ?><?= $j;?>"></label>
+                                            <script>
+                                                <?php 
+                                                    foreach($matkulkajian as $mkajian){
+                                                ?>
+                                                        console.log("<?=$mkajian->id_matkul;?>")
+                                                        if(<?= $kajian_baru['id_kajian']?> == <?=$mkajian->id_kajian;?>){
+                                                            if(<?= $kajian_mk->id_matkul?> == <?=$mkajian->id_matkul;?>){
+                                                                document.getElementById('md_checkbox_34 <?= $i; ?><?= $j; ?>').checked = true;
+                                                            }
+                                                        }
+                                                <?php 
+                                                    }
+                                                ?>
+                                            </script>
+                                            <?php } ?>
                                            </td>
                         
                                         </tr>  

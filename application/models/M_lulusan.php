@@ -66,26 +66,7 @@ class M_lulusan extends CI_Model{
 
     public function tampil_cpl_baru()
     {
-        $session = $_SESSION;
-        $jurusan = $this->session->userdata('id_jurusan');
-        //$this->db->select('cpl.id_cpl, cpl.kode_cpl, profil_cpl.id_lulusan, count(profil_lulusan.id_lulusan) as jumlah_profil' );
-        //      $this->db->from('cpl');
-          //      $this->db->join('profil_cpl','cpl.id_cpl = profil_cpl.id_cpl', 'LEFT');
-            //    $this->db->join('profil_lulusan','profil_cpl.id_lulusan = profil_lulusan.id_lulusan', 'LEFT');
-              //  $this->db->order_by("cpl.id_cpl", "asc");
-                //$this->db->where('cpl.id_jurusan', $jurusan);
-       // $query = $this->db->get();
-        //return $query;
 
-        $sql = $this->db->query("SELECT `cpl`.`id_cpl`, `cpl`.`kode_cpl`, `profil_cpl`.`id_lulusan`,COUNT(`cpl`.`id_cpl`) as `res`,(select sum(res) as sum from (
-            select `profil_lulusan`.`id_lulusan`, count(`profil_lulusan`.`id_lulusan`) as res  from `profil_lulusan`
-            GROUP BY `profil_lulusan`.`id_lulusan`) `profil_lulusan`) as Sum_RES  
-
-        FROM `cpl`, `profil_cpl`, `profil_lulusan`
-        WHERE `cpl`.`id_cpl` = `profil_cpl`.`id_cpl` AND `profil_cpl`.`id_lulusan` = `profil_lulusan`.`id_lulusan` AND `cpl`.`id_jurusan` = $jurusan
-        GROUP BY `profil_cpl`.`id_profil_cpl`;");
-
-        return $sql;
     }
     public function tampil_cpl2($id_jurusan)
     {
@@ -104,7 +85,7 @@ class M_lulusan extends CI_Model{
         $jurusan = $this->session->userdata('id_jurusan');
         $this->db->select('*');
                 $this->db->from('cpl');
-                $this->db->join('cpl_mk','cpl.id_cpl = cpl_mk.id_cpl', 'LEFT');
+                //$this->db->join('cpl_mk','cpl.id_cpl = cpl_mk.id_cpl', 'LEFT');
                 $this->db->order_by("cpl.id_cpl", "asc");
                 $this->db->where('cpl.id_jurusan', $jurusan);
         $query = $this->db->get();
@@ -122,17 +103,52 @@ class M_lulusan extends CI_Model{
         return $query;
     }
 
+    public function tampil_matkul3()
+    {
+        $this->db->select('*');
+                $this->db->from('cpl_mk');
+        $query = $this->db->get();
+        return $query;
+    }
+
+    public function tampil_matkul4($id_jurusan)
+    {
+        $this->db->select('*');
+                $this->db->from('cpl_mk');
+                $this->db->join('cpl','cpl_mk.id_cpl = cpl.id_cpl', 'LEFT');
+                 $this->db->where('cpl.id_jurusan',$id_jurusan);
+        $query = $this->db->get();
+        return $query;
+    }
+
     public function tampil_kajian_mk()
     {
         $session = $_SESSION;
         $jurusan = $this->session->userdata('id_jurusan');
         $this->db->select('*');
                 $this->db->from('matkul');
-                $this->db->join('kajian_matkul','matkul.id_matkul = kajian_matkul.id_matkul', 'LEFT');
+                //$this->db->join('kajian_matkul','matkul.id_matkul = kajian_matkul.id_matkul', 'LEFT');
                 $this->db->join('tahun_ajaran','matkul.id_tahun = tahun_ajaran.id_tahun', 'LEFT');
                 //$this->db->join('pengampu_mk','matkul.id_matkul = pengampu_mk.id_matkul', 'LEFT');
                 $this->db->where('matkul.id_jurusan',$jurusan);
                 $this->db->where('tahun_ajaran.status_ajaran = "Aktif"');
+        $query = $this->db->get();
+        return $query;
+    }
+
+    public function tampil_kajian_mk3()
+    {
+        $this->db->select('*');
+                $this->db->from('kajian_matkul');
+        $query = $this->db->get();
+        return $query;
+    }
+
+    public function tampil_kajian_mk4($id_jurusan)
+    {
+        $this->db->select('*');
+                $this->db->from('kajian_matkul');
+                $this->db->where('kajian_matkul.id_jurusan',$id_jurusan);
         $query = $this->db->get();
         return $query;
     }
@@ -156,8 +172,8 @@ class M_lulusan extends CI_Model{
         $jurusan = $this->session->userdata('id_jurusan');
         $this->db->select('*');
                 $this->db->from('cpl');
-                $this->db->join('kajian_cpl','cpl.id_cpl = kajian_cpl.id_cpl', 'LEFT');
-                $this->db->order_by("cpl.id_cpl", "asc");
+                // $this->db->join('profil_cpl','cpl.id_cpl = profil_cpl.id_cpl', 'LEFT');
+                // $this->db->order_by("cpl.id_cpl", "asc");
                 $this->db->where('cpl.id_jurusan', $jurusan);
         $query = $this->db->get();
         return $query;
@@ -232,7 +248,7 @@ class M_lulusan extends CI_Model{
     {
         $this->db->select('*');
                 $this->db->from('cpl');
-                $this->db->join('profil_cpl','cpl.id_cpl = profil_cpl.id_cpl', 'LEFT');
+                //$this->db->join('profil_cpl','cpl.id_cpl = profil_cpl.id_cpl', 'LEFT');
                 $this->db->order_by("cpl.id_cpl", "asc");
                 $this->db->where('cpl.id_jurusan', $id_jurusan);
         $query = $this->db->get();
@@ -251,7 +267,7 @@ class M_lulusan extends CI_Model{
     {
         $this->db->select('*');
                 $this->db->from('cpl');
-                $this->db->join('kajian_cpl','cpl.id_cpl = kajian_cpl.id_cpl', 'LEFT');
+               // $this->db->join('kajian_cpl','cpl.id_cpl = kajian_cpl.id_cpl', 'LEFT');
                 $this->db->order_by("cpl.id_cpl", "asc");
                 $this->db->where('cpl.id_jurusan', $id_jurusan);
         $query = $this->db->get();
@@ -262,7 +278,7 @@ class M_lulusan extends CI_Model{
     {
         $this->db->select('*');
                 $this->db->from('cpl');
-                $this->db->join('cpl_mk','cpl.id_cpl = cpl_mk.id_cpl', 'LEFT');
+                //$this->db->join('cpl_mk','cpl.id_cpl = cpl_mk.id_cpl', 'LEFT');
                 $this->db->order_by("cpl.id_cpl", "asc");
                 $this->db->where('cpl.id_jurusan', $id_jurusan);
         $query = $this->db->get();
@@ -273,7 +289,7 @@ class M_lulusan extends CI_Model{
     {
         $this->db->select('*');
                 $this->db->from('matkul');
-                $this->db->join('kajian_matkul','matkul.id_matkul = kajian_matkul.id_matkul', 'LEFT');
+               // $this->db->join('kajian_matkul','matkul.id_matkul = kajian_matkul.id_matkul', 'LEFT');
                 $this->db->join('tahun_ajaran','matkul.id_tahun = tahun_ajaran.id_tahun', 'LEFT');
                 $this->db->join('pengampu_mk','matkul.id_matkul = pengampu_mk.id_matkul', 'LEFT');
                 $this->db->where('matkul.id_jurusan',$id_jurusan);

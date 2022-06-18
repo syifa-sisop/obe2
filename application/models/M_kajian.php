@@ -22,6 +22,24 @@ class M_kajian extends CI_Model{
         return $query;
     }
 
+    public function tampil3()
+    {
+        $this->db->select('*');
+                $this->db->from('kajian_cpl');
+                // $this->db->where('profil_lulusan.id_jurusan',$id_jurusan);
+        $query = $this->db->get();
+        return $query;
+    }
+
+    public function tampil4($id_jurusan)
+    {
+        $this->db->select('*');
+                $this->db->from('kajian_cpl');
+                $this->db->where('kajian_cpl.id_jurusan',$id_jurusan);
+        $query = $this->db->get();
+        return $query;
+    }
+
     function insert_data($data)
     {
         $session = $_SESSION;

@@ -34,7 +34,7 @@
                                             <td><?= $prodi->kode_jurusan?></td>
                                             <td><?= $prodi->koordinator_jurusan?></td>
 
-                                                <td width="20px"><?php echo anchor('admin/C_statistik/detail/'.$prodi->id_jurusan, 
+                                                <td width="20px"><?php echo anchor('admin/C_matriks/detail/'.$prodi->id_jurusan, 
                                                 '<div class="btn btn-sm btn-info">Pilih</div>')?></td>
                                         </tr>
                                          <?php endforeach;?>
@@ -42,7 +42,7 @@
                                 </table>
                                  
                             </div>
-                            <?php echo anchor('admin/C_statistik/index/', '<button class="btn btn-sm btn-danger">Kembali</div>')?>
+                            <?php echo anchor('admin/C_matriks/index/', '<button class="btn btn-sm btn-danger">Kembali</div>')?>
                         </div>
                     </div>
                 </div>

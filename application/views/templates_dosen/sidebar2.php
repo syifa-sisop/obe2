@@ -100,7 +100,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="<?php echo base_url('dosen/C_matrik') ?>">
+                                <a href="<?php echo base_url('dosen/C_matriks') ?>">
                                     <span>Matriks</span>
                                 </a>
                             </li>
