@@ -39,21 +39,34 @@
                                     <tbody> 
 
                                          <?php 
-                                        $no = 0;
+                                        $i = 0; $j = 0;
                                         foreach($cpl_matkul as $cpl_mk): 
-                                        $no++;
+                                        $i++;
                                         ?>
                                            
                                         <tr>
                                            <td class="align-justify"><?= $cpl_mk->kode_cpl?>. <?= $cpl_mk->cpl?></td>  
                                            <?php foreach ($matkul2 as $key => $matkull) { 
-                                            //echo $matkull['id_matkul'];
+                                            $j++;
                                             ?> 
-                                            <td>
-                                              <?php if($cpl_mk->id_matkul == $matkull['id_matkul'] ) { ?>
-                                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                                    <div class="demo-google-material-icon"> <i class="material-icons">done</i> </div>
-                                                </div><?php } ?>
+
+                                           <td>
+                                            <input type="checkbox" id="md_checkbox_32 <?= $i; ?><?= $j; ?>"  />
+                                            <label for="md_checkbox_32 <?=$i; ?><?= $j;?>"></label>
+                                            <script>
+                                                <?php 
+                                                    foreach($matkulcpl as $mcpl){
+                                                ?>
+                                                        console.log("<?=$mcpl->id_cpl;?>")
+                                                        if(<?= $matkull['id_matkul']?> == <?=$mcpl->id_matkul;?>){
+                                                            if(<?= $cpl_mk->id_cpl?> == <?=$mcpl->id_cpl;?>){
+                                                                document.getElementById('md_checkbox_32 <?= $i; ?><?= $j; ?>').checked = true;
+                                                            }
+                                                        }
+                                                <?php 
+                                                    }
+                                                ?>
+                                            </script>
                                             <?php } ?>
                                            </td>
                         
@@ -62,7 +75,6 @@
                                            <?php endforeach;?>    
                                                                           
                                     </tbody>
-                                </table>
                     
                     
                             

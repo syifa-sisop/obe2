@@ -41,33 +41,47 @@
                                             <?php endforeach;?>
 
                                         </tr>
-
                                         
                                     </thead>
 
                                     <tbody>
                                         <?php 
-                                        $no = 0;
-                                        foreach($cpl as $cpl4): 
-                                        $no++;
+                                        $i = 0; $j = 0;
+                                        foreach($cpll as $cpl4): 
+                                        $i++;
                                         ?>
                                            
                                         <tr>
-                                           <td class="align-justify"><?= $cpl4->kode_cpl?>. <?= $cpl4->cpl?></td>  
-                                           <?php foreach ($profil as $key => $id) { ?> 
-                                            
+                                           
+                                           <td class="align-justify"><?= $cpl4->kode_cpl?>. <?= $cpl4->cpl?></td>     
+                                           <?php foreach ($profil as $key => $id) { 
+                                            $j++;
+
+                                            ?>
                                            <td>
-                                            <?php if($cpl4->id_lulusan == $id->id_lulusan) { ?>
-                                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                                    <div class="demo-google-material-icon"> <i class="material-icons">done</i> </div>
-                                                </div><?php } ?>
+                                            <input type="checkbox" id="md_checkbox_33 <?= $i; ?><?= $j; ?>"  />
+                                            <label for="md_checkbox_33 <?=$i; ?><?= $j;?>"></label>
+                                            <script>
+                                                <?php 
+                                                    foreach($profilcpl as $pcpl){
+                                                ?>
+                                                        console.log("<?=$pcpl->id_cpl;?>")
+                                                        if(<?= $id->id_lulusan?> == <?=$pcpl->id_lulusan;?>){
+                                                            if(<?= $cpl4->id_cpl?> == <?=$pcpl->id_cpl;?>){
+                                                                document.getElementById('md_checkbox_33 <?= $i; ?><?= $j; ?>').checked = true;
+                                                            }
+                                                        }
+                                                <?php 
+                                                    }
+                                                ?>
+                                            </script>
                                             <?php } ?>
                                            </td>
-
+                                            
                                            
                                         </tr>  
-                                        
-                                           <?php endforeach;?>                                          
+                                        <?php endforeach;?> 
+                                                                                
                                     </tbody>
                                 </table>
                             

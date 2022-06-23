@@ -39,20 +39,34 @@
                                     <tbody>
 
                                          <?php 
-                                        $no = 0;
+                                        $i = 0; $j = 0;
                                         foreach($cpl_kajian as $cpl_kajian): 
-                                        $no++;
+                                        $i++;
                                         ?>
                                            
                                         <tr>
                                            <td class="align-justify"><?= $cpl_kajian->kode_cpl?>. <?= $cpl_kajian->cpl?></td>  
-                                           <?php foreach ($kajian2 as $key => $value) { ?> 
+                                           <?php foreach ($kajian2 as $key => $value) { 
+                                            $j++;
+                                            ?> 
                                             
                                            <td>
-                                            <?php if($cpl_kajian->id_kajian == $value['id_kajian'] ) { ?>
-                                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                                    <div class="demo-google-material-icon"> <i class="material-icons">done</i> </div>
-                                                </div><?php } ?>
+                                            <input type="checkbox" id="md_checkbox_31 <?= $i; ?><?= $j; ?>"  />
+                                            <label for="md_checkbox_31 <?=$i; ?><?= $j;?>"></label>
+                                            <script>
+                                                <?php 
+                                                    foreach($kajiancpl as $kcpl){
+                                                ?>
+                                                        console.log("<?=$kcpl->id_cpl;?>")
+                                                        if(<?= $value['id_kajian']?> == <?=$kcpl->id_kajian;?>){
+                                                            if(<?= $cpl_kajian->id_cpl?> == <?=$kcpl->id_cpl;?>){
+                                                                document.getElementById('md_checkbox_31 <?= $i; ?><?= $j; ?>').checked = true;
+                                                            }
+                                                        }
+                                                <?php 
+                                                    }
+                                                ?>
+                                            </script>
                                             <?php } ?>
                                            </td>
 
@@ -62,6 +76,7 @@
                                            <?php endforeach;?>   
                                                                           
                                     </tbody>
+                                </table>
                                 </table>
                     
                             

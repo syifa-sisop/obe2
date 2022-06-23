@@ -38,21 +38,34 @@
 
                                     <tbody>
                                         <?php 
-                                        $no = 0;
+                                        $i = 0; $j = 0;
                                         foreach($kajian_matkul as $kajian_mk): 
-                                        $no++;
+                                        $i++;
                                         ?>
                                            
                                         <tr>
                                            <td class="align-justify"><?= $kajian_mk->nama_matkul?></td>  
                                            <?php  foreach ($kajian2 as $key => $kajian_baru) { 
-                                            //echo $matkull['id_matkul'];
+                                            $j++;
                                             ?> 
+
                                             <td>
-                                            <?php if($kajian_mk->id_kajian == $kajian_baru['id_kajian'] ) { ?>
-                                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                                    <div class="demo-google-material-icon"> <i class="material-icons">done</i> </div>
-                                                </div><?php } ?>
+                                            <input type="checkbox" id="md_checkbox_34 <?= $i; ?><?= $j; ?>"  />
+                                            <label for="md_checkbox_34 <?=$i; ?><?= $j;?>"></label>
+                                            <script>
+                                                <?php 
+                                                    foreach($matkulkajian as $mkajian){
+                                                ?>
+                                                        console.log("<?=$mkajian->id_matkul;?>")
+                                                        if(<?= $kajian_baru['id_kajian']?> == <?=$mkajian->id_kajian;?>){
+                                                            if(<?= $kajian_mk->id_matkul?> == <?=$mkajian->id_matkul;?>){
+                                                                document.getElementById('md_checkbox_34 <?= $i; ?><?= $j; ?>').checked = true;
+                                                            }
+                                                        }
+                                                <?php 
+                                                    }
+                                                ?>
+                                            </script>
                                             <?php } ?>
                                            </td>
                         

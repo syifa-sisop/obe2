@@ -236,6 +236,20 @@ class M_lulusan extends CI_Model{
         return $query;
     }
 
+    public function profil_dosen(){
+        $session = $_SESSION;
+        $jurusan = $this->session->userdata('id_jurusan');
+        $id_user = $this->session->userdata('id_user');
+
+        $this->db->select('*');
+                $this->db->from('dosen');
+                $this->db->where('dosen.id_user',$id_user);
+                $this->db->join('jurusan','dosen.id_jurusan = jurusan.id_jurusan', 'LEFT');
+                $this->db->join('fakultas','jurusan.id_fakultas = fakultas.id_fakultas', 'LEFT');
+        $query = $this->db->get();
+        return $query;
+    }
+
     public function get_profil($id_jurusan)
     {
         $this->db->from('profil_lulusan');

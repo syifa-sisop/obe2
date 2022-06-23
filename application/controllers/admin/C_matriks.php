@@ -59,9 +59,10 @@ class C_matriks extends CI_Controller{
 
 	public function pdf_profil($id_jurusan)
     {
-    	$data['profil'] = $this->M_setting->tampil_profil2($id_jurusan)->result();
-    	$data['profil2'] = $this->M_setting->tampil_profil2($id_jurusan)->result_array();
-    	$data['cpl'] = $this->M_lulusan->tampil_cpl2($id_jurusan)->result();
+    	$data['profil'] = $this->M_lulusan->get_profil($id_jurusan)->result();
+		$data['profil2'] = $this->M_lulusan->get_profil($id_jurusan)->result_array();
+		$data['cpll'] = $this->M_lulusan->get_cpl($id_jurusan)->result();
+		$data['profilcpl'] = $this->M_setting->tampil_profil4($id_jurusan)->result();
 
     	$data['data'] = $this->M_prodi->getProdi2($id_jurusan)->row();
 
@@ -72,9 +73,10 @@ class C_matriks extends CI_Controller{
 
     public function pdf_kajian($id_jurusan)
     {
-    	$data['kajian'] = $this->M_kajian->tampil2($id_jurusan)->result();
-        $data['kajian2'] = $this->M_kajian->tampil2($id_jurusan)->result_array();
-        $data['cpl_kajian'] = $this->M_lulusan->tampil_kajian2($id_jurusan)->result();
+    	$data['kajian'] = $this->M_lulusan->get_kajian($id_jurusan)->result();
+		$data['kajian2'] = $this->M_lulusan->get_kajian($id_jurusan)->result_array();
+		$data['cpl_kajian'] = $this->M_lulusan->get_kajian2($id_jurusan)->result();
+		$data['kajiancpl'] = $this->M_kajian->tampil4($id_jurusan)->result();
 
     	$data['data'] = $this->M_prodi->getProdi2($id_jurusan)->row();
 
@@ -85,10 +87,10 @@ class C_matriks extends CI_Controller{
 
     public function pdf_matkul($id_jurusan)
     {
-    	$data['matkul'] = $this->M_matkul->tampil22($id_jurusan)->result();
-        $data['matkul2'] = $this->M_matkul->tampil22($id_jurusan)->result_array();
-        $data['cpl_matkul'] = $this->M_lulusan->tampil_matkul2($id_jurusan)->result();
-        $data['cpl_matkul2'] = $this->M_lulusan->tampil_matkul2($id_jurusan)->result_array();
+    	$data['matkul'] = $this->M_matkul->tampil23($id_jurusan)->result();
+        $data['matkul2'] = $this->M_matkul->tampil23($id_jurusan)->result_array();
+        $data['cpl_matkul'] = $this->M_lulusan->get_cpl_matkul($id_jurusan)->result();
+        $data['matkulcpl'] = $this->M_lulusan->tampil_matkul4($id_jurusan)->result();
 
     	$data['data'] = $this->M_prodi->getProdi2($id_jurusan)->row();
 
@@ -100,7 +102,8 @@ class C_matriks extends CI_Controller{
     public function pdf_kajianmk($id_jurusan)
     {
     	$data['kajian2'] = $this->M_kajian->tampil2($id_jurusan)->result_array();
-    	$data['kajian_matkul'] = $this->M_lulusan->tampil_kajian_mk2($id_jurusan)->result();
+    	$data['kajian_matkul'] = $this->M_lulusan->get_kajian_mk($id_jurusan)->result();
+        $data['matkulkajian'] = $this->M_lulusan->tampil_kajian_mk4($id_jurusan)->result();
 
     	$data['data'] = $this->M_prodi->getProdi2($id_jurusan)->row();
 

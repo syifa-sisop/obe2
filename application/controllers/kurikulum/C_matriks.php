@@ -120,6 +120,8 @@ class C_matriks extends CI_Controller{
     {
     	$data['profil'] = $this->M_setting->tampil_profil()->result();
     	$data['profil2'] = $this->M_setting->tampil_profil()->result_array();
+    	$data['cpll'] = $this->M_lulusan->tampil_cpl3()->result();
+    	$data['profilcpl'] = $this->M_setting->tampil_profil2()->result();
     	$data['cpl'] = $this->M_lulusan->tampil_cpl()->result();
 
     	$data['data'] = $this->M_lulusan->profil()->row();
@@ -134,6 +136,7 @@ class C_matriks extends CI_Controller{
     	$data['kajian'] = $this->M_kajian->tampil()->result();
         $data['kajian2'] = $this->M_kajian->tampil()->result_array();
         $data['cpl_kajian'] = $this->M_lulusan->tampil_kajian()->result();
+        $data['kajiancpl'] = $this->M_kajian->tampil3()->result();
 
     	$data['data'] = $this->M_lulusan->profil()->row();
 
@@ -144,10 +147,11 @@ class C_matriks extends CI_Controller{
 
     public function pdf_matkul()
     {
-    	$data['matkul'] = $this->M_matkul->tampil_matkul()->result();
-        $data['matkul2'] = $this->M_matkul->tampil_matkul()->result_array();
+    	$data['matkul'] = $this->M_matkul->tampil_matkul_baru()->result();
+        $data['matkul2'] = $this->M_matkul->tampil_matkul_baru()->result_array();
         $data['cpl_matkul'] = $this->M_lulusan->tampil_matkul()->result();
         $data['cpl_matkul2'] = $this->M_lulusan->tampil_matkul()->result_array();
+        $data['matkulcpl'] = $this->M_lulusan->tampil_matkul3()->result();
 
     	$data['data'] = $this->M_lulusan->profil()->row();
 
@@ -160,6 +164,7 @@ class C_matriks extends CI_Controller{
     {
     	$data['kajian2'] = $this->M_kajian->tampil()->result_array();
     	$data['kajian_matkul'] = $this->M_lulusan->tampil_kajian_mk()->result();
+        $data['matkulkajian'] = $this->M_lulusan->tampil_kajian_mk3()->result();
 
     	$data['data'] = $this->M_lulusan->profil()->row();
 
