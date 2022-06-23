@@ -37,7 +37,6 @@ class M_lulusan extends CI_Model{
         $query = $this->db->get();
         return $query;
     }
-
     public function tampil_cpl()
     {
         $session = $_SESSION;

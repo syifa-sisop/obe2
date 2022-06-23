@@ -1,4 +1,3 @@
-
 <section class="content">
         <div class="container-fluid">
             <div class="block-header">
@@ -65,23 +64,39 @@
                                     <tbody>
 
                                         <?php 
-                                        $no = 0;
+                                        $i = 0; $j = 0;
                                         foreach($cpl as $cpl): 
-                                        $no++;
+                                        $i++;
                                         ?>
                                            
                                         <tr>
                                            <td class="align-justify"><?= $cpl->kode_cpl?>. <?= $cpl->cpl?></td>  
-                                           <?php foreach ($dalam2 as $key => $id) { ?> 
-                                            
-                                           <td>
-                                            <input type="checkbox" id="md_checkbox_21 <?php echo $no; ?>"  class="filled-in chk-col-red" 
-                                            <?php echo ($cpl->id_mbkm == $id['id_mbkm']  ? "checked" : '');?> onclick="return false;" />
-                                            <label for="md_checkbox_21 <?php echo $no; ?>"></label><?php } ?>
-                                           </td>
+                                           <?php foreach ($dalam2 as $key => $id) {
+                                           $j++;
+                                            ?> 
 
+                                           <td>
+                                            <input type="checkbox" id="md_checkbox_33 <?= $i; ?><?= $j; ?>"  />
+                                            <label for="md_checkbox_33 <?=$i; ?><?= $j;?>"></label>
+                                            <script>
+                                                <?php 
+                                                    foreach($dalamcpl as $pcpl){
+                                                ?>
+                                                        console.log("<?=$pcpl->id_cpl;?>")
+                                                        if(<?= $id['id_mbkm']?> == <?=$pcpl->id_mbkm;?>){
+                                                            if(<?= $cpl->id_cpl?> == <?=$pcpl->id_cpl;?>){
+                                                                document.getElementById('md_checkbox_33 <?= $i; ?><?= $j; ?>').checked = true;
+                                                            }
+                                                        }
+                                                <?php 
+                                                    }
+                                                ?>
+                                            </script>
+                                            <?php } ?>
+                                           </td>
                                            
-                                        </tr>  
+                                        </tr> 
+
                                         
                                            <?php endforeach;?>   
                                                                             
@@ -118,23 +133,38 @@
                                     <tbody>
 
                                         <?php 
-                                        $no = 0;
+                                        $i = 0; $j = 0;
                                         foreach($cpl_luar as $cpl_luar): 
-                                        $no++;
+                                        $i++;
                                         ?>
-                                           
+
                                         <tr>
                                            <td class="align-justify"><?= $cpl_luar->kode_cpl?>. <?= $cpl_luar->cpl?></td>  
-                                           <?php foreach ($luar2 as $key => $id2) { ?> 
-                                            
-                                           <td>
-                                            <input type="checkbox" id="md_checkbox_21 <?php echo $no; ?>"  class="filled-in chk-col-red" 
-                                            <?php echo ($cpl_luar->id_mbkm == $id2['id_mbkm']  ? "checked" : '');?> onclick="return false;" />
-                                            <label for="md_checkbox_21 <?php echo $no; ?>"></label><?php } ?>
-                                           </td>
+                                           <?php foreach ($luar2 as $key => $id2) {
+                                           $j++;
+                                            ?> 
 
+                                           <td>
+                                            <input type="checkbox" id="md_checkbox_32 <?= $i; ?><?= $j; ?>"  />
+                                            <label for="md_checkbox_32 <?=$i; ?><?= $j;?>"></label>
+                                            <script>
+                                                <?php 
+                                                    foreach($luarcpl as $lcpl){
+                                                ?>
+                                                        console.log("<?=$lcpl->id_cpl;?>")
+                                                        if(<?= $id2['id_mbkm']?> == <?=$lcpl->id_mbkm;?>){
+                                                            if(<?= $cpl_luar->id_cpl?> == <?=$lcpl->id_cpl;?>){
+                                                                document.getElementById('md_checkbox_32 <?= $i; ?><?= $j; ?>').checked = true;
+                                                            }
+                                                        }
+                                                <?php 
+                                                    }
+                                                ?>
+                                            </script>
+                                            <?php } ?>
+                                           </td>
                                            
-                                        </tr>  
+                                        </tr> 
                                         
                                            <?php endforeach;?>  
                                                                             
@@ -169,19 +199,35 @@
                                     <tbody>
 
                                         <?php 
-                                        $no = 0;
+                                        $i = 0; $j = 0;
                                         foreach($cpl_non as $cpl_non): 
-                                        $no++;
+                                        $i++;
                                         ?>
                                            
                                         <tr>
                                            <td class="align-justify"><?= $cpl_non->kode_cpl?>. <?= $cpl_non->cpl?></td>  
-                                           <?php foreach ($non2 as $key => $id3) { ?> 
+                                           <?php foreach ($non2 as $key => $id3) { 
+                                            $j++;
+                                            ?> 
                                             
                                            <td>
-                                            <input type="checkbox" id="md_checkbox_21 <?php echo $no; ?>"  class="filled-in chk-col-red" 
-                                            <?php echo ($cpl_non->id_mbkm == $id3['id_mbkm']  ? "checked" : '');?> onclick="return false;" />
-                                            <label for="md_checkbox_21 <?php echo $no; ?>"></label><?php } ?>
+                                            <input type="checkbox" id="md_checkbox_34 <?= $i; ?><?= $j; ?>"  />
+                                            <label for="md_checkbox_34 <?=$i; ?><?= $j;?>"></label>
+                                            <script>
+                                                <?php 
+                                                    foreach($noncpl as $ncpl){
+                                                ?>
+                                                        console.log("<?=$ncpl->id_cpl;?>")
+                                                        if(<?= $id3['id_mbkm']?> == <?=$ncpl->id_mbkm;?>){
+                                                            if(<?= $cpl_non->id_cpl?> == <?=$ncpl->id_cpl;?>){
+                                                                document.getElementById('md_checkbox_34 <?= $i; ?><?= $j; ?>').checked = true;
+                                                            }
+                                                        }
+                                                <?php 
+                                                    }
+                                                ?>
+                                            </script>
+                                            <?php } ?>
                                            </td>
 
                                            

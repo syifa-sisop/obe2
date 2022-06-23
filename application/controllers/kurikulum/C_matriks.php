@@ -1,5 +1,4 @@
 <?php 
-
 class C_matriks extends CI_Controller{
 	function __construct()
 	{

@@ -126,9 +126,39 @@ class M_mbkm extends CI_Model{
         $jurusan = $this->session->userdata('id_jurusan');
         $this->db->select('*');
                 $this->db->from('cpl');
-                $this->db->join('mbkm_cpl','cpl.id_cpl = mbkm_cpl.id_cpl', 'LEFT');
+                //$this->db->join('mbkm_cpl','cpl.id_cpl = mbkm_cpl.id_cpl', 'LEFT');
                 $this->db->order_by("cpl.id_cpl", "asc");
                 $this->db->where('cpl.id_jurusan', $jurusan);
+        $query = $this->db->get();
+        return $query;
+    }
+
+    public function tampil_dalam_cpl()
+    {
+
+        $this->db->select('*');
+                $this->db->from('mbkm_cpl');
+                // $this->db->where('profil_lulusan.id_jurusan',$id_jurusan);
+        $query = $this->db->get();
+        return $query;
+    }
+
+    public function tampil_luar_cpl()
+    {
+
+        $this->db->select('*');
+                $this->db->from('luar_cpl');
+                // $this->db->where('profil_lulusan.id_jurusan',$id_jurusan);
+        $query = $this->db->get();
+        return $query;
+    }
+
+    public function tampil_non_cpl()
+    {
+
+        $this->db->select('*');
+                $this->db->from('non_cpl');
+                // $this->db->where('profil_lulusan.id_jurusan',$id_jurusan);
         $query = $this->db->get();
         return $query;
     }
@@ -150,7 +180,7 @@ class M_mbkm extends CI_Model{
         $jurusan = $this->session->userdata('id_jurusan');
         $this->db->select('*');
                 $this->db->from('cpl');
-                $this->db->join('luar_cpl','cpl.id_cpl = luar_cpl.id_cpl', 'LEFT');
+                //$this->db->join('luar_cpl','cpl.id_cpl = luar_cpl.id_cpl', 'LEFT');
                 $this->db->order_by("cpl.id_cpl", "asc");
                 $this->db->where('cpl.id_jurusan', $jurusan);
         $query = $this->db->get();
@@ -174,7 +204,7 @@ class M_mbkm extends CI_Model{
         $jurusan = $this->session->userdata('id_jurusan');
         $this->db->select('*');
                 $this->db->from('cpl');
-                $this->db->join('non_cpl','cpl.id_cpl = non_cpl.id_cpl', 'LEFT');
+                //$this->db->join('non_cpl','cpl.id_cpl = non_cpl.id_cpl', 'LEFT');
                 $this->db->order_by("cpl.id_cpl", "asc");
                 $this->db->where('cpl.id_jurusan', $jurusan);
         $query = $this->db->get();
