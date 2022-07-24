@@ -27,7 +27,6 @@
     <!-- Main CSS-->
     <link href="<?php echo base_url()?>assets/registrasi/css/main.css" rel="stylesheet" media="all">
 </head>
-
 <body>
     <div class="page-wrapper bg-gra-01 p-t-180 p-b-100 font-poppins">
         <div class="wrapper wrapper--w780">
