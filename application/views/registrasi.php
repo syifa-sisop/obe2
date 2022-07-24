@@ -31,6 +31,72 @@
 <body>
     <div class="page-wrapper bg-gra-01 p-t-180 p-b-100 font-poppins">
         <div class="wrapper wrapper--w780">
+
+            <div class="card mb-3 bg-dark" style="max-width: 780px;">
+              <div class="row g-0">
+                <div class="col-md-7">
+                  <img src="<?php echo base_url()?>assets/registrasi/images/obe.png" width="100%">
+                </div>
+                <div class="col-md-5">
+                  <div class="card-body">
+                    <h2 class="card-title" style="color: white;" style="text-center">Form Registrasi Mahasiswa</h2>  
+                    <h2 class="title"></h2>
+                    <?php echo $this->session->flashdata('message') ?>
+                    <form action="<?= base_url();?>C_registrasi/input" method="POST" class="register-form" id="register-form">
+                        <div class="input-group">
+                            <input class="input--style-3" type="text" placeholder="Name" name="nama_mhs" autocomplete="off">
+                            <i class="zmdi zmdi-assignment-account input-icon"></i>
+                            <?= form_error('nama_mhs', ' <small class="text-danger">', '</small> '); ?>
+                        </div>
+
+                        <div class="input-group">
+                            <input class="input--style-3 js-datepicker" type="text" placeholder="NPM" name="npm" autocomplete="off">
+                            <i class="zmdi zmdi-graduation-cap input-icon"></i>
+                            <?= form_error('npm', ' <small class="text-danger">', '</small> '); ?>
+                        </div>
+
+                        <div class="input-group">
+                            <input class="input--style-3 js-datepicker" type="text" placeholder="Email (Email UPN)" name="email" autocomplete="off">
+                            <i class="zmdi zmdi-google-plus-box input-icon"></i>
+                            <?= form_error('email', ' <small class="text-danger">', '</small> '); ?>
+                        </div>
+                        
+                        <div class="input-group">
+                            <input class="input--style-3 js-datepicke" type="text" placeholder="No HP" name="no_hp" autocomplete="off">
+                            <i class="zmdi zmdi-whatsapp input-icon"></i>
+                            <?= form_error('no_hp', ' <small class="text-danger">', '</small> '); ?>
+                        </div>
+
+                        <div class="input-group">
+                            <input class="input--style-3 js-datepicke" type="password" placeholder="Password" name="password" autocomplete="off">
+                            <i class="zmdi zmdi-key input-icon"></i>
+                            <?= form_error('password', ' <small class="text-danger">', '</small> '); ?>
+                        </div>
+
+                        <div class="input-group">
+                            
+                                <select name="id_jurusan" class="form-control"  required>
+                                    <option disabled="disabled" selected="selected">Prodi</option>
+                                    <?php foreach($prodi as $prodi):?>
+                                        <option value="<?= $prodi->id_jurusan; ?>"><?= $prodi->nama; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <div class="select-dropdown"></div>
+                            
+                        </div>
+
+                        <div class="p-t-10">
+                            <button class="btn btn--pill btn--green" type="submit">Register</button><hr>
+                            <a href="<?php echo base_url("C_registrasi/login") ?>" class="signup-image-link">I am already member</a><br>
+                            <a href="<?php echo base_url("C_dashboard") ?>" class="signup-image-link">Back to Home</a>
+                        </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!--
             <div class="card card-3">
                 <div class="card-heading"></div>
                 <div class="card-body">
@@ -85,7 +151,11 @@
                         </div>
                     </form>
                 </div>
-            </div>
+            </div>-->
+
+
+
+
         </div>
     </div>
 

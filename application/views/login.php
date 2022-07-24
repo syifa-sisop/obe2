@@ -30,9 +30,45 @@
 <body>
     <div class="page-wrapper bg-gra-01 p-t-180 p-b-100 font-poppins">
         <div class="wrapper wrapper--w780">
+
+            <div class="card mb-3 bg-dark" style="max-width: 780px;">
+              <div class="row g-0">
+                <div class="col-md-6">
+                  <img src="<?php echo base_url()?>assets/registrasi/images/obe.png" width="100%">
+                </div>
+                <div class="col-md-6">
+                  <div class="card-body">
+                    <h2 class="card-title" style="color: white;" style="text-center">Form Login</h2><br><br>    
+                    <h2 class="title"></h2>
+                    <?php echo $this->session->flashdata('message') ?>
+                    <form action="<?= base_url();?>C_registrasi/masuk" method="POST" class="register-form" id="login-form">
+
+                        <div class="input-group">
+                            <input class="input--style-3 js-datepicke" type="text" placeholder="Email" name="email" autocomplete="off">
+                            <i class="zmdi zmdi-account-circle input-icon"></i>
+                        </div>
+                        <div class="input-group">
+                            <input class="input--style-3 js-datepicke" type="password" placeholder="Password" name="password" autocomplete="off">
+                            <i class="zmdi zmdi-key input-icon"></i>
+                        </div>
+                        <div class="p-t-10">
+                            <button class="btn btn--pill btn--green" type="submit">Login</button><br><br><hr><br><br><br><br>
+
+                            <a href="<?php echo base_url("C_registrasi") ?>" class="signup-image-link">Create an account</a><br>
+                            <a href="<?php echo base_url("C_dashboard") ?>" class="signup-image-link">Back to Home</a><br>
+                            <a href="<?php echo base_url('Lupa_password') ?>">Forgot Password?</a>
+                        </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!--
             <div class="card card-3">
                 <div class="card-heading"></div>
                 <div class="card-body">
+                    <img src="<?php echo base_url()?>assets/registrasi/images/logo.png" width="100%">
                     <h2 class="title">Form Login</h2>
                     <?php echo $this->session->flashdata('message') ?>
                     <form action="<?= base_url();?>C_registrasi/masuk" method="POST" class="register-form" id="login-form">
@@ -55,6 +91,7 @@
                     </form>
                 </div>
             </div>
+        -->
         </div>
     </div>
 

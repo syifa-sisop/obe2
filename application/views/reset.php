@@ -31,6 +31,41 @@
 <body>
     <div class="page-wrapper bg-gra-01 p-t-180 p-b-100 font-poppins">
         <div class="wrapper wrapper--w780">
+
+            <div class="card mb-3 bg-dark" style="max-width: 780px;">
+              <div class="row g-0">
+                <div class="col-md-6">
+                  <img src="<?php echo base_url()?>assets/registrasi/images/obe.png" width="100%">
+                </div>
+                <div class="col-md-6">
+                  <div class="card-body">
+                    <h2 class="card-title" style="color: white;" style="text-center">Lupa Password</h2><br><br>    
+                    <h2 class="title"></h2>
+                    <?php echo $this->session->flashdata('message') ?>
+                    <form action="<?= base_url();?>Lupa_password/changePassword" method="POST" class="register-form" id="login-form">
+
+                        <div class="input-group">
+                            <input class="input--style-3 js-datepicke" type="password" placeholder="Enter New Password" name="password1" autocomplete="off">
+                            <i class="zmdi zmdi-key input-icon"></i>
+                            <?= form_error('password1', ' <small class="text-danger">', '</small> '); ?>
+                        </div>
+
+                        <div class="input-group">
+                            <input class="input--style-3 js-datepicke" type="password" placeholder="Repeat Password" name="password2" autocomplete="off">
+                            <i class="zmdi zmdi-key input-icon"></i>
+                            <?= form_error('password2', ' <small class="text-danger">', '</small> '); ?>
+                        </div>
+
+                        <div class="p-t-10">
+                            <button class="btn btn--pill btn--green" type="submit">Submit</button><br><br><hr><br>
+                            <a href="<?php echo base_url("C_dashboard") ?>" class="signup-image-link">Back to Home</a><br>
+                        </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+<!--
             <div class="card card-3">
                 <div class="card-heading"></div>
                 <div class="card-body">
@@ -56,7 +91,9 @@
                         </div>
                     </form>
                 </div>
-            </div>
+            </div>-->
+
+
         </div>
     </div>
 
