@@ -17,11 +17,11 @@ class M_rumpun extends CI_Model{
     function insert_kajian($data)
     {
         $data= [
-            'bahan_kajian'  =>$data['bahan_kajian'],
+            'id_kajian'  =>$data['id_kajian'],
             'id_matkul'  =>$this->input->post('id_matkul')
         ];
         
-        $this->db->insert('bahan_kajian', $data);
+        $this->db->insert('bahan_kajian2', $data);
          
     }
 
@@ -93,9 +93,9 @@ class M_rumpun extends CI_Model{
         return $this->db->update('deskripsi_mk', $data);
     }
 
-    public function updateFile2($id_bahan, $data){
-        $this->db->where('id_bahan', $id_bahan);
-        return $this->db->update('bahan_kajian', $data);
+    public function updateFile2($id_bahan2, $data){
+        $this->db->where('id_bahan2', $id_bahan2);
+        return $this->db->update('bahan_kajian2', $data);
     }
 
     public function updateFile3($id_utama, $data){
@@ -235,8 +235,10 @@ class M_rumpun extends CI_Model{
     }
 
     public function kajian($id_matkul){
-        $this->db->from('bahan_kajian');
-        $this->db->where('bahan_kajian.id_matkul', $id_matkul);
+        $this->db->from('bahan_kajian2');
+        $this->db->join('kajian','bahan_kajian2.id_kajian = kajian.id_kajian', 'LEFT');
+        $this->db->join('matkul','bahan_kajian2.id_matkul = matkul.id_matkul', 'LEFT');
+        $this->db->where('bahan_kajian2.id_matkul', $id_matkul);
         $query = $this->db->get();
         return $query;
     }

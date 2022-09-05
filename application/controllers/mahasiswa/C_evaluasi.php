@@ -12,7 +12,7 @@ class C_evaluasi extends CI_Controller{
 
 		$data['user'] = $this->M_profil->tampil_mhs()->result();
 		$data['prodi2'] = $this->M_jurusan->tampil_data()->result_array();
-
+		$data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
 		$data['matkul'] = $this->M_pengampu->tampil_matkul_mhs()->result_array();
 
 		$this->load->view('templates_admin/header');

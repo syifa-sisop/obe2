@@ -1,6 +1,5 @@
 <?php  
 class M_setting extends CI_Model{
-
 	public function tampil()
     {
         $session = $_SESSION;
@@ -91,6 +90,21 @@ class M_setting extends CI_Model{
         $this->db->select('*');
                 $this->db->from('cpl');
                 $this->db->join('aspek','cpl.id_aspek = aspek.id_aspek', 'LEFT');
+                //$this->db->join('cpl_mk','cpl.id_cpl = cpl_mk.id_cpl', 'LEFT');
+                $this->db->where('cpl.id_jurusan',$jurusan);
+        $query = $this->db->get();
+        return $query;
+    }
+
+    public function tampil_cpl4()
+    {
+        $session = $_SESSION;
+        $jurusan = $this->session->userdata('id_jurusan');
+        $this->db->select('*');
+                $this->db->from('cpl');
+                $this->db->join('aspek','cpl.id_aspek = aspek.id_aspek', 'LEFT');
+                $this->db->join('cpl_mk','cpl.id_cpl = cpl_mk.id_cpl', 'LEFT');
+                $this->db->join('skl','cpl.id_cpl = skl.id_cpl', 'LEFT');
                 $this->db->where('cpl.id_jurusan',$jurusan);
         $query = $this->db->get();
         return $query;
@@ -119,9 +133,9 @@ class M_setting extends CI_Model{
 
     function insert_data($data)
     {
-        $session = $_SESSION;
+        //$session = $_SESSION;
         $data= [
-            'id_user'           => $this->session->userdata('id_user'),
+            //'id_user'           => $this->session->userdata('id_user'),
             'kode_lulusan'  =>$data['kode_lulusan'],
             'profil'  =>$data['profil'],
             'deskripsi'  =>$data['deskripsi'],
@@ -134,9 +148,9 @@ class M_setting extends CI_Model{
 
     function insert_cpl($data)
     {
-        $session = $_SESSION;
+        //$session = $_SESSION;
         $data= [
-            'id_user'           => $this->session->userdata('id_user'),
+            //'id_user'           => $this->session->userdata('id_user'),
             'kode_cpl'  =>$data['kode_cpl'],
             'cpl'  =>$data['cpl'],
             'sumber'  =>$data['sumber'],
@@ -158,9 +172,19 @@ class M_setting extends CI_Model{
         return $this->db->update('cpl', $data);
     }
 
-    public function hapus_data($where, $table)
+    public function hapus_data($table, $where)
     {
-        $this->db->where($where);
-        $this->db->delete($table);
+        $spn = $this->db->delete($table, $where);
+        return $spn;
+
+        
+    }
+
+    public function getid($id_cpl){
+        $this->db->select('id_cplmk');
+        $this->db->from('cpl_mk');
+        $this->db->where('cpl_mk.id_cpl', $id_cpl);
+        $query = $this->db->get();
+        return $query;
     }
 }

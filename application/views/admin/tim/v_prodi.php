@@ -1,3 +1,4 @@
+
 <section class="content">
         <div class="container-fluid">
 
@@ -38,6 +39,8 @@
 
                                                 <td width="20px"><?php echo anchor('admin/C_tim/olah_data/'.$prodi->id_jurusan, 
                                                 '<div class="btn btn-sm btn-info">Pilih</div>')?></td>
+
+                                                
                                         </tr>
                                          <?php endforeach;?>
                                     </tbody>

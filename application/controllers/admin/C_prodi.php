@@ -11,11 +11,13 @@ class C_prodi extends CI_Controller{
 	{
 
 		$data['data'] = $this->M_prodi->tampil_fakultas()->result_array();
+        $data['data2'] = $this->M_prodi->tampil_fakultas()->result();
 		$data['prodi'] = $this->M_prodi->tampil_prodi()->result();
         $data['prodi2'] = $this->M_prodi->tampil_prodi()->result_array();
         $data['dosen'] = $this->M_dosen->tampil2()->result_array();
-		$this->load->view('templates_admin/header');
-		$this->load->view('templates_admin/sidebar');
+        $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
+        $this->load->view('templates_admin/header');
+        $this->load->view('templates_admin/sidebar', $data);
 		$this->load->view('admin/prodi/v_prodi', $data);
 		$this->load->view('templates_admin/footer');
 	}

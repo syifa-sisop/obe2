@@ -45,7 +45,7 @@
                                         ?>
                                            
                                         <tr>
-                                           <td class="align-justify"><?= $cpl_kajian->kode_cpl?>. <?= $cpl_kajian->cpl?></td>  
+                                           <td class="align-justify"><?= $cpl_kajian->kode_skl?>. <?= $cpl_kajian->skl?></td>  
                                            <?php foreach ($kajian2 as $key => $value) { 
                                             $j++;
                                             ?> 
@@ -55,11 +55,11 @@
                                             <label for="md_checkbox_31 <?=$i; ?><?= $j;?>"></label>
                                             <script>
                                                 <?php 
-                                                    foreach($kajiancpl as $kcpl){
+                                                    foreach($kajianskl as $kcpl){
                                                 ?>
-                                                        console.log("<?=$kcpl->id_cpl;?>")
+                                                        console.log("<?=$kcpl->id_skl;?>")
                                                         if(<?= $value['id_kajian']?> == <?=$kcpl->id_kajian;?>){
-                                                            if(<?= $cpl_kajian->id_cpl?> == <?=$kcpl->id_cpl;?>){
+                                                            if(<?= $cpl_kajian->id_skl?> == <?=$kcpl->id_skl;?>){
                                                                 document.getElementById('md_checkbox_31 <?= $i; ?><?= $j; ?>').checked = true;
                                                             }
                                                         }

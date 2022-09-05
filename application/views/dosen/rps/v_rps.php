@@ -9,6 +9,34 @@
                 <!-- Basic Examples -->
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 
+                    <!-- Modal Hapus bahan kajian-->
+                <?php foreach($kajian2 as $kaj):?>
+
+                <div class="modal fade " id="hapuskajian<?php echo $kaj['id_bahan2']; ?>" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="text-center">
+                            <h4 class="modal-title" id="defaultModalLabel">Form Hapus Data</h4></div>
+                        </div>
+                        <div class="modal-body">
+                            <?php echo form_open_multipart('dosen/C_rps/delete_kajian'.'/'.$kaj['id_matkul'] .'/'.$kaj['id_bahan2'].'/'.$abcd->id_pengampu); ?>
+                            
+                                <p>Apakah anda yakin untuk menghapus data ini?</p>
+                                               
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link waves-effect">DELETE</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                            <?php echo form_close() ?>
+                        </div>
+                      </form>
+                    </div>
+                </div>
+            </div>
+
+        <?php endforeach; ?>
+
                     <!-- Modal -->
                 <div class="modal fade" id="tambah" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
@@ -38,32 +66,7 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Modal -->
-                <div class="modal fade" id="tambahkajian" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="defaultModalLabel">Tambah Data</h4>
-                        </div>
-                        <div class="modal-body">
-                           <?php echo form_open_multipart('dosen/C_rps/insert_kajian/'.$abcd->id_matkul.'/'.$abcd->id_pengampu); ?>
-                              <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">Bahan Kajian</label>
-                                <input type="hidden" class="form-control" name="id_bahan">
-                                <input type="hidden" class="form-control" name="id_matkul" value="<?= $abcd->id_matkul ?>">
-                                 <textarea rows="3" class="form-control no-resize auto-growth" name="bahan_kajian"></textarea>
-                              </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-link waves-effect">SAVE CHANGES</button>
-                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
-                            <?php echo form_close() ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+            
             <!-- Modal -->
                 <div class="modal fade" id="tambahutama" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
@@ -188,7 +191,7 @@
                                 <label for="recipient-name" class="col-form-label">Minggu</label>
                                 <input type="hidden" class="form-control" name="id_detailrps">
                                 <input type="hidden" class="form-control" name="id_matkul" value="<?= $abcd->id_matkul ?>">
-                                 <textarea rows="2" class="form-control no-resize auto-growth" name="minggu"></textarea>
+                                 <input type="text" name="minggu" class="form-control">
                               </div>
 
                               <div class="mb-3">
@@ -197,7 +200,7 @@
                                         <option value="">-- Pilih Subcpmk --</option>
 
                                          <?php foreach($subcpmk2 as $subcpmk2):?>
-                                        <option value="<?= $subcpmk2['id_subcpmk']; ?>"><?= $subcpmk2['subcpmk']; ?></option>
+                                        <option value="<?= $subcpmk2['id_subcpmk']; ?>"><?= $subcpmk2['kode_subcpmk']; ?></option>
                                     <?php endforeach; ?>
                                     </select>
                               </div>
@@ -213,7 +216,7 @@
                               </div>
 
                               <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">Bentuk Pembelajaan Luring</label>
+                                <label for="recipient-name" class="col-form-label">Bentuk Pembelajaran Luring</label>
                                  <textarea rows="2" class="form-control no-resize auto-growth" name="luring"></textarea>
                               </div>
 
@@ -320,7 +323,7 @@
  <!-- Modal Ubah-------------------------------------------------------------------------------------------------------------------------------- -->
             <?php foreach($kajian2 as $kajian2):?>
 
-             <div class="modal fade" id="ubahkajian<?php echo $kajian2['id_bahan']  ?>" tabindex="-1" role="dialog">
+             <div class="modal fade" id="ubahkajian<?php echo $kajian2['id_bahan2']  ?>" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -330,9 +333,13 @@
                            <?php echo form_open_multipart('dosen/C_rps/ubah_kajian/'.$abcd->id_matkul.'/'.$abcd->id_pengampu); ?>
 
                               <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">Bahan Kajian</label>
-                                <input type="hidden" class="form-control" name="id_bahan" value="<?php echo $kajian2['id_bahan'];  ?>">
-                                <textarea rows="3" class="form-control no-resize auto-growth" name="bahan_kajian"><?php echo $kajian2['bahan_kajian'];  ?></textarea>
+                                <input type="hidden" name="id_bahan2" value="<?php echo $kajian2['id_bahan2'] ?>">
+                                <select name="id_kajian" data-live-search="true" class="form-control" required>
+                                                <option value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- Pilih Bahan Kajian --</option>
+                                         <?php foreach($kajian_matkul as $kajian2):?>
+                                                <option value="<?= $kajian2['id_kajian']; ?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?= $kajian2['nama_kajian']; ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
                               </div>  
                         </div>
                         <div class="modal-footer">
@@ -503,6 +510,175 @@
             </div>
  <?php endforeach;?>
 
+ <!-- Modal Hapus SUBCPMK -->
+                 <?php foreach($subcpmk as $subcpmk_new):?>
+
+                <div class="modal fade " id="hapus_subcpmk<?php echo $subcpmk_new->id_subcpmk; ?>" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="text-center">
+                            <h4 class="modal-title" id="defaultModalLabel">Form Hapus Data</h4></div>
+                        </div>
+                        <div class="modal-body">
+                            <?php echo form_open_multipart('dosen/C_rps/delete_subcpmk/'.$subcpmk_new->id_subcpmk.'/'.$subcpmk_new->id_matkul.'/'.$abcd->id_pengampu); ?>
+                            
+                                <p>Apakah anda yakin untuk menghapus data ini?</p>
+                                               
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link waves-effect">DELETE</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                            <?php echo form_close() ?>
+                        </div>
+                      </form>
+                    </div>
+                </div>
+            </div>
+
+        <?php endforeach; ?>
+
+<!-- Modal Hapus Syarat -->
+                 <?php foreach($syarat as $syaratt):?>
+
+                <div class="modal fade " id="hapus_syarat<?php echo $syaratt->id_syarat; ?>" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="text-center">
+                            <h4 class="modal-title" id="defaultModalLabel">Form Hapus Data</h4></div>
+                        </div>
+                        <div class="modal-body">
+                            <?php echo form_open_multipart('dosen/C_rps/delete_syarat/'.$syaratt->id_syarat.'/'.$syaratt->id_matkul.'/'.$abcd->id_pengampu); ?>
+                            
+                                <p>Apakah anda yakin untuk menghapus data ini?</p>
+                                               
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link waves-effect">DELETE</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                            <?php echo form_close() ?>
+                        </div>
+                      </form>
+                    </div>
+                </div>
+            </div>
+
+        <?php endforeach; ?>
+
+
+        <!-- Modal Hapus Pendukung -->
+                 <?php foreach($pendukung as $pendukungg):?>
+
+                <div class="modal fade " id="hapus_pendukung<?php echo $pendukungg->id_pendukung; ?>" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="text-center">
+                            <h4 class="modal-title" id="defaultModalLabel">Form Hapus Data</h4></div>
+                        </div>
+                        <div class="modal-body">
+                            <?php echo form_open_multipart('dosen/C_rps/delete_pendukung/'.$pendukungg->id_pendukung.'/'.$pendukungg->id_matkul.'/'.$abcd->id_pengampu); ?>
+                            
+                                <p>Apakah anda yakin untuk menghapus data ini?</p>
+                                               
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link waves-effect">DELETE</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                            <?php echo form_close() ?>
+                        </div>
+                      </form>
+                    </div>
+                </div>
+            </div>
+
+        <?php endforeach; ?>
+
+        <!-- Modal Hapus Utama -->
+                 <?php foreach($utama as $utamaa):?>
+
+                <div class="modal fade " id="hapus_utama<?php echo $utamaa->id_utama; ?>" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="text-center">
+                            <h4 class="modal-title" id="defaultModalLabel">Form Hapus Data</h4></div>
+                        </div>
+                        <div class="modal-body">
+                            <?php echo form_open_multipart('dosen/C_rps/delete_utama/'.$utamaa->id_utama.'/'.$utamaa->id_matkul.'/'.$abcd->id_pengampu); ?>
+                            
+                                <p>Apakah anda yakin untuk menghapus data ini?</p>
+                                               
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link waves-effect">DELETE</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                            <?php echo form_close() ?>
+                        </div>
+                      </form>
+                    </div>
+                </div>
+            </div>
+
+        <?php endforeach; ?>
+
+
+        <!-- Modal Hapus Media -->
+                 <?php foreach($media as $mediaa):?>
+
+                <div class="modal fade " id="hapus_media<?php echo $mediaa->id_media; ?>" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="text-center">
+                            <h4 class="modal-title" id="defaultModalLabel">Form Hapus Data</h4></div>
+                        </div>
+                        <div class="modal-body">
+                            <?php echo form_open_multipart('dosen/C_rps/delete_media/'.$mediaa->id_media.'/'.$mediaa->id_matkul.'/'.$abcd->id_pengampu); ?>
+                            
+                                <p>Apakah anda yakin untuk menghapus data ini?</p>
+                                               
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link waves-effect">DELETE</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                            <?php echo form_close() ?>
+                        </div>
+                      </form>
+                    </div>
+                </div>
+            </div>
+
+        <?php endforeach; ?>
+
+        <!-- Modal Hapus RPS -->
+                 <?php foreach($detail as $detaill):?>
+
+                <div class="modal fade " id="hapus_detail<?php echo $detaill->id_detailrps; ?>" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="text-center">
+                            <h4 class="modal-title" id="defaultModalLabel">Form Hapus Data</h4></div>
+                        </div>
+                        <div class="modal-body">
+                            <?php echo form_open_multipart('dosen/C_rps/delete_detail/'.$detaill->id_detailrps.'/'.$detaill->id_matkul.'/'.$abcd->id_pengampu); ?>
+                            
+                                <p>Apakah anda yakin untuk menghapus data ini?</p>
+                                               
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link waves-effect">DELETE</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                            <?php echo form_close() ?>
+                        </div>
+                      </form>
+                    </div>
+                </div>
+            </div>
+
+        <?php endforeach; ?>
                     
                     <div class="card">
                         <div class="header bg-grey">
@@ -551,7 +727,7 @@
                                         <?php foreach($data2 as $data2):?>
                                         <tr>
                                             <th >Dosen Pengampu MK</th>
-                                            <th>: <?= $data2->nama_dosen; ?> <?= $data2->id_matkul; ?></th>
+                                            <th>: <?= $data2->nama_dosen; ?> </th>
                                         </tr>
                                         <?php endforeach ?>
 
@@ -564,6 +740,8 @@
                                //echo"$data->id_matkul";
                                 $matkul = $data->id_matkul;
                                 $sql = $this->db->query("SELECT id_matkul FROM deskripsi_mk where id_matkul= '$matkul'");
+                                $sql7 = $sql->result();
+
                                 $cek_user = $sql->num_rows();
                             if($cek_user){ 
                                 echo '<button type="button" class="btn btn-info btn-circle waves-effect waves-circle waves-float" data-toggle="modal" data-target="#ubah"><i class="material-icons">create</i></button>';
@@ -575,6 +753,7 @@
                                 ?>     
                             </h2>
                             </div>
+                            <?php // echo $sql7;  ?>
                             <table class="table">
                                     <thead>
                                         <?php foreach ($data3 as $data3) : ?>
@@ -632,9 +811,11 @@
                                                     <a href="<?php echo base_url('dosen/C_rps/update/'.$cpl->id_matkul .'/'.$cpl->id_cplmk.'/'.$abcd->id_pengampu) ?>" name="id_cplmk" value="<?= $cpl->id_cplmk?>"><i class="material-icons">edit</i></a>
                                                 </td>
 
-                                                <td>
+                                                <td width="20px"><button type="button" class="btn " data-toggle="modal" data-target="#hapus_cpl<?php echo $cpl->id_cplmk  ?>"><i class="material-icons">delete_sweep</i></button></td>
+
+                                                <!--<td>
                                                     <a href="<?php echo base_url('dosen/C_rps/delete/'.$cpl->id_matkul .'/'.$cpl->id_cplmk.'/'.$abcd->id_pengampu) ?>" name="id_cplmk" value="<?= $cpl->id_cplmk?>"><i class="material-icons">delete_sweep</i></a>
-                                                </td>
+                                                </td>-->
                                         </tr>
                                          <?php endforeach;?>
                                     </tbody>
@@ -682,9 +863,11 @@
                                                     <a href="<?php echo base_url('dosen/C_rps/update_cpmk/'.$cpmk->id_matkul .'/'.$cpmk->id_cpmk.'/'.$abcd->id_pengampu) ?>" name="id_cpmk" value="<?= $cpmk->id_cpmk?>"><i class="material-icons">edit</i></a>
                                                 </td>
 
-                                                <td>
+                                                <td width="20px"><button type="button" class="btn " data-toggle="modal" data-target="#hapus_cpmk<?php echo $cpmk->id_cpmk  ?>"><i class="material-icons">delete_sweep</i></button></td>
+
+                                                <!--<td>
                                                     <a href="<?php echo base_url('dosen/C_rps/delete_cpmk/'.$cpmk->id_matkul .'/'.$cpmk->id_cpmk.'/'.$abcd->id_pengampu) ?>" name="id_cpmk" value="<?= $cpmk->id_cpmk?>"><i class="material-icons">delete_sweep</i></a>
-                                                </td>
+                                                </td>-->
                                         </tr>
                                          <?php endforeach;?>
                                     </tbody>
@@ -709,7 +892,7 @@
                             
                                     <thead>
                                         <tr>
-                            
+                
                                             <th>Kode Sub-CPMK</th>
                                             <th>Deskripsi</th>
                                             <th>CPMK</th>
@@ -732,9 +915,11 @@
                                                     <a href="<?php echo base_url('dosen/C_rps/update_subcpmk/'.$subcpmk->id_matkul .'/'.$subcpmk->id_subcpmk.'/'.$abcd->id_pengampu) ?>" name="id_subcpmk" value="<?= $subcpmk->id_subcpmk?>"><i class="material-icons">edit</i></a>
                                                 </td>
 
-                                                <td>
+                                                <td width="20px"><button type="button" class="btn " data-toggle="modal" data-target="#hapus_subcpmk<?php echo $subcpmk->id_subcpmk  ?>"><i class="material-icons">delete_sweep</i></button></td>
+
+                                                <!--<td>
                                                     <a href="<?php echo base_url('dosen/C_rps/delete_subcpmk/'.$subcpmk->id_matkul .'/'.$subcpmk->id_subcpmk.'/'.$abcd->id_pengampu) ?>" name="id_subcpmk" value="<?= $subcpmk->id_subcpmk?>"><i class="material-icons">delete_sweep</i></a>
-                                                </td>
+                                                </td>-->
                                            
                                         </tr>
                                          <?php endforeach;?>
@@ -744,6 +929,8 @@
                     </div>
                 </div>
                 </div>
+
+                
 
                 <div class="row clearfix">
 
@@ -776,14 +963,16 @@
                                         foreach($kajian as $kajian):?>
                                         <tr>
                                            <td><?= $no++;?></td>
-                                           <td><?= $kajian->bahan_kajian?></td>
+                                           <td><?= $kajian->nama_kajian?></td>
 
                                                 <td>
-                                                    <button type="button" class="btn btn-default  waves-float" data-toggle="modal" data-target="#ubahkajian<?php echo $kajian->id_bahan ?>"><i class="material-icons">create</i></button>
+                                                    <button type="button" class="btn btn-default  waves-float" data-toggle="modal" data-target="#ubahkajian<?php echo $kajian->id_bahan2 ?>"><i class="material-icons">create</i></button>
                                                 </td>
 
                                                 <td>
-                                                    <a href="<?php echo base_url('dosen/C_rps/delete_kajian/'.$kajian->id_matkul .'/'.$kajian->id_bahan.'/'.$abcd->id_pengampu) ?>" name="id_bahan" value="<?= $kajian->id_bahan?>"><i class="material-icons">delete_sweep</i></a>
+                                                     <button type="button" class="btn btn-default  waves-float" data-toggle="modal" data-target="#hapuskajian<?php echo $kajian->id_bahan2 ?>"><i class="material-icons">delete_sweep</i></button>
+
+                                                    <!--<a href="<?php echo base_url('dosen/C_rps/delete_kajian/'.$kajian->id_matkul .'/'.$kajian->id_bahan2.'/'.$abcd->id_pengampu) ?>" name="id_bahan2" value="<?= $kajian->id_bahan2?>"><i class="material-icons">delete_sweep</i></a>-->
                                                 </td>
                                            
                                         </tr>
@@ -829,9 +1018,11 @@
                                                     <button type="button" class="btn btn-default  waves-float" data-toggle="modal" data-target="#ubahsyarat<?php echo $syarat->id_syarat ?>"><i class="material-icons">create</i></button>
                                                 </td>
 
-                                                <td>
+                                                <td width="20px"><button type="button" class="btn " data-toggle="modal" data-target="#hapus_syarat<?php echo $syarat->id_syarat  ?>"><i class="material-icons">delete_sweep</i></button></td>
+
+                                                <!--<td>
                                                     <a href="<?php echo base_url('dosen/C_rps/delete_syarat/'.$syarat->id_matkul .'/'.$syarat->id_syarat.'/'.$abcd->id_pengampu) ?>" name="id_syarat" value="<?= $syarat->id_syarat?>"><i class="material-icons">delete_sweep</i></a>
-                                                </td>
+                                                </td>-->
                                            
                                         </tr>
                                          <?php endforeach;?>
@@ -879,9 +1070,11 @@
                                                     <button type="button" class="btn btn-default  waves-float" data-toggle="modal" data-target="#ubahpendukung<?php echo $pendukung->id_pendukung ?>"><i class="material-icons">create</i></button>
                                                 </td>
 
-                                                <td>
+                                                <td width="20px"><button type="button" class="btn " data-toggle="modal" data-target="#hapus_pendukung<?php echo $pendukung->id_pendukung  ?>"><i class="material-icons">delete_sweep</i></button></td>
+
+                                                <!--<td>
                                                     <a href="<?php echo base_url('dosen/C_rps/delete_pendukung/'.$pendukung->id_matkul .'/'.$pendukung->id_pendukung.'/'.$abcd->id_pengampu) ?>" name="id_pendukung" value="<?= $pendukung->id_pendukung?>"><i class="material-icons">delete_sweep</i></a>
-                                                </td>
+                                                </td>-->
                                            
                                         </tr>
                                          <?php endforeach;?>
@@ -926,9 +1119,11 @@
                                                     <button type="button" class="btn btn-default  waves-float" data-toggle="modal" data-target="#ubahutama<?php echo $utama->id_utama ?>"><i class="material-icons">create</i></button>
                                                 </td>
 
-                                                <td>
+                                                <td width="20px"><button type="button" class="btn " data-toggle="modal" data-target="#hapus_utama<?php echo $utama->id_utama  ?>"><i class="material-icons">delete_sweep</i></button></td>
+
+                                                <!--<td>
                                                     <a href="<?php echo base_url('dosen/C_rps/delete_utama/'.$utama->id_matkul .'/'.$utama->id_utama.'/'.$abcd->id_pengampu) ?>" name="id_utama" value="<?= $utama->id_utama?>"><i class="material-icons">delete_sweep</i></a>
-                                                </td>
+                                                </td>-->
                                            
                                         </tr>
                                          <?php endforeach;?>
@@ -979,9 +1174,11 @@
                                                     <button type="button" class="btn btn-default  waves-float" data-toggle="modal" data-target="#ubahmedia<?php echo $media->id_media ?>"><i class="material-icons">create</i></button>
                                                 </td>
 
-                                                <td>
+                                                <td width="20px"><button type="button" class="btn " data-toggle="modal" data-target="#hapus_media<?php echo $media->id_media  ?>"><i class="material-icons">delete_sweep</i></button></td>
+
+                                                <!--<td>
                                                     <a href="<?php echo base_url('dosen/C_rps/delete_media/'.$media->id_matkul .'/'.$media->id_media.'/'.$abcd->id_pengampu) ?>" name="id_media" value="<?= $media->id_media?>"><i class="material-icons">delete_sweep</i></a>
-                                                </td>
+                                                </td>-->
                                            
                                         </tr>
                                          <?php endforeach;?>
@@ -1041,9 +1238,11 @@
                                                     <button type="button" class="btn btn-default  waves-float" data-toggle="modal" data-target="#ubahdetail<?php echo $detail->id_detailrps ?>"><i class="material-icons">create</i></button>
                                                 </td>
 
-                                                <td>
+                                                <td width="20px"><button type="button" class="btn " data-toggle="modal" data-target="#hapus_detail<?php echo $detail->id_detailrps  ?>"><i class="material-icons">delete_sweep</i></button></td>
+
+                                                <!--<td>
                                                     <a href="<?php echo base_url('dosen/C_rps/delete_detail/'.$detail->id_matkul .'/'.$detail->id_detailrps.'/'.$abcd->id_pengampu) ?>" name="id_detailrps" value="<?= $detail->id_detailrps?>"><i class="material-icons">delete_sweep</i></a>
-                                                </td>
+                                                </td>-->
                                            
                                         </tr>
                                          <?php endforeach;?>
@@ -1055,6 +1254,97 @@
             </div>
 
             
+
+            <!-- Modal -->
+                <div class="modal fade" id="tambahkajian" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="defaultModalLabel">Tambah Data</h4>
+                        </div>
+                        <div class="modal-body">
+                           <?php echo form_open_multipart('dosen/C_rps/insert_kajian/'.$abcd->id_matkul.'/'.$abcd->id_pengampu); ?>
+                              <div class="mb-3">
+                                <input type="hidden" name="id_matkul" value="<?php echo $abcd->id_matkul; ?>">
+                                <select name="id_kajian" data-live-search="true" class="form-control" required>
+                                                <option value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- Pilih Bahan Kajian --</option>
+                                         <?php foreach($kajian_matkul as $kajian2):?>
+                                                <option value="<?= $kajian2['id_kajian']; ?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?= $kajian2['nama_kajian']; ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                              </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link waves-effect">SAVE CHANGES</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                            <?php echo form_close() ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Modal Hapus CPLMK -->
+                 <?php foreach($cplmk as $cplmk_new):?>
+
+                <div class="modal fade " id="hapus_cpl<?php echo $cplmk_new->id_cplmk; ?>" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="text-center">
+                            <h4 class="modal-title" id="defaultModalLabel">Form Hapus Data</h4></div>
+                        </div>
+                        <div class="modal-body">
+                            <?php echo form_open_multipart('dosen/C_rps/delete/'.$cplmk_new->id_cplmk.'/'.$cplmk_new->id_matkul.'/'.$abcd->id_pengampu); ?>
+                            
+                                <p>Apakah anda yakin untuk menghapus data ini?</p>
+                                               
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link waves-effect">DELETE</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                            <?php echo form_close() ?>
+                        </div>
+                      </form>
+                    </div>
+                </div>
+            </div>
+
+        <?php endforeach; ?>
+
+        <!-- Modal Hapus CPMK -->
+                 <?php foreach($cpmk2 as $cpmk_new):?>
+
+                <div class="modal fade " id="hapus_cpmk<?php echo $cpmk_new['id_cpmk']; ?>" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="text-center">
+                            <h4 class="modal-title" id="defaultModalLabel">Form Hapus Data</h4></div>
+                        </div>
+                        <div class="modal-body">
+                            <?php echo form_open_multipart('dosen/C_rps/delete_cpmk/'.$cpmk_new['id_cpmk'].'/'.$cpmk_new['id_matkul'].'/'.$abcd->id_pengampu); ?>
+                            
+                                <p>Apakah anda yakin untuk menghapus data ini?</p>
+                                               
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link waves-effect">DELETE</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                            <?php echo form_close() ?>
+                        </div>
+                      </form>
+                    </div>
+                </div>
+            </div>
+
+        <?php endforeach; ?>
+
+
+        
+
+        
 
         <?php endforeach; ?>
         </div>

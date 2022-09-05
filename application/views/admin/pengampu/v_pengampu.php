@@ -1,4 +1,4 @@
-;<section class="content">
+<section class="content">
         <div class="container-fluid">
 
                 <?php 
@@ -22,6 +22,10 @@
               echo '</h5></div>';
           }
           ?>
+
+            
+
+
         <div class="row clearfix">
 
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -32,6 +36,7 @@
 
                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambah">Tambah Data</button>
 
+                        
                             <div class="body">
 
                             <div class="table-responsive">
@@ -58,17 +63,46 @@
                                            
                                             <td><?= $pengampu['nama']?></td>
                                             <td><?= $pengampu['nama_dosen']?></td>
-                                            <td><?= $pengampu['nama_dosen2']?></td>
-                                            <td><?= $pengampu['nama_dosen3']?></td>
+
+                                            <?php 
+                                                $dosen2 = $pengampu['nama_dosen2'];
+                                                $sql = $this->db->query("SELECT nama_dosen FROM dosen where id_dosen = '$dosen2'");
+                                               foreach ($sql->result() as $row)
+                                                    { 
+                                                            
+                                                             echo "<td>" . $row->nama_dosen . "</td>";
+                                                    }
+                                             ?>
+
+                                             <?php 
+                                                $dosen3 = $pengampu['nama_dosen3'];
+                                                $sql = $this->db->query("SELECT nama_dosen FROM dosen where id_dosen = '$dosen3'");
+                                               foreach ($sql->result() as $row)
+                                                    { 
+                                                            
+                                                             echo "<td>" . $row->nama_dosen . "</td>";
+                                                    }
+                                             ?>
                                             <td><?= $pengampu['nama_matkul']?></td>
                                             <td><?= $pengampu['kelas']?></td>
-                                            <td><?= $pengampu['semester']?></td>     
-                                            <td><?= $pengampu['koordinator']?></td>             
+                                            <td><?= $pengampu['semester']?></td>    
+
+                                            <?php 
+                                                $koordinator = $pengampu['koordinator'];
+                                                $sql = $this->db->query("SELECT nama_dosen FROM dosen where id_dosen = '$koordinator'");
+                                               foreach ($sql->result() as $row)
+                                                    { 
+                                                            
+                                                             echo "<td>" . $row->nama_dosen . "</td>";
+                                                    }
+                                             ?>           
 
                                                 <td width="20px"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#ubah<?php echo $pengampu['id_pengampu']  ?>"><i class="material-icons">edit</i></button></td>
 
-                                                <td width="20px"><?php echo anchor('admin/C_pengampu/delete/'.$pengampu['id_pengampu'].'/'.$data2->id_jurusan.'/'.$data->id_tahun, 
-                                                '<div class="btn btn-sm btn-danger"><i class="material-icons">delete_sweep</i></div>')?></td>
+                                                <td width="20px"><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus<?php echo $pengampu['id_pengampu']  ?>"><i class="material-icons">delete_sweep</i></button></td>
+
+                                                <!--<td width="20px"><?php echo anchor('admin/C_pengampu/delete/'.$pengampu['id_pengampu'].'/'.$data2->id_jurusan.'/'.$data->id_tahun, 
+                                                '<div class="btn btn-sm btn-danger"><i class="material-icons">delete_sweep</i></div>')?></td>-->
 
                                         </tr>
                                          <?php endforeach;?>
@@ -83,6 +117,7 @@
           </div>
         </div>
 
+      
         <!-- Modal -->
                 <div class="modal fade" id="tambah" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
@@ -100,23 +135,25 @@
                                 <div class="form-group">
                                     <div class="form-line">
                                          
-                                    <select name="id_matkul" class="form-control" required>
-                                        <option value="">-- Pilih Matkul --</option>
+                                    
+                                    <select class="form-control" data-live-search="true" name="id_matkul" required>
+                                        <option value="">&nbsp;&nbsp;&nbsp;-- Pilih Matkul --</option>
                                          <?php foreach($matkul as $matkul):?>
-                                        <option value="<?= $matkul['id_matkul']; ?>"><?= $matkul['nama_matkul']; ?></option>
-                                    <?php endforeach; ?>
+                                        <option value="<?= $matkul['id_matkul']; ?>"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?= $matkul['nama_matkul']; ?></option>
+                                        <?php endforeach; ?>
                                     </select>
+
                                     </div>
-                                </div>          
+                                </div>    
 
                                 <br><label for="dosen">Nama Dosen 1</label>
                                 <div class="form-group">
                                     <div class="form-line">
                                          
-                                    <select name="id_dosen" class="form-control" required>
-                                        <option value="">-- Pilih Dosen --</option>
-                                         <?php foreach($dosen2 as $dosen):?>
-                                        <option value="<?= $dosen['id_dosen']; ?>"><?= $dosen['nama_dosen']; ?></option>
+                                    <select name="id_dosen" class="form-control" data-live-search="true" required>
+                                        <option value="">&nbsp;&nbsp;&nbsp;-- Pilih Dosen --</option>
+                                         <?php foreach($dosen as $dosen):?>
+                                        <option value="<?= $dosen->id_dosen; ?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?= $dosen->nama_dosen; ?></option>
                                     <?php endforeach; ?>
                                     </select>
                                     </div>
@@ -126,12 +163,18 @@
                                 <div class="form-group">
                                     <div class="form-line">
                                          
-                                    <select name="nama_dosen2" class="form-control">
-                                        <option value="">-- Pilih Dosen  --</option>
-                                        <option value="">Tidak Ada</option>
-                                         <?php foreach($dosen2 as $dosen):?>
-                                        <option value="<?= $dosen['nama_dosen']; ?>"><?= $dosen['nama_dosen']; ?></option>
-                                    <?php endforeach; ?>
+                                    <select name="nama_dosen2" class="form-control" data-live-search="true" required>
+                                        <option value="">&nbsp;&nbsp;&nbsp;-- Pilih Dosen  --</option>
+                                        <?php 
+                                            $jurusan = $data2->id_jurusan;
+                                                $sql = $this->db->query("SELECT nama_dosen, id_dosen FROM dosen where id_jurusan = '$jurusan'");
+                                               foreach ($sql->result() as $row)
+                                                    { 
+                                                            
+                                                            
+                                                             echo '<option value="'.$row->id_dosen.'"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$row->nama_dosen.'</option>';
+                                                    }
+                                             ?>
                                     </select>
                                     </div>
                                 </div>       
@@ -140,12 +183,19 @@
                                 <div class="form-group">
                                     <div class="form-line">
                                          
-                                    <select name="nama_dosen3" class="form-control">
-                                        <option value="">-- Pilih Dosen  --</option>
-                                        <option value="">Tidak Ada</option>
-                                         <?php foreach($dosen2 as $dosen):?>
-                                        <option value="<?= $dosen['nama_dosen']; ?>"><?= $dosen['nama_dosen']; ?></option>
-                                    <?php endforeach; ?>
+                                    <select name="nama_dosen3" class="form-control" data-live-search="true" required>
+                                        <option value="">&nbsp;&nbsp;&nbsp;-- Pilih Dosen  --</option>
+                                        <?php 
+                                            $jurusan = $data2->id_jurusan;
+                                                $sql = $this->db->query("SELECT nama_dosen, id_dosen FROM dosen where id_jurusan = '$jurusan'");
+                                               foreach ($sql->result() as $row)
+                                                    { 
+                                                            
+                                                            
+                                                             echo '<option value="'.$row->id_dosen.'"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$row->nama_dosen.'</option>';
+                                                    }
+                                             ?>
+                                         
                                     </select>
                                     </div>
                                 </div>             
@@ -154,11 +204,18 @@
                                 <div class="form-group">
                                     <div class="form-line">
                                          
-                                    <select name="koordinator" class="form-control" required>
-                                        <option value="">-- Pilih Dosen --</option>
-                                         <?php foreach($dosen2 as $dosen):?>
-                                        <option value="<?= $dosen['nama_dosen']; ?>"><?= $dosen['nama_dosen']; ?></option>
-                                    <?php endforeach; ?>
+                                    <select name="koordinator" class="form-control" data-live-search="true" required>
+                                        <option value="">&nbsp;&nbsp;&nbsp;-- Pilih Dosen --</option>
+                                        <?php 
+                                            $jurusan = $data2->id_jurusan;
+                                                $sql = $this->db->query("SELECT nama_dosen, id_dosen FROM dosen where id_jurusan = '$jurusan'");
+                                               foreach ($sql->result() as $row)
+                                                    { 
+                                                            
+                                                            
+                                                             echo '<option value="'.$row->id_dosen.'"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$row->nama_dosen.'</option>';
+                                                    }
+                                             ?>
                                     </select>
                                     </div>
                                 </div>          
@@ -181,6 +238,7 @@
                     </div>
                 </div>
             </div>
+            
 
             <!-- Modal Ubah-------------------------------------------------------------------------------------------------------------------------------- -->
             <?php foreach($pengampu2 as $data):?>
@@ -211,11 +269,18 @@
                                 <div class="form-group">
                                     <div class="form-line">
                                          
-                                    <select name="id_dosen" class="form-control" required>
-                                        <option value="<?php echo $data->id_dosen;  ?>"><?php echo $data->nama_dosen;  ?></option>
-                                         <?php foreach($dosen5 as $dosen_new):?>
-                                        <option value="<?= $dosen_new->id_dosen; ?>"><?= $dosen_new->nama_dosen; ?></option>
-                                    <?php endforeach; ?>
+                                    <select name="id_dosen" class="form-control" data-live-search="true" required>
+                                        <option value="<?php echo $data->id_dosen;  ?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $data->nama_dosen;  ?></option>
+                                        <?php 
+                                            $jurusan = $data2->id_jurusan;
+                                                $sql = $this->db->query("SELECT nama_dosen, id_dosen FROM dosen where id_jurusan = '$jurusan'");
+                                               foreach ($sql->result() as $row)
+                                                    { 
+                                                            
+                                                            
+                                                             echo '<option value="'.$row->id_dosen.'"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$row->nama_dosen.'</option>';
+                                                    }
+                                             ?>
                                     </select>
                                     </div>
                                 </div>       
@@ -224,12 +289,26 @@
                                 <div class="form-group">
                                     <div class="form-line">
                                          
-                                    <select name="nama_dosen2" class="form-control">
-                                        <option value="<?php echo $data->nama_dosen2;  ?>"><?php echo $data->nama_dosen2;  ?></option>
-                                        <option value="">Tidak Ada</option>
-                                         <?php foreach($dosen3 as $dosen_new2):?>
-                                        <option value="<?= $dosen_new2->nama_dosen; ?>"><?= $dosen_new2->nama_dosen; ?></option>
-                                    <?php endforeach; ?>
+                                    <select name="nama_dosen2" class="form-control" data-live-search="true" required>
+                                        <?php 
+                                                $dosen_2 = $data->nama_dosen2;
+                                                $sql = $this->db->query("SELECT nama_dosen, id_dosen FROM dosen where id_dosen = '$dosen_2'");
+                                               foreach ($sql->result() as $row)
+                                                    { 
+                                                            
+                                                             echo '<option value="'.$row->id_dosen.'"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$row->nama_dosen.'</option>';
+                                                    }
+                                             ?>
+                                        <?php 
+                                            $jurusan = $data2->id_jurusan;
+                                                $sql = $this->db->query("SELECT nama_dosen, id_dosen FROM dosen where id_jurusan = '$jurusan'");
+                                               foreach ($sql->result() as $row)
+                                                    { 
+                                                            
+                                                            
+                                                             echo '<option value="'.$row->id_dosen.'"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$row->nama_dosen.'</option>';
+                                                    }
+                                             ?>
                                     </select>
                                     </div>
                                 </div>    
@@ -238,12 +317,26 @@
                                 <div class="form-group">
                                     <div class="form-line">
                                          
-                                    <select name="nama_dosen3" class="form-control">
-                                        <option value="<?php echo $data->nama_dosen2;  ?>"><?php echo $data->nama_dosen2;  ?></option>
-                                        <option value="">Tidak Ada</option>
-                                         <?php foreach($dosen3 as $dosen_new4):?>
-                                        <option value="<?= $dosen_new4->nama_dosen; ?>"><?= $dosen_new4->nama_dosen; ?></option>
-                                    <?php endforeach; ?>
+                                    <select name="nama_dosen3" class="form-control" data-live-search="true" required>
+                                        <?php 
+                                                $dosen_3 = $data->nama_dosen3;
+                                                $sql = $this->db->query("SELECT nama_dosen, id_dosen FROM dosen where id_dosen = '$dosen_3'");
+                                               foreach ($sql->result() as $row)
+                                                    { 
+                                                            
+                                                             echo '<option value="'.$row->id_dosen.'"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$row->nama_dosen.'</option>';
+                                                    }
+                                             ?>
+                                        <?php 
+                                            $jurusan = $data2->id_jurusan;
+                                                $sql = $this->db->query("SELECT nama_dosen, id_dosen FROM dosen where id_jurusan = '$jurusan'");
+                                               foreach ($sql->result() as $row)
+                                                    { 
+                                                            
+                                                            
+                                                             echo '<option value="'.$row->id_dosen.'"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$row->nama_dosen.'</option>';
+                                                    }
+                                             ?>
                                     </select>
                                     </div>
                                 </div>              
@@ -252,11 +345,26 @@
                                 <div class="form-group">
                                     <div class="form-line">
                                          
-                                    <select name="koordinator" class="form-control" required>
-                                        <option value="<?php echo $data->nama_dosen;  ?>"><?php echo $data->nama_dosen;  ?></option>
-                                         <?php foreach($dosen4 as $dosen_new3):?>
-                                        <option value="<?= $dosen_new3->nama_dosen; ?>"><?= $dosen_new3->nama_dosen; ?></option>
-                                    <?php endforeach; ?>
+                                    <select name="koordinator" class="form-control" data-live-search="true" required>
+                                        <?php 
+                                                $koordinator = $data->koordinator;
+                                                $sql = $this->db->query("SELECT nama_dosen, id_dosen FROM dosen where id_dosen = '$koordinator'");
+                                               foreach ($sql->result() as $row)
+                                                    { 
+                                                            
+                                                             echo '<option value="'.$row->id_dosen.'"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$row->nama_dosen.'</option>';
+                                                    }
+                                             ?>
+                                         <?php 
+                                            $jurusan = $data2->id_jurusan;
+                                                $sql = $this->db->query("SELECT nama_dosen, id_dosen FROM dosen where id_jurusan = '$jurusan'");
+                                               foreach ($sql->result() as $row)
+                                                    { 
+                                                            
+                                                            
+                                                             echo '<option value="'.$row->id_dosen.'"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$row->nama_dosen.'</option>';
+                                                    }
+                                             ?>
                                     </select>
                                     </div>
                                 </div>          
@@ -281,5 +389,35 @@
  <?php endforeach;?>
 
 <!-- END Modal Ubah -->
+<!-- Modal Hapus Pengampu-->
+                <?php foreach($pengampu2 as $pengampu2):?>
+
+                <div class="modal fade " id="hapus<?php echo $pengampu2->id_pengampu; ?>" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="text-center">
+                            <h4 class="modal-title" id="defaultModalLabel">Form Hapus Data</h4></div>
+                        </div>
+                        <div class="modal-body">
+                            <?php echo form_open_multipart('admin/C_pengampu/delete'.'/'.$pengampu2->id_pengampu.'/'.$pengampu2->id_jurusan.'/'.$pengampu2->id_tahun); ?>
+                            
+                                <p>Apakah anda yakin untuk menghapus data ini?</p>
+                                               
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link waves-effect">DELETE</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                            <?php echo form_close() ?>
+                        </div>
+                      </form>
+                    </div>
+                </div>
+            </div>
+
+        <?php endforeach; ?>
     </div>
 </section>
+<script>
+      $(".search").select2();
+   </script>

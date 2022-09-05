@@ -56,8 +56,7 @@
 
                                                 <td width="20px"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#edit<?php echo $fakultas['id_fakultas']  ?>"><i class="material-icons">edit</i></button></td>
 
-                                                <td width="20px"><?php echo anchor('admin/C_prodi/delete/'.$fakultas['id_fakultas'], 
-                                                '<div class="btn btn-sm btn-danger"><i class="material-icons">delete_sweep</i></div>')?></td>
+                                                <td width="20px"><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus<?php echo $fakultas['id_fakultas']  ?>"><i class="material-icons">delete_sweep</i></button></td>
                                         </tr>
                                     <?php endforeach;?>
                                     </tbody>
@@ -172,8 +171,8 @@
 
                                                 <td width="20px"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#ubah<?php echo $prodi->id_jurusan  ?>"><i class="material-icons">edit</i></button></td>
 
-                                                <td width="20px"><?php echo anchor('admin/C_prodi/delete_jurusan/'.$prodi->id_jurusan, 
-                                                '<div class="btn btn-sm btn-danger"><i class="material-icons">delete_sweep</i></div>')?></td>
+                                                <td width="20px"><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus_jurusan<?php echo $prodi->id_jurusan  ?>"><i class="material-icons">delete_sweep</i></button></td>
+
                                         </tr>
                                          <?php endforeach;?>
                                     </tbody>
@@ -186,6 +185,34 @@
 
             
         </div>
+
+        <!-- Modal Hapus Jurusan-->
+                <?php foreach($prodi2 as $prodi_new):?>
+
+                <div class="modal fade " id="hapus_jurusan<?php echo $prodi_new['id_jurusan']; ?>" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="text-center">
+                            <h4 class="modal-title" id="defaultModalLabel">Form Hapus Data</h4></div>
+                        </div>
+                        <div class="modal-body">
+                            <?php echo form_open_multipart('admin/C_prodi/delete_jurusan'.'/'.$prodi_new['id_jurusan']); ?>
+                            
+                                <p>Apakah anda yakin untuk menghapus data ini?</p>
+                                               
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link waves-effect">DELETE</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                            <?php echo form_close() ?>
+                        </div>
+                      </form>
+                    </div>
+                </div>
+            </div>
+
+        <?php endforeach; ?>
 
  <!-- Modal Ubah-------------------------------------------------------------------------------------------------------------------------------- -->
             <?php foreach($prodi2 as $prodi):?>
@@ -293,6 +320,36 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Modal Hapus Fakultas-->
+                <?php foreach($data2 as $fakultas2):?>
+
+                <div class="modal fade " id="hapus<?php echo $fakultas2->id_fakultas; ?>" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="text-center">
+                            <h4 class="modal-title" id="defaultModalLabel">Form Hapus Data</h4></div>
+                        </div>
+                        <div class="modal-body">
+                            <?php echo form_open_multipart('admin/C_prodi/delete'.'/'.$fakultas2->id_fakultas); ?>
+                            
+                                <p>Apakah anda yakin untuk menghapus data ini?</p>
+                                               
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link waves-effect">DELETE</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                            <?php echo form_close() ?>
+                        </div>
+                      </form>
+                    </div>
+                </div>
+            </div>
+
+        <?php endforeach; ?>
+
+
 
 
             </div>

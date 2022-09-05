@@ -155,7 +155,7 @@
                                             <?php 
                                              $no=1;
                                             foreach ($kajian as $kajian) : ?>
-                                            <?= $no++;?>. <?= $kajian->bahan_kajian?><br>
+                                            <?= $no++;?>. <?= $kajian->nama_kajian?>. <?= $kajian->deskripsi?><br>
                                             <?php endforeach; ?>
                                             </td>
                                         </tr>

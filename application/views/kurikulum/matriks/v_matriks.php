@@ -3,7 +3,6 @@
             <div class="block-header">
                 <h2>Matriks Kurikulum</h2>
             </div>
-
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
@@ -25,7 +24,7 @@
                                 </li>
                                 <li role="presentation">
                                     <a href="#profile_with_icon_title" data-toggle="tab">
-                                        <i class="material-icons">face</i> CPL & BK
+                                        <i class="material-icons">face</i> SKL & BK
                                     </a>
                                 </li>
                                 <li role="presentation">
@@ -47,11 +46,11 @@
 
                                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#edit_profil"><i class="material-icons">queue</i></button>
 
-                                    <a class="btn btn-danger" href="<?php echo base_url('kurikulum/C_matriks/delete') ?>"><i class="material-icons">delete_sweep</i></a>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus_profil"><i class="material-icons">delete_sweep</i></button>
 
                                     <a class="btn btn-warning" href="<?php echo base_url('kurikulum/C_matriks/pdf_profil') ?>" target="_blank"><i class="material-icons">insert_drive_file</i> Export (Pdf)</a>
 
-                                    <a class="btn btn-success" href="#" target="_blank"><i class="material-icons">insert_drive_file</i> Export (Excel)</a>
+                                    
 
                                     <br></b><br>
                                     <div class="table-responsive">
@@ -127,11 +126,11 @@
                                 <div role="tabpanel" class="tab-pane fade" id="profile_with_icon_title">
                                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#edit_kajian"><i class="material-icons">queue</i></button>
 
-                                    <a class="btn btn-danger" href="<?php echo base_url('kurikulum/C_matriks/delete_kajian') ?>"><i class="material-icons">delete_sweep</i></a>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus_kajian"><i class="material-icons">delete_sweep</i></button>
 
                                     <a class="btn btn-warning" href="<?php echo base_url('kurikulum/C_matriks/pdf_kajian') ?>" target="_blank"><i class="material-icons">insert_drive_file</i> Export (Pdf)</a>
 
-                                    <a class="btn btn-success" href="#" target="_blank"><i class="material-icons">insert_drive_file</i> Export (Excel)</a>
+                                    
 
                                     <br></b><br>
 
@@ -157,12 +156,12 @@
 
                                          <?php 
                                         $i = 0; $j = 0;
-                                        foreach($cpl_kajian as $cpl_kajian): 
+                                        foreach($skl_kajian as $skl_kajian): 
                                         $i++;
                                         ?>
                                            
                                         <tr>
-                                           <td class="align-justify"><?= $cpl_kajian->kode_cpl?>. <?= $cpl_kajian->cpl?></td>  
+                                           <td class="align-justify"><?= $skl_kajian->kode_skl?></td>  
                                            <?php foreach ($kajian2 as $key => $value) { 
                                             $j++;
                                             ?> 
@@ -172,11 +171,11 @@
                                             <label for="md_checkbox_31 <?=$i; ?><?= $j;?>"></label>
                                             <script>
                                                 <?php 
-                                                    foreach($kajiancpl as $kcpl){
+                                                    foreach($kajianskl as $kcpl){
                                                 ?>
-                                                        console.log("<?=$kcpl->id_cpl;?>")
+                                                        console.log("<?=$kcpl->id_skl;?>")
                                                         if(<?= $value['id_kajian']?> == <?=$kcpl->id_kajian;?>){
-                                                            if(<?= $cpl_kajian->id_cpl?> == <?=$kcpl->id_cpl;?>){
+                                                            if(<?= $skl_kajian->id_skl?> == <?=$kcpl->id_skl;?>){
                                                                 document.getElementById('md_checkbox_31 <?= $i; ?><?= $j; ?>').checked = true;
                                                             }
                                                         }
@@ -200,7 +199,7 @@
                                 <div role="tabpanel" class="tab-pane fade" id="messages_with_icon_title">
                                     <a class="btn btn-warning" href="<?php echo base_url('kurikulum/C_matriks/pdf_matkul') ?>" target="_blank"><i class="material-icons">insert_drive_file</i> Export (Pdf)</a>
 
-                                    <a class="btn btn-success" href="#" target="_blank"><i class="material-icons">insert_drive_file</i> Export (Excel)</a>
+                                    
                                     <br></b><br>
                                     <div class="table-responsive">
                                         <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
@@ -229,7 +228,7 @@
                                         ?>
                                            
                                         <tr>
-                                           <td class="align-justify"><?= $cpl_mk->kode_cpl?>. <?= $cpl_mk->cpl?></td>  
+                                           <td class="align-justify"><?= $cpl_mk->kode_cpl?></td>  
                                            <?php foreach ($matkul2 as $key => $matkull) { 
                                             $j++;
                                             ?> 
@@ -266,11 +265,11 @@
                                 <div role="tabpanel" class="tab-pane fade" id="settings_with_icon_title">
                                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#edit_kajianmk"><i class="material-icons">queue</i></button>
 
-                                    <a class="btn btn-danger" href="<?php echo base_url('kurikulum/C_matriks/delete_kajianmk') ?>"><i class="material-icons">delete_sweep</i></a>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus_kajianmk"><i class="material-icons">delete_sweep</i></button>
 
                                     <a class="btn btn-warning" href="<?php echo base_url('kurikulum/C_matriks/pdf_kajianmk') ?>" target="_blank"><i class="material-icons">insert_drive_file</i> Export (Pdf)</a>
 
-                                    <a class="btn btn-success" href="#" target="_blank"><i class="material-icons">insert_drive_file</i> Export (Excel)</a>
+                                    
 
                                     <br></b><br>
 
@@ -343,7 +342,6 @@
             </div>
             <!-- #END# Tabs With Icon Title -->
 
-
             <!-- Modal -->
                 <div class="modal fade" id="edit_profil" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-lg" role="document">
@@ -361,7 +359,7 @@
                                     <div class="form-line">
                                          <input type="hidden" name="id_profil_cpl" id="id_profil_cpl">
                                          <input type="hidden" name="id_jurusan" id="id_jurusan" value="<?php echo $data->id_jurusan; ?>">
-                                         <input type="hidden" name="id_user" id="id_user" value="<?php echo $this->session->userdata('id_user'); ?>">
+                                         
 
                                           <select name="id_lulusan" class="form-control" required>
                                                 <option value="">-- Pilih Profil Lulusan --</option>
@@ -400,6 +398,49 @@
                 </div>
             </div>
 
+            <!-- Modal Hapus Profil Lulusan-->
+                <?php foreach($profil_cpl2 as $prof):?>
+
+                <div class="modal fade " id="hapus_profil" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="text-center">
+                            <h4 class="modal-title" id="defaultModalLabel">Form Hapus Data</h4></div>
+                        </div>
+                        <div class="modal-body">
+                            <?php echo form_open_multipart('kurikulum/C_matriks/delete'); ?>
+
+                            <label for="matkul">Profil Lulusan</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                         
+                                          <select name="id_lulusan" class="form-control" required>
+                                                <option value="">-- Pilih Profil Lulusan --</option>
+                                         <?php foreach($profil as $pro):?>
+                                                <option value="<?= $pro->id_lulusan; ?>"><?= $pro->kode_lulusan; ?> <?= $pro->profil; ?></option>
+
+                                        <?php endforeach; ?>
+                                    </select>
+
+                                    </div>
+                                </div>
+                            
+                                <p>Apakah anda yakin untuk menghapus data ini?</p>
+                                               
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link waves-effect">DELETE</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                            <?php echo form_close() ?>
+                        </div>
+                      </form>
+                    </div>
+                </div>
+            </div>
+
+        <?php endforeach; ?>
+
              <!-- Modal -->
                 <div class="modal fade" id="edit_kajian" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-lg" role="document">
@@ -419,26 +460,26 @@
                                          <input type="hidden" name="id_jurusan" id="id_jurusan" value="<?php echo $data->id_jurusan; ?>">
                                          <input type="hidden" name="id_user" id="id_user" value="<?php echo $this->session->userdata('id_user'); ?>">
 
-                                          <select name="id_kajian" class="form-control" required>
-                                                <option value="">-- Pilih Bahan Kajian --</option>
+                                          <select name="id_kajian" data-live-search="true" class="form-control" required>
+                                                <option value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- Pilih Bahan Kajian --</option>
                                          <?php foreach($kajian2 as $kajian2):?>
-                                                <option value="<?= $kajian2['id_kajian']; ?>"><?= $kajian2['nama_kajian']; ?></option>
+                                                <option value="<?= $kajian2['id_kajian']; ?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?= $kajian2['nama_kajian']; ?></option>
                                         <?php endforeach; ?>
                                     </select>
 
                                     </div>
                                 </div>
 
-                                <label for="matkul">CPL</label>
+                                <label for="matkul">SKL</label>
                                 <div class="form-group after-add-more" id="after-add-more">
                                     <?php 
                                     $no = 0;
-                                    foreach($cpl2 as $cpll):
+                                    foreach($skl as $cpll):
                                     $no++;
                                     ?>
 
-                                        <input type="checkbox" class="filled-in" name="id_cpl[]" value="<?= $cpll->id_cpl; ?>" id="md_checkbox_22 <?php echo $no; ?>">
-                                        <label for="md_checkbox_22 <?php echo $no; ?>"><?= $cpll->kode_cpl; ?>. <?= $cpll->cpl; ?></label><br>
+                                        <input type="checkbox" class="filled-in" name="id_skl[]" value="<?= $cpll->id_skl; ?>" id="md_checkbox_22 <?php echo $no; ?>">
+                                        <label for="md_checkbox_22 <?php echo $no; ?>"><?= $cpll->kode_skl; ?>. <?= $cpll->skl; ?></label><br>
 
                                     <?php endforeach; ?>
                                 </div>
@@ -456,6 +497,47 @@
                 </div>
             </div>
 
+             <!-- Modal Hapus Kajian SKL-->
+
+                <div class="modal fade " id="hapus_kajian" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="text-center">
+                            <h4 class="modal-title" id="defaultModalLabel">Form Hapus Data</h4></div>
+                        </div>
+                        <div class="modal-body">
+                            <?php echo form_open_multipart('kurikulum/C_matriks/delete_kajian'); ?>
+
+                            <label for="matkul">Bahan Kajian</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                         
+                                          <select name="id_kajian" class="form-control" required>
+                                                <option value="">-- Pilih Bahan Kajian --</option>
+                                         <?php foreach($kajian3 as $kaj):?>
+                                                <option value="<?= $kaj->id_kajian; ?>"> <?= $kaj->nama_kajian; ?></option>
+
+                                        <?php endforeach; ?>
+                                    </select>
+
+                                    </div>
+                                </div>
+                            
+                                <p>Apakah anda yakin untuk menghapus data ini?</p>
+                                               
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link waves-effect">DELETE</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                            <?php echo form_close() ?>
+                        </div>
+                      </form>
+                    </div>
+                </div>
+            </div>
+
+
             <!-- Modal -->
                 <div class="modal fade" id="edit_kajianmk" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-lg" role="document">
@@ -466,35 +548,35 @@
                         </div>
                         <div class="modal-body">
                             <?php echo form_open_multipart('kurikulum/C_matriks/insert_kajianmk'); ?>
-                            
+                        
                                 <form method="POST">
                                 <label for="matkul">Bahan Kajian</label>
                                 <div class="form-group">
                                     <div class="form-line">
                                          <input type="hidden" name="id_kajianmk" id="id_kajianmk">
                                          <input type="hidden" name="id_jurusan" id="id_jurusan" value="<?php echo $data->id_jurusan; ?>">
-                                         <input type="hidden" name="id_user" id="id_user" value="<?php echo $this->session->userdata('id_user'); ?>">
+                                         
 
-                                          <select name="id_kajian" class="form-control" required>
-                                                <option value="">-- Pilih Bahan Kajian --</option>
-                                         <?php foreach($kajian3 as $kk):?>
-                                                <option value="<?= $kk->id_kajian; ?>"><?= $kk->nama_kajian; ?></option>
+                                          <select name="id_matkul" data-live-search="true" class="form-control" required>
+                                                <option value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- Pilih Mata Kuliah --</option>
+                                         <?php foreach($matkul2 as $matkul_new):?>
+                                                <option value="<?= $matkul_new['id_matkul']; ?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?= $matkul_new['nama_matkul']; ?></option>
                                         <?php endforeach; ?>
                                     </select>
 
                                     </div>
                                 </div>
 
-                                <label for="matkul">Mata Kuliah</label>
+                                <label for="matkul">Bahan Kajian</label>
                                 <div class="form-group after-add-more" id="after-add-more">
                                     <?php 
                                     $no = 0;
-                                    foreach($matkul2 as $matkul_new):
+                                    foreach($kajian3 as $kajian_dt):
                                     $no++;
                                     ?>
 
-                                        <input type="checkbox" class="filled-in" name="id_matkul[]" value="<?= $matkul_new['id_matkul']; ?>" id="md_checkbox_25 <?php echo $no; ?>">
-                                        <label for="md_checkbox_25 <?php echo $no; ?>"><?= $matkul_new['nama_matkul']; ?></label><br>
+                                        <input type="checkbox" class="filled-in" name="id_kajian[]" value="<?= $kajian_dt->id_kajian; ?>" id="md_checkbox_25 <?php echo $no; ?>">
+                                        <label for="md_checkbox_25 <?php echo $no; ?>"><?= $kajian_dt->nama_kajian; ?></label><br>
 
                                     <?php endforeach; ?>
                                 </div>
@@ -504,6 +586,46 @@
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-link waves-effect">SAVE</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                            <?php echo form_close() ?>
+                        </div>
+                      </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Hapus Kajian MK-->
+
+                <div class="modal fade " id="hapus_kajianmk" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="text-center">
+                            <h4 class="modal-title" id="defaultModalLabel">Form Hapus Data</h4></div>
+                        </div>
+                        <div class="modal-body">
+                            <?php echo form_open_multipart('kurikulum/C_matriks/delete_kajianmk'); ?>
+
+                            <label for="matkul">Mata Kuliah</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                         
+                                          <select name="id_matkul" class="form-control" required>
+                                                <option value="">-- Pilih Mata Kuliah --</option>
+                                         <?php foreach($matkul2 as $kaj):?>
+                                                <option value="<?= $kaj['id_matkul']; ?>"> <?= $kaj['nama_matkul']; ?></option>
+
+                                        <?php endforeach; ?>
+                                    </select>
+
+                                    </div>
+                                </div>
+                            
+                                <p>Apakah anda yakin untuk menghapus data ini?</p>
+                                               
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link waves-effect">DELETE</button>
                             <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
                             <?php echo form_close() ?>
                         </div>

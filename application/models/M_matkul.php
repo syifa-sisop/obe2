@@ -21,7 +21,7 @@ class M_matkul extends CI_Model{
         $this->db->select('*');
                 $this->db->from('matkul');
                 $this->db->join('tahun_ajaran','matkul.id_tahun = tahun_ajaran.id_tahun', 'LEFT');
-                $this->db->join('pengampu_mk','matkul.id_matkul = pengampu_mk.id_matkul', 'LEFT');
+               // $this->db->join('pengampu_mk','matkul.id_matkul = pengampu_mk.id_matkul', 'LEFT');
                 $this->db->where('matkul.id_jurusan',$jurusan);
                 $this->db->where('tahun_ajaran.status_ajaran = "Aktif"');
         $query = $this->db->get();
@@ -103,14 +103,37 @@ class M_matkul extends CI_Model{
 
         $this->db->select('*');
                  $this->db->from('pengampu_mk');
-                 $this->db->join('dosen','pengampu_mk.id_dosen = dosen.id_dosen', 'LEFT');
+                 $this->db->join('dosen','pengampu_mk.id_dosen  = dosen.id_dosen');
                  $this->db->where('dosen.id_user',$id_user);
                  $this->db->join('matkul','pengampu_mk.id_matkul = matkul.id_matkul', 'LEFT');
                  $this->db->join('tahun_ajaran','matkul.id_tahun = tahun_ajaran.id_tahun', 'LEFT');
                  $this->db->where('tahun_ajaran.status_ajaran = "Aktif"');
         $query = $this->db->get();
+
         return $query;
+
     }
+
+    public function tampil33()
+    {
+        $session = $_SESSION;
+        //$jurusan = $this->session->userdata('id_jurusan');
+        $id_user = $this->session->userdata('id_user');
+
+        $query = $this->db->query("SELECT * FROM pengampu_mk
+                                    LEFT JOIN dosen ON pengampu_mk.id_dosen = dosen.id_dosen 
+                                    LEFT JOIN dosen as ds ON pengampu_mk.nama_dosen2 = ds.id_dosen
+                                    JOIN dosen as ds2 ON pengampu_mk.nama_dosen3 = ds2.id_dosen 
+                                    JOIN dosen as ds3 ON pengampu_mk.koordinator = ds3.id_dosen
+                                    LEFT JOIN matkul ON pengampu_mk.id_matkul = matkul.id_matkul
+                                    LEFT JOIN tahun_ajaran ON matkul.id_tahun = tahun_ajaran.id_tahun
+                                    WHERE dosen.id_user = '$id_user' OR ds.id_user = '$id_user' OR ds2.id_user = '$id_user' OR ds3.id_user = '$id_user' AND tahun_ajaran.status_ajaran = 'Aktif'
+                                    ");
+
+        return $query;
+
+    }
+
 
     public function tampil3_data()
     {
@@ -176,6 +199,15 @@ class M_matkul extends CI_Model{
                 $this->db->from('tahun_ajaran');
         $query = $this->db->get();
         return $query->result();
+    }
+
+    public function tampil_ajaran_aktif()
+    {
+        $this->db->select('*');
+                $this->db->from('tahun_ajaran');
+                $this->db->where('tahun_ajaran.status_ajaran = "Aktif"');
+        $query = $this->db->get();
+        return $query;
     }
 
     public function tampil_ajaran2()

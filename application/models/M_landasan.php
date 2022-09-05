@@ -24,9 +24,9 @@ class M_landasan extends CI_Model{
 
     function insert_data($data)
     {
-        $session = $_SESSION;
+        //$session = $_SESSION;
         $data= [
-            'id_user'           => $this->session->userdata('id_user'),
+            //'id_user'           => $this->session->userdata('id_user'),
             'filosofis'  =>$data['filosofis'],
             'psikologis'  =>$data['psikologis'],
             'sosiologis'  =>$data['sosiologis'],

@@ -35,7 +35,7 @@
                             <div class="body">
 
                             <div class="table-responsive">
-                                <table  class="table table-bordered table-striped table-hover js-basic-example dataTable" width="1100px">
+                                <table id="datatablesSimple" class="table table-bordered table-striped table-hover js-basic-example dataTable" width="1100px">
                                     <thead>
                                         <tr>
                             
@@ -61,8 +61,10 @@
 
                                                 <td width="20px"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#ubahajaran<?php echo $ajaran->id_tahun  ?>"><i class="material-icons">edit</i></button></td>
 
-                                                <td width="20px"><?php echo anchor('admin/C_matkul/delete_ajaran/'.$ajaran->id_tahun, 
-                                                '<div class="btn btn-sm btn-danger"><i class="material-icons">delete_sweep</i></div>')?></td>
+                                                <td width="20px"><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus<?php echo $ajaran->id_tahun  ?>"><i class="material-icons">delete_sweep</i></button></td>
+
+                                                <!--<td width="20px"><?php echo anchor('admin/C_matkul/delete_ajaran/'.$ajaran->id_tahun, 
+                                                '<div class="btn btn-sm btn-danger"><i class="material-icons">delete_sweep</i></div>')?></td>-->
                                         </tr>
                                          <?php endforeach;?>
                                     </tbody>
@@ -171,6 +173,36 @@
                 </div>
             </div>
  <?php endforeach;?>
+
+
+
+ <!-- Modal Hapus Tahun Ajaran-->
+                 <?php foreach($ajaran2 as $ajaran):?>
+
+                <div class="modal fade " id="hapus<?php echo $ajaran['id_tahun']; ?>" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="text-center">
+                            <h4 class="modal-title" id="defaultModalLabel">Form Hapus Data</h4></div>
+                        </div>
+                        <div class="modal-body">
+                            <?php echo form_open_multipart('admin/C_matkul/delete_ajaran'.'/'.$ajaran['id_tahun']); ?>
+                            
+                                <p>Apakah anda yakin untuk menghapus data ini?</p>
+                                               
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link waves-effect">DELETE</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                            <?php echo form_close() ?>
+                        </div>
+                      </form>
+                    </div>
+                </div>
+            </div>
+
+        <?php endforeach; ?>
 
       </div>
     </section>

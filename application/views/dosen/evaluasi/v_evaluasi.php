@@ -24,15 +24,24 @@
                                 <select name="id_detailrps" class="form-control" required>
                                         <option value="">-- Pilih Minggu --</option>
                                          <?php foreach($detail2 as $detail):?>
-                                        <option value="<?= $detail['id_detailrps']; ?>"><?= $detail['minggu']; ?> <?= $detail['subcpmk']; ?></option>
+                                        <option value="<?= $detail['id_detailrps']; ?>">Minggu ke-<?= $detail['minggu']; ?></option>
                                     <?php endforeach; ?>
+                                    </select>
+                              </div>
+
+                              <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Bentuk Asesment</label>
+                                <select name="asesmen" class="form-control" required>
+                                        <option value="">-- Pilih --</option> 
+                                        <option value="Tes">Tes</option>
+                                        <option value="Non Tes">Non Tes</option>
                                     </select>
                               </div>
 
 
                               <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">Asesment</label>
-                                <textarea rows="3" class="form-control no-resize auto-growth" name="asesmen"></textarea>
+                                <label for="recipient-name" class="col-form-label">Detail Asesment</label>
+                                <textarea rows="3" class="form-control no-resize auto-growth" name="detail_asesmen"></textarea>
                                 <input type="hidden" class="form-control" name="id_matkul" value="<?= $abcd->id_matkul ?>">
                               </div>
                         </div>
@@ -68,10 +77,19 @@
                                     </select>
                               </div>
 
+                              <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Bentuk Asesmen</label>
+                                <select name="asesmen" class="form-control" required>
+                                        <option value="<?= $evaluasi2['asesmen']; ?>"><?= $evaluasi2['asesmen']; ?></option>
+                                        <option value="Tes">Tes</option>
+                                        <option value="Non Tes">Non Tes</option>
+                                    </select>
+                              </div>
+
 
                               <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">Asesment</label>
-                                <textarea rows="3" class="form-control no-resize auto-growth" name="asesmen"><?= $evaluasi2['asesmen']; ?></textarea>
+                                <label for="recipient-name" class="col-form-label">Detail Asesment</label>
+                                <textarea rows="3" class="form-control no-resize auto-growth" name="detail_asesmen"><?= $evaluasi2['detail_asesmen']; ?></textarea>
                                 <input type="hidden" class="form-control" name="id_evaluasi" value="<?php echo $evaluasi2['id_evaluasi'];  ?>">
                               </div>
                               
@@ -87,6 +105,34 @@
                 </div>
             </div>
  <?php endforeach;?>
+
+ <!-- Modal Hapus Evaluasi -->
+                 <?php foreach($evaluasi as $eval):?>
+
+                <div class="modal fade " id="hapus_evaluasi<?php echo $eval->id_evaluasi; ?>" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="text-center">
+                            <h4 class="modal-title" id="defaultModalLabel">Form Hapus Data</h4></div>
+                        </div>
+                        <div class="modal-body">
+                            <?php echo form_open_multipart('dosen/C_evaluasi/delete/'.$eval->id_evaluasi.'/'.$eval->id_matkul.'/'.$abcd->id_pengampu); ?>
+                            
+                                <p>Apakah anda yakin untuk menghapus data ini?</p>
+                                               
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link waves-effect">DELETE</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                            <?php echo form_close() ?>
+                        </div>
+                      </form>
+                    </div>
+                </div>
+            </div>
+
+        <?php endforeach; ?>
 
 
 
@@ -116,6 +162,7 @@
                                             <th>Minggu</th>
                                             <th>Subcpmk</th>
                                             <th>Bentuk Asesment</th>
+                                            <th>Detail Asesment</th>
                                             <th>Bobot</th>
                                             <th colspan="2">Aksi</th>
                                             
@@ -129,6 +176,7 @@
                                            <td><?= $evaluasi->minggu?></td>
                                            <td><?= $evaluasi->subcpmk?></td>
                                            <td><?= $evaluasi->asesmen?></td>
+                                           <td><?= $evaluasi->detail_asesmen?></td>
                                            <td><?= $evaluasi->bobot?></td>
 
                                                 <td>
@@ -136,8 +184,12 @@
                                                 </td>
 
                                                 <td>
-                                                    <a href="<?php echo base_url('dosen/C_evaluasi/delete/'.$evaluasi->id_matkul .'/'.$evaluasi->id_evaluasi.'/'.$abcd->id_pengampu) ?>" name="id_evaluasi" value="<?= $evaluasi->id_evaluasi?>"><i class="material-icons">delete_sweep</i></a>
+                                                    <button type="button" class="btn btn-default  waves-float" data-toggle="modal" data-target="#hapus_evaluasi<?php echo $evaluasi->id_evaluasi ?>"><i class="material-icons">delete_sweep</i></button>
                                                 </td>
+
+                                                <!--<td>
+                                                    <a href="<?php echo base_url('dosen/C_evaluasi/delete/'.$evaluasi->id_matkul .'/'.$evaluasi->id_evaluasi.'/'.$abcd->id_pengampu) ?>" name="id_evaluasi" value="<?= $evaluasi->id_evaluasi?>"><i class="material-icons">delete_sweep</i></a>
+                                                </td>-->
                                            
                                         </tr>
                                          <?php endforeach;?>

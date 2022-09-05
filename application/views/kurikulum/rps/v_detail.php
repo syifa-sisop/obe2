@@ -187,7 +187,7 @@
                                             <th>Kode Sub-CPMK</th>
                                             <th>Deskripsi</th>
                                             <th>CPMK</th>
-                                            
+                                            <th>CPL Prodi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -198,7 +198,7 @@
                                            <td><?= $subcpmk->kode_subcpmk?></td>
                                            <td><?= $subcpmk->subcpmk?></td>
                                            <td><?= $subcpmk->kode_baru?></td>
-                                           
+                                           <td><?= $subcpmk->kode_cpl?></td>
                                         </tr>
                                          <?php endforeach;?>
                                     </tbody>

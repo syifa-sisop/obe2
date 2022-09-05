@@ -15,6 +15,7 @@ class C_profil extends CI_Controller{
 		$data['user2'] = $this->M_profil->tampil_dosen()->result_array();
 		$data['profil'] = $this->M_profil->tampil_profil2()->result();
 		$data['profil2'] = $this->M_profil->tampil_profil2()->result_array();
+		$data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
 		$this->load->view('templates_admin/header');
 		$this->load->view('templates_dosen/sidebar', $data);
 		$this->load->view('dosen/profil/v_profil', $data);

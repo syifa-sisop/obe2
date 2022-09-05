@@ -30,7 +30,7 @@ class C_data extends CI_Controller{
 
         $data['user'] = $this->M_profil->tampil_dosen()->result();
         $data['user2'] = $this->M_profil->tampil_dosen()->result_array();
-
+        $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
 		$this->load->view('templates_admin/header');
 		$this->load->view('templates_dosen/sidebar', $data);
 		$this->load->view('dosen/kurikulum/v_data', $data);

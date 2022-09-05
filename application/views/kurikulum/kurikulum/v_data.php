@@ -1,4 +1,4 @@
-
+  
 <section class="content">
         <div class="container-fluid">
 
@@ -23,6 +23,35 @@
               echo '</h5></div>';
           }
           ?>
+
+          <!-- Modal Hapus SKL-->
+                <?php foreach($skl2 as $skl9):?>
+
+                <div class="modal fade " id="hapus_skl<?php echo $skl9->id_skl; ?>" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="text-center">
+                            <h4 class="modal-title" id="defaultModalLabel">Form Hapus Data</h4></div>
+                        </div>
+                        <div class="modal-body">
+                            <?php echo form_open_multipart('kurikulum/C_data/delete_skl'.'/'.$skl9->id_skl); ?>
+                            
+                                <p>Apakah anda yakin untuk menghapus data ini?</p>
+                                               
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link waves-effect">DELETE</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                            <?php echo form_close() ?>
+                        </div>
+                      </form>
+                    </div>
+                </div>
+            </div>
+
+        <?php endforeach; ?>
+
 
                 <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -52,6 +81,11 @@
                                 <li role="presentation">
                                     <a href="#profile_with_icon_title" data-toggle="tab">
                                         <i class="material-icons">local_library</i> CPL
+                                    </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#skl_with_icon_title" data-toggle="tab">
+                                        <i class="material-icons">class</i> SKL
                                     </a>
                                 </li>
                                 <li role="presentation">
@@ -111,8 +145,10 @@
 
                                                 <td width="20px"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#ubah_landasan<?php echo $landasan->id_landasan  ?>"><i class="material-icons">edit</i></button></td>
 
-                                                <td width="20px"><?php echo anchor('kurikulum/C_data/delete_landasan/'.$landasan->id_landasan, 
-                                                '<div class="btn btn-sm btn-danger"><i class="material-icons">delete_sweep</i></div>')?></td>
+                                                <td width="20px"><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus_landasan<?php echo $landasan->id_landasan  ?>"><i class="material-icons">delete_sweep</i></button></td>
+
+                                                <!--<td width="20px"><?php echo anchor('kurikulum/C_data/delete_landasan/'.$landasan->id_landasan, 
+                                                '<div class="btn btn-sm btn-danger"><i class="material-icons">delete_sweep</i></div>')?></td>-->
                                         </tr>
                                          <?php endforeach;?>
                                     </tbody>
@@ -145,8 +181,7 @@
 
                                                 <td width="20px"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#ubah_profil<?php echo $profil->id_lulusan  ?>"><i class="material-icons">edit</i></button></td>
 
-                                                <td width="20px"><?php echo anchor('kurikulum/C_data/delete/'.$profil->id_lulusan, 
-                                                '<div class="btn btn-sm btn-danger"><i class="material-icons">delete_sweep</i></div>')?></td>
+                                                <td width="20px"><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus_profil<?php echo $profil->id_lulusan  ?>"><i class="material-icons">delete_sweep</i></button></td>
                                         </tr>
                                          <?php endforeach;?>
                                     </tbody>
@@ -179,14 +214,46 @@
 
                                                 <td width="20px"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#ubah_cpl<?php echo $cpl['id_cpl']  ?>"><i class="material-icons">edit</i></button></td>
 
-                                                <td width="20px"><?php echo anchor('kurikulum/C_data/delete_cpl/'.$cpl['id_cpl'], 
-                                                '<div class="btn btn-sm btn-danger"><i class="material-icons">delete_sweep</i></div>')?></td>
+                                                <td width="20px"><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus_cpl<?php echo $cpl['id_cpl']  ?>"><i class="material-icons">delete_sweep</i></button></td>
                                         </tr>
                                          <?php endforeach;?>
                                     </tbody>
                                 </table>
                             </div>
                                 </div>
+
+                                <div role="tabpanel" class="tab-pane fade" id="skl_with_icon_title">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambah_skl">Tambah Data</button><br>
+                                   <br> <div class="table-responsive">
+                                <table  class="table table-bordered table-striped table-hover" width="1100px">
+                                    <thead>
+                                        <tr>
+                            
+                                            <th>Kode</th>
+                                            <th width="400px">Deskripsi SKL</th>
+                                            <th>Kode CPL</th>
+                                            <th colspan="2">Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                       
+                                        foreach($skl as $skl):?>
+                                        <tr>
+                                           <td><?= $skl['kode_skl']?></td>
+                                           <td class="align-justify"><?= $skl['skl']?></td>
+                                           <td class="align-justify"><?= $skl['kode_cpl']?></td>
+
+                                                <td width="20px"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#ubah_skl<?php echo $skl['id_skl']  ?>"><i class="material-icons">edit</i></button></td>
+
+                                                <td width="20px"><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus_skl<?php echo $skl['id_skl']  ?>"><i class="material-icons">delete_sweep</i></button></td>
+                                        </tr>
+                                         <?php endforeach;?>
+                                    </tbody>
+                                </table>
+                            </div>
+                                </div>
+
                                 <div role="tabpanel" class="tab-pane fade" id="messages_with_icon_title">
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambah_kajian">Tambah Data</button>
                                     <div class="table-responsive">
@@ -209,8 +276,7 @@
 
                                                 <td width="20px"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#ubah_kajian<?php echo $kajian->id_kajian  ?>"><i class="material-icons">edit</i></button></td>
 
-                                                <td width="20px"><?php echo anchor('kurikulum/C_data/delete_kajian/'.$kajian->id_kajian, 
-                                                '<div class="btn btn-sm btn-danger"><i class="material-icons">delete_sweep</i></div>')?></td>
+                                                <td width="20px"><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus_kajian<?php echo $kajian->id_kajian  ?>"><i class="material-icons">delete_sweep</i></button></td>
                                         </tr>
                                          <?php endforeach;?>
                                     </tbody>
@@ -222,6 +288,7 @@
                                     <b>Mata Kuliah</b>
                                     <div class="table-responsive">
                                 <table id="datatablesSimple"  class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                    
                                     <thead>
                                         <tr>
                                             <th>No</th>
@@ -369,6 +436,7 @@
                                         <textarea rows="3" class="form-control no-resize auto-growth" name="deskripsi"></textarea>
                                     </div>
                                 </div>
+
                                                
                         </div>
                         <div class="modal-footer">
@@ -532,14 +600,14 @@
                               <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">Mata Kuliah</label>
                                 <input type="hidden" class="form-control" name="id_matkul" value="<?php echo $matkul2['id_matkul'];  ?>">
-                                <input type="text" class="form-control"  value="<?php echo $matkul2['nama_matkul'];  ?> Kelas <?php echo $matkul2['kelas'];  ?>" required  readonly>
+                                <input type="text" class="form-control"  value="<?php echo $matkul2['nama_matkul'];  ?> " required  readonly>
                               </div><br>
 
                              <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">Jenis MK</label>
                                 <select name="jenis_mk" class="form-control" required>
                                         <option value="">-- Pilihan --</option>
-                                        <option value="MKWU">MKWU</option>
+                                        <option value="MKWU">MKDU</option>
                                         <option value="MKU">MKU</option>
                                         <option value="MKF">MKF</option>
                                         <option value="MK Prodi">MK Prodi</option>
@@ -560,6 +628,102 @@
 
 <!-- END Modal Ubah -->
 
+<!-- Modal -->
+                <div class="modal fade" id="tambah_skl" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="text-center">
+                            <h4 class="modal-title" id="defaultModalLabel">Form Tambah Data</h4></div>
+                        </div>
+                        <div class="modal-body">
+                            <?php echo form_open_multipart('kurikulum/C_data/tambah_skl'); ?>
+                            
+                                <form>
+                                <label for="matkul">Kode SKL</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                         <input type="hidden" name="id_skl" id="id_skl">
+                                          <?php foreach($setting as $data) :?>
+                                         <input type="hidden" name="id_jurusan" value="<?php echo $data->id_jurusan ?>">
+                                     <?php endforeach; ?>
+                                        <input type="text" name="kode_skl" class="form-control" required  autocomplete="off">
+                                    </div>
+                                </div>
+
+                                 
+
+                                <label for="password">Deskripsi SKL</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <textarea rows="3" class="form-control no-resize auto-growth" name="skl"></textarea>
+                                    </div>
+                                </div>
+
+                                 <label for="fakultas">CPL</label>
+                                    <div class="form-group">
+                                    <select name="id_cpl" class="form-control" required>
+                                        <option value="">-- Pilih CPL --</option>
+                                         <?php foreach($cpl2 as $cpl_data):?>
+                                        <option value="<?= $cpl_data->id_cpl; ?>"><?= $cpl_data->kode_cpl; ?></option>
+                                    <?php endforeach; ?>
+                                    </select>
+                                </div>
+                                               
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link waves-effect">SAVE</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                            <?php echo form_close() ?>
+                        </div>
+                      </form>
+                    </div>
+                </div>
+            </div>
+<!-- Modal Ubah-------------------------------------------------------------------------------------------------------------------------------- -->
+            <?php foreach($skl2 as $skl2):?>
+
+             <div class="modal fade" id="ubah_skl<?php echo $skl2->id_skl;  ?>" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="defaultModalLabel">Edit Data</h4>
+                        </div>
+                        <div class="modal-body">
+                           <?php echo form_open_multipart('kurikulum/C_data/ubah_skl'); ?>
+                              <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Kode SKL</label>
+                                <input type="hidden" class="form-control" name="id_skl" value="<?php echo $skl2->id_skl;  ?>">
+                                <input type="text" class="form-control" name="kode_skl"  value="<?php echo $skl2->kode_skl;  ?>" required  autocomplete="off">
+                              </div><br>
+
+                              <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Deskripsi SKL</label>
+                                <textarea rows="3" class="form-control no-resize auto-growth" name="skl"><?php echo $skl2->skl; ?></textarea>
+                              </div>
+
+                              <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">CPL</label>
+                                <select name="id_cpl" class="form-control" required>
+                                        <option value="<?php echo $skl2->id_cpl;  ?>"><?php echo $skl2->kode_cpl;  ?></option>
+                                         <?php foreach($cpl2 as $cpl_data):?>
+                                        <option value="<?= $cpl_data->id_cpl; ?>"><?= $cpl_data->kode_cpl; ?></option>
+                                    <?php endforeach; ?>
+                                    </select>
+                              </div><br>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link waves-effect">SAVE CHANGES</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                            <?php echo form_close() ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+ <?php endforeach;?>
+
+<!-- END Modal Ubah -->
 
             <!-- Modal -->
                 <div class="modal fade" id="tambah_profil" tabindex="-1" role="dialog">
@@ -757,6 +921,125 @@
  <?php endforeach;?>
 
 <!-- END Modal Ubah -->
+
+
+
+<!-- Modal Hapus Landasan-->
+                <?php foreach($landasan2 as $land):?>
+
+                <div class="modal fade " id="hapus_landasan<?php echo $land['id_landasan']; ?>" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="text-center">
+                            <h4 class="modal-title" id="defaultModalLabel">Form Hapus Data</h4></div>
+                        </div>
+                        <div class="modal-body">
+                            <?php echo form_open_multipart('kurikulum/C_data/delete_landasan'.'/'.$land['id_landasan']); ?>
+                            
+                                <p>Apakah anda yakin untuk menghapus data ini?</p>
+                                               
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link waves-effect">DELETE</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                            <?php echo form_close() ?>
+                        </div>
+                      </form>
+                    </div>
+                </div>
+            </div>
+
+        <?php endforeach; ?>
+
+<!-- Modal Hapus bahan kajian-->
+                <?php foreach($kajian2 as $kaj):?>
+
+                <div class="modal fade " id="hapus_kajian<?php echo $kaj['id_kajian']; ?>" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="text-center">
+                            <h4 class="modal-title" id="defaultModalLabel">Form Hapus Data</h4></div>
+                        </div>
+                        <div class="modal-body">
+                            <?php echo form_open_multipart('kurikulum/C_data/delete_kajian'.'/'.$kaj['id_kajian']); ?>
+                            
+                                <p>Apakah anda yakin untuk menghapus data ini?</p>
+                                               
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link waves-effect">DELETE</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                            <?php echo form_close() ?>
+                        </div>
+                      </form>
+                    </div>
+                </div>
+            </div>
+
+        <?php endforeach; ?>
+
+         
+<!-- Modal Hapus Profil Lulusan-->
+                <?php foreach($profil2 as $prof):?>
+
+                <div class="modal fade " id="hapus_profil<?php echo $prof['id_lulusan']; ?>" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="text-center">
+                            <h4 class="modal-title" id="defaultModalLabel">Form Hapus Data</h4></div>
+                        </div>
+                        <div class="modal-body">
+                            <?php echo form_open_multipart('kurikulum/C_data/delete'.'/'.$prof['id_lulusan']); ?>
+                            
+                                <p>Apakah anda yakin untuk menghapus data ini?</p>
+                                               
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link waves-effect">DELETE</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                            <?php echo form_close() ?>
+                        </div>
+                      </form>
+                    </div>
+                </div>
+            </div>
+
+        <?php endforeach; ?>
+
+    <!-- Modal Hapus CPL-->
+                <?php foreach($cpl3 as $cpl_dt):?>
+
+                <div class="modal fade " id="hapus_cpl<?php echo $cpl_dt->id_cpl; ?>" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="text-center">
+                            <h4 class="modal-title" id="defaultModalLabel">Form Hapus Data</h4></div>
+                        </div>
+                        <div class="modal-body">
+                            <?php echo form_open_multipart('kurikulum/C_data/delete_cpl'.'/'.$cpl_dt->id_cpl.'/'.$cpl_dt->id_cplmk); ?>
+                            
+                                <p>Apakah anda yakin untuk menghapus data ini?</p>
+                                               
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link waves-effect">DELETE</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                            <?php echo form_close() ?>
+                        </div>
+                      </form>
+                    </div>
+                </div>
+            </div>
+
+        <?php endforeach; ?>
+        
+
+       
+
 
         </div>
 </section>

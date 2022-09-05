@@ -8,7 +8,7 @@ class C_rps extends CI_Controller{
 		$data['prodi2'] = $this->M_jurusan->tampil_data()->result_array();
 		$data['ajaran'] = $this->M_matkul->tampil_ajaran();
         $data['ajaran2'] = $this->M_matkul->tampil_ajaran2();
-
+        $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
 		$this->load->view('templates_admin/header');
 		$this->load->view('templates_kurikulum/sidebar', $data);
 		$this->load->view('kurikulum/rps/v_ajaran', $data);
@@ -21,6 +21,7 @@ class C_rps extends CI_Controller{
 		$data['user'] = $this->M_profil->tampil_profil()->result();
 		$data['prodi2'] = $this->M_jurusan->tampil_data()->result_array();
 		$data['matkul'] = $this->M_matkul->tampil_matkul_thn($id_tahun)->result();
+		$data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
 
 		$this->load->view('templates_admin/header');
 		$this->load->view('templates_kurikulum/sidebar', $data);
@@ -56,6 +57,7 @@ class C_rps extends CI_Controller{
 		$data['detail2'] = $this->M_rumpun->detail($id_matkul)->result_array();
 		$data['media'] = $this->M_rumpun->media($id_matkul)->result();
         $data['media2'] = $this->M_rumpun->media($id_matkul)->result_array();
+        $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
 
 
 		$this->load->view('templates_admin/header');

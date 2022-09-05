@@ -3,6 +3,8 @@
 <!-- Jquery Core Js -->
     <script src="<?php echo base_url()?>assets/dashboard/plugins/jquery/jquery.min.js"></script>
 
+    <script src="<?php echo base_url()?>assets/dashboard/plugins/jquery/jquery-3.5.1.slim.min"></script>
+
     <!-- Bootstrap Core Js -->
     <script src="<?php echo base_url()?>assets/dashboard/plugins/bootstrap/js/bootstrap.js"></script>
 
@@ -52,6 +54,14 @@
 
     <script src="<?php echo base_url()?>assets/dashboard/js/pages/forms/basic-form-elements.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script type="text/javascript">
+ // In your Javascript (external .js resource or <script> tag)
+      $(document).ready(function() {
+          $('.js-example-basic-single').select2();
+      });
+   </script>
 
     <script>
       window.setTimeout(function() {
@@ -60,6 +70,8 @@
          });
       }, 3000)
     </script>
+
+      
 
 </body>
 

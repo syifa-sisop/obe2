@@ -1,29 +1,64 @@
 <?php  
 class M_lulusan extends CI_Model{
 
-    public function insert_data($id_lulusan,$id_jurusan,$id_user,$id_cpl)
+    public function insert_data($id_lulusan,$id_jurusan,$id_cpl)
     {
 
-            $this->db->insert('profil_cpl',array('id_lulusan'=>$id_lulusan,'id_jurusan'=>$id_jurusan,'id_user'=>$id_user,'id_cpl'=>$id_cpl));
+            $this->db->insert('profil_cpl',array('id_lulusan'=>$id_lulusan,'id_jurusan'=>$id_jurusan,'id_cpl'=>$id_cpl));
 
     }
 
-    public function insert_kajian($id_kajian,$id_jurusan,$id_user,$category)
+
+    public function insert_kajian($id_kajian,$id_jurusan,$category)
     {
       
      
-        $this->db->insert('kajian_cpl',array('id_kajian'=>$id_kajian,'id_jurusan'=>$id_jurusan,'id_user'=>$id_user,'id_cpl'=>$category));
+        $this->db->insert('kajian_skl',array('id_kajian'=>$id_kajian,'id_jurusan'=>$id_jurusan,'id_skl'=>$category));
      
 
     }
 
-    public function insert_kajianmk($id_kajian,$id_jurusan,$id_user,$category)
+
+    public function insert_kajianmk($id_matkul,$id_jurusan,$category)
     {
       
      
-        $this->db->insert('kajian_matkul',array('id_kajian'=>$id_kajian,'id_jurusan'=>$id_jurusan,'id_user'=>$id_user,'id_matkul'=>$category));
+        $this->db->insert('kajian_matkul',array('id_matkul'=>$id_matkul,'id_jurusan'=>$id_jurusan,'id_kajian'=>$category));
      
 
+    }
+
+    public function insert($data, $id_cpl)
+    {
+        $id_lulusan = $this->input->post('id_lulusan');
+        $id_jurusan = $this->input->post('id_jurusan');
+        $sql = $this->db->query("SELECT id_lulusan FROM profil_cpl where id_lulusan='$id_lulusan'");
+        $cek_user = $sql->num_rows();
+        
+        if($cek_user > 0)
+        {
+            $datas=array(
+            'id_lulusan'           => $data['id_lulusan'],
+            'id_jurusan'  =>$data['id_jurusan'],
+            'id_cpl'  =>$id_cpl         
+            );
+
+            $this->db->where('id_lulusan', $id_lulusan);
+            return $this->db->update('profil_cpl', $datas);
+        }
+        else
+        {
+            
+            $data= [
+            'id_lulusan'           => $data['id_lulusan'],
+            'id_jurusan'  =>$data['id_jurusan'],
+            'id_cpl'  =>$id_cpl
+        ];
+        
+            $this->db->insert('profil_cpl', $data);
+        }
+        
+         return ($this->db->affected_rows()!=1)?false:true;
     }
 
     public function tampil()
@@ -46,6 +81,19 @@ class M_lulusan extends CI_Model{
                 //$this->db->join('profil_cpl','cpl.id_cpl = profil_cpl.id_cpl', 'LEFT');
                 $this->db->order_by("cpl.id_cpl", "asc");
                 $this->db->where('cpl.id_jurusan', $jurusan);
+        $query = $this->db->get();
+        return $query;
+    }
+
+    public function tampil_skl()
+    {
+        $session = $_SESSION;
+        $jurusan = $this->session->userdata('id_jurusan');
+        $this->db->select('*');
+                $this->db->from('skl');
+                //$this->db->join('profil_cpl','skl.id_cpl = profil_cpl.id_cpl', 'LEFT');
+                $this->db->order_by("skl.id_skl", "asc");
+                $this->db->where('skl.id_jurusan', $jurusan);
         $query = $this->db->get();
         return $query;
     }
@@ -152,6 +200,17 @@ class M_lulusan extends CI_Model{
         return $query;
     }
 
+    public function tampil_kajian_mk5($id_matkul)
+    {
+        $this->db->select('*');
+                $this->db->from('kajian_matkul');
+                $this->db->join('matkul','kajian_matkul.id_matkul = matkul.id_matkul', 'LEFT');
+                $this->db->join('kajian','kajian_matkul.id_kajian = kajian.id_kajian', 'LEFT');
+                $this->db->where('kajian_matkul.id_matkul',$id_matkul);
+        $query = $this->db->get();
+        return $query;
+    }
+
     public function tampil_kajian_mk2($id_jurusan)
     {
         $this->db->select('*');
@@ -170,10 +229,23 @@ class M_lulusan extends CI_Model{
         $session = $_SESSION;
         $jurusan = $this->session->userdata('id_jurusan');
         $this->db->select('*');
-                $this->db->from('cpl');
+                $this->db->from('skl');
                 // $this->db->join('profil_cpl','cpl.id_cpl = profil_cpl.id_cpl', 'LEFT');
                 // $this->db->order_by("cpl.id_cpl", "asc");
-                $this->db->where('cpl.id_jurusan', $jurusan);
+                $this->db->where('skl.id_jurusan', $jurusan);
+        $query = $this->db->get();
+        return $query;
+    }
+
+    public function tampil_kajian3()
+    {
+        $session = $_SESSION;
+        $jurusan = $this->session->userdata('id_jurusan');
+        $this->db->select('*');
+                $this->db->from('skl');
+                // $this->db->join('profil_cpl','cpl.id_cpl = profil_cpl.id_cpl', 'LEFT');
+                // $this->db->order_by("cpl.id_cpl", "asc");
+                $this->db->where('skl.id_jurusan', $jurusan);
         $query = $this->db->get();
         return $query;
     }
@@ -206,19 +278,19 @@ class M_lulusan extends CI_Model{
         return $query;
     }
 
-    public function hapus_data()
+    public function hapus_data($id_lulusan)
     {
-        $this->db->query("DELETE FROM profil_cpl");
+        $this->db->query("DELETE FROM profil_cpl WHERE id_lulusan ='$id_lulusan'");
     }
 
-    public function hapus_data2()
+    public function hapus_data2($id_kajian)
     {
-        $this->db->query("DELETE FROM kajian_cpl");
+        $this->db->query("DELETE FROM kajian_skl WHERE id_kajian ='$id_kajian'");
     }
 
-    public function hapus_data3()
+    public function hapus_data3($id_matkul)
     {
-        $this->db->query("DELETE FROM kajian_matkul");
+        $this->db->query("DELETE FROM kajian_matkul WHERE id_matkul ='$id_matkul'");
     }
 
     public function profil(){

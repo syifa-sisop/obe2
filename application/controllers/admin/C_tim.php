@@ -16,9 +16,9 @@ class C_tim extends CI_Controller{
 		//$data['tim2'] = $this->M_tim->tampil()->result();
         //$data['dosen'] = $this->M_dosen->tampil()->result_array();
         $data['prodi'] = $this->M_prodi->tampil_prodi()->result();
-
-		$this->load->view('templates_admin/header');
-		$this->load->view('templates_admin/sidebar');
+        $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
+        $this->load->view('templates_admin/header');
+        $this->load->view('templates_admin/sidebar', $data);
 		$this->load->view('admin/tim/v_prodi', $data);
 		$this->load->view('templates_admin/footer');
 	}
@@ -28,11 +28,16 @@ class C_tim extends CI_Controller{
         $data['tim'] = $this->M_tim->tampil($id_jurusan)->result_array();
         $data['tim2'] = $this->M_tim->tampil($id_jurusan)->result();
         $data['dosen'] = $this->M_dosen->tampil($id_jurusan)->result_array();
+        $data['dosen2'] = $this->M_dosen->tampil($id_jurusan)->result_array();
 
+        $data['data2'] = $this->M_prodi->getProdi($id_jurusan)->row();
+        $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
+
+        $data['prodi']=$this->model_select->prodi();
         $data['data2'] = $this->M_prodi->getProdi($id_jurusan)->row();
 
         $this->load->view('templates_admin/header');
-        $this->load->view('templates_admin/sidebar');
+        $this->load->view('templates_admin/sidebar', $data);
         $this->load->view('admin/tim/v_tim', $data);
         $this->load->view('templates_admin/footer');
     }
@@ -57,16 +62,29 @@ class C_tim extends CI_Controller{
         }
         else{
         $data['prodi']=$this->model_select->prodi();
+        $data['dosen2'] = $this->M_dosen->tampil($id_jurusan)->result_array();
         $data['data2'] = $this->M_prodi->getProdi($id_jurusan)->row();
         $this->load->view('admin/tim/v_insert', $data);
         }
     }
     
-    public function delete($id_profil, $id_jurusan)
+    public function delete($id_profil,$id_user, $id_jurusan)
     {
-        $where = array('id_profil'=> $id_profil);
-        $this->M_prodi->hapus_data($where,'profil');
-        $this->session->set_flashdata('hapus_data','Data Berhasil Dihapus !!');
-        redirect('admin/C_tim/olah_data/'.$id_jurusan);
+
+        $where1 = array('id_profil' => $id_profil);
+        $where2 = array('id_user' => $id_user);
+
+        $spn1 = $this->M_dosen->hapus_data('profil', $where1);
+        $spn2 = $this->M_dosen->hapus_data('user', $where2);
+
+
+        if($spn1>=1){
+            if($spn2>=1){
+            $this->session->set_flashdata('hapus_data','Data Berhasil Dihapus !!');
+            redirect('admin/C_tim/olah_data/'.$id_jurusan);
+            }
+            $this->session->set_flashdata('hapus_data','Data Berhasil Dihapus !!');
+            redirect('admin/C_tim/olah_data/'.$id_jurusan);
+        }
     }
 }

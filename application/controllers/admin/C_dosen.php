@@ -12,8 +12,9 @@ class C_dosen extends CI_Controller{
 		
     	$data['prodi2'] = $this->M_prodi->tampil_prodi()->result_array();
         $data['prodi'] = $this->M_prodi->tampil_prodi()->result();
-		$this->load->view('templates_admin/header');
-		$this->load->view('templates_admin/sidebar');
+        $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
+        $this->load->view('templates_admin/header');
+        $this->load->view('templates_admin/sidebar', $data);
 		$this->load->view('admin/dosen/v_prodi', $data);
 		$this->load->view('templates_admin/footer');
 	}
@@ -23,8 +24,9 @@ class C_dosen extends CI_Controller{
         $data['dosen'] = $this->M_dosen->tampil($id_jurusan)->result_array();
         $data['dosen2'] = $this->M_dosen->tampil($id_jurusan)->result();
         $data['data2'] = $this->M_prodi->getProdi($id_jurusan)->row();
+        $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
         $this->load->view('templates_admin/header');
-        $this->load->view('templates_admin/sidebar');
+        $this->load->view('templates_admin/sidebar', $data);
         $this->load->view('admin/dosen/v_dosen', $data);
         $this->load->view('templates_admin/footer');
     }
@@ -69,22 +71,28 @@ class C_dosen extends CI_Controller{
             }
       
     }
-    public function delete_dosen($id_dosen)
+    public function delete_dosen($id_dosen, $id_user, $id_jurusan)
     {
         $where1 = array('id_dosen' => $id_dosen);
         $where2 = array('id_dosen' => $id_dosen);
+        $where3 = array('id_user' => $id_user);
 
         $spn1 = $this->M_dosen->hapus_data('pengampu_mk', $where1);
         $spn2 = $this->M_dosen->hapus_data('dosen', $where2);
+        $spn3 = $this->M_dosen->hapus_data('user', $where3);
 
 
         if($spn1>=1){
             if($spn2>=1){
-            $this->session->set_flashdata('hapus_user','Data Berhasil Dihapus !!');
-            redirect('admin/C_dosen');
+            $this->session->set_flashdata('hapus_data','Data Berhasil Dihapus !!');
+            redirect('admin/C_dosen/olah_data/'.$id_jurusan);
             }
-            $this->session->set_flashdata('hapus_user','Data Berhasil Dihapus !!');
-            redirect('admin/C_dosen');
+            if($spn3>=1){
+            $this->session->set_flashdata('hapus_data','Data Berhasil Dihapus !!');
+            redirect('admin/C_dosen/olah_data/'.$id_jurusan);
+            }
+            $this->session->set_flashdata('hapus_data','Data Berhasil Dihapus !!');
+            redirect('admin/C_dosen/olah_data/'.$id_jurusan);
         }
     }
 }

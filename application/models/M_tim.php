@@ -48,7 +48,7 @@ class M_tim extends CI_Model{
         ];
         
         $item = [
-                'id_jurusan'    => $this->input->post('prodi'),
+                'id_jurusan'    => $this->input->post('id_jurusan'),
                 'id_dosen'    => $this->input->post('dosen'),
                 //'nip'           => $this->input->post('nip'),
                 'email'         => $this->input->post('email')

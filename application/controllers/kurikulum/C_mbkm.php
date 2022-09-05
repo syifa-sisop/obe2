@@ -20,7 +20,7 @@ class C_mbkm extends CI_Controller{
         $data['mbkm2'] = $this->M_mbkm->tampil_data2()->result_array();
         $data['luar2'] = $this->M_mbkm->tampil_luar()->result_array();
         $data['non2'] = $this->M_mbkm->tampil_non()->result_array();
-
+        $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
 		$this->load->view('templates_admin/header');
 		$this->load->view('templates_kurikulum/sidebar', $data);
 		$this->load->view('kurikulum/mbkm/v_data', $data);

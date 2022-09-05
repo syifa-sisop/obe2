@@ -22,6 +22,7 @@
               echo '</h5></div>';
           }
           ?>
+
         <div class="row clearfix">
 
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -57,8 +58,10 @@
 
                                                 <td width="20px"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#ubah<?php echo $dosen['id_user']  ?>"><i class="material-icons">edit</i></button></td>
 
-                                                <td width="20px"><?php echo anchor('admin/C_dosen/delete_dosen/'.$dosen['id_dosen'], 
-                                                '<div class="btn btn-sm btn-danger"><i class="material-icons">delete_sweep</i></div>')?></td>
+                                                <td width="20px"><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus<?php echo $dosen['id_dosen']  ?>"><i class="material-icons">delete_sweep</i></button></td>
+
+                                                <!--<td width="20px"><?php echo anchor('admin/C_dosen/delete_dosen/'.$dosen['id_dosen'], 
+                                                '<div class="btn btn-sm btn-danger"><i class="material-icons">delete_sweep</i></div>')?></td>-->
 
                                         </tr>
                                          <?php endforeach;?>
@@ -72,6 +75,8 @@
 
           </div>
         </div>
+
+        
 
         <!-- Modal -->
                 <div class="modal fade" id="dosen" tabindex="-1" role="dialog">
@@ -156,6 +161,34 @@
  <?php endforeach;?>
 
 <!-- END Modal Ubah -->
+
+<!-- Modal Hapus -->
+                 <?php foreach($dosen2 as $dosen_new):?>
+
+                <div class="modal fade " id="hapus<?php echo $dosen_new->id_dosen; ?>" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="text-center">
+                            <h4 class="modal-title" id="defaultModalLabel">Form Hapus Data</h4></div>
+                        </div>
+                        <div class="modal-body">
+                            <?php echo form_open_multipart('admin/C_dosen/delete_dosen'.'/'.$dosen_new->id_dosen.'/'.$dosen_new->id_user.'/'.$dosen_new->id_jurusan); ?>
+                            
+                                <p>Apakah anda yakin untuk menghapus data ini?</p>
+                                               
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link waves-effect">DELETE</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                            <?php echo form_close() ?>
+                        </div>
+                      </form>
+                    </div>
+                </div>
+            </div>
+
+        <?php endforeach; ?>
 
         </div>
 </section>

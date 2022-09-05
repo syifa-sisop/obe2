@@ -15,7 +15,8 @@ class C_prodi extends CI_Controller{
 		$data['prodi2'] = $this->M_jurusan->tampil_data()->result_array();
 		//$data['matkul'] = $this->M_matkul->tampil3()->result_array();
 		$data['matkul2'] = $this->M_matkul->tampil3()->result();
-		$data['matkul'] = $this->M_matkul->tampil3()->result();
+		$data['matkul'] = $this->M_matkul->tampil33()->result();
+		$data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
 		$this->load->view('templates_admin/header');
 		$this->load->view('templates_dosen/sidebar', $data);
 		$this->load->view('dosen/prodi/v_prodi', $data);
@@ -33,12 +34,11 @@ class C_prodi extends CI_Controller{
             redirect('dosen/C_prodi');
         }
 	}
-
 	public function ambil_data($id_matkul, $id_pengampu){
 			
 		$data['data'] = $this->M_matkul->getDataByID($id_matkul)->row();
 		$data['abcd'] = $this->M_matkul->get_spesific($id_matkul, $id_pengampu)->result();
-
+		$data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
 
 
 		$data['jurusan'] = $this->M_jurusan->tampil()->result();

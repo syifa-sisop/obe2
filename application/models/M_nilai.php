@@ -156,8 +156,9 @@ class M_nilai extends CI_Model{
             'id_pengampu'  =>$data['id_pengampu'],
             'nilai_matkul_cpl'  =>$data['nilai_matkul_cpl']         
             );
-
-            return $this->db->get_where('nilai_matkul_cpl',$datas)->num_rows();
+            $this->db->where('id_matkul', $id_matkul);
+            $this->db->where('id_cplmk', $id_cplmk);
+            return $this->db->update('nilai_matkul_cpl', $datas);
         }
         else
         {

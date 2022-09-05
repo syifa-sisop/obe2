@@ -11,7 +11,7 @@ class C_statistik extends CI_Controller{
 	{
 		$data['setting'] = $this->M_setting->tampil();
         $data['user'] = $this->M_profil->tampil_profil()->result();
-
+        $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
         $data['nilai_cpl'] = $this->M_nilai->tampil_data()->result();
         $data['nilai_cpl2'] = $this->M_nilai->tampil_data()->result_array();
         $data['cpl'] = $this->M_nilai->tampil_cpl()->result();
@@ -33,6 +33,7 @@ class C_statistik extends CI_Controller{
 
 		$data['data'] = $this->M_nilai->ambil_data($id_cpl)->row();
 		$data['ambil_data'] = $this->M_nilai->ambil_data($id_cpl)->result();
+		$data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
 
 		$this->load->view('templates_admin/header');
 		$this->load->view('templates_kurikulum/sidebar', $data);

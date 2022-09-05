@@ -22,6 +22,9 @@
 
 
 <link href="<?php echo base_url()?>assets/dashboard/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+<!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">-->
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 
@@ -289,23 +292,16 @@ $("#email").html(respond);
                         <?php echo form_open_multipart('admin/C_tim/insert/'.$data2->id_jurusan); ?>
                         <div class="body">
                             
-
-                                <div class='form-group'>
-                                    <label>Prodi</label>
-                                    <select class='form-control' id='prodi' name="prodi">
-                                        <option value='0'>--pilih--</option>
-                                        <?php 
-                                        foreach ($prodi as $prov) {
-                                        echo "<option value='$prov[id_jurusan]'>$prov[nama]</option>";
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
                                 
                                 <div class='form-group'>
                                     <label>Dosen</label>
-                                    <select class='form-control' id='dosen' name="dosen">
+                                    <select class='form-control' id='dosen' name="dosen" >
                                         <option value='0'>--pilih--</option>
+                                        <?php 
+                                        foreach ($dosen2 as $dosen) {
+                                        echo "<option value='$dosen[id_dosen]'>$dosen[nama_dosen]</option>";
+                                        }
+                                        ?>
                                     </select>
                                 </div>
 
@@ -320,13 +316,14 @@ $("#email").html(respond);
                                     <label>Password</label>
                                     <div class="form-line">
                                         <input type="text" class="form-control" name="password" required  autocomplete="off">
+                                        <input type="hidden" name="id_jurusan" value="<?php echo $data2->id_jurusan ?>">
                                     </div>
                                 </div>
                             
                         </div>
                         <div class="card-footer ">
                             <div class="modal-footer justify-content-between">
-                                <?php echo anchor('admin/C_pengampu/', '<div class="btn btn-sm btn-danger">Kembali</div>')?>
+                                <?php echo anchor('admin/C_tim/olah_data'.'/'.$data2->id_jurusan, '<div class="btn btn-sm btn-danger">Kembali</div>')?>
                                 <button type="submit" class="btn btn-primary">Simpan</button>
                             </div>
                         </div>
@@ -349,6 +346,8 @@ $("#email").html(respond);
 
     <!-- Demo Js -->
     <script src="<?php echo base_url()?>assets/dashboard/js/demo.js"></script>
+
+    <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>-->
 
 </body>
 

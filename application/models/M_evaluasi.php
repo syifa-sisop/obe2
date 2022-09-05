@@ -1,4 +1,3 @@
-
 <?php  
 class M_evaluasi extends CI_Model{
 
@@ -18,6 +17,7 @@ class M_evaluasi extends CI_Model{
         $data= [
             'id_detailrps'  =>$data['id_detailrps'],
             'asesmen'  =>$data['asesmen'],
+            'detail_asesmen'  =>$data['detail_asesmen'],
             'id_matkul'  =>$this->input->post('id_matkul')
         ];
         
@@ -97,6 +97,7 @@ class M_evaluasi extends CI_Model{
         $this->db->insert('evaluasi_mhs', $data);
          
     }
+    
 
     function insert_cpl($data)
     {

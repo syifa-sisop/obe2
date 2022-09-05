@@ -5,7 +5,6 @@ class C_matriks extends CI_Controller{
 		parent::__construct();
 		$this->my_login->check_login();
 	}
-
 	public function index()
 	{
 		$data['setting'] = $this->M_setting->tampil();
@@ -17,6 +16,8 @@ class C_matriks extends CI_Controller{
 		$data['profilcpl'] = $this->M_setting->tampil_profil2()->result();
         $data['cpl'] = $this->M_lulusan->tampil_cpl()->result_array();
         $data['cpl2'] = $this->M_lulusan->tampil_cpl()->result();
+        $data['skl'] = $this->M_lulusan->tampil_skl()->result();
+        $data['skl2'] = $this->M_lulusan->tampil_skl()->result_array();
         $data['cpl3'] = $this->M_lulusan->tampil_cpl3()->result_array();
         $data['cpll'] = $this->M_lulusan->tampil_cpl3()->result();
         $cpll = $this->M_lulusan->tampil_cpl3()->result();
@@ -28,8 +29,10 @@ class C_matriks extends CI_Controller{
         $data['kajian'] = $this->M_kajian->tampil()->result();
         $data['kajian3'] = $this->M_kajian->tampil()->result();
         $data['kajian2'] = $this->M_kajian->tampil()->result_array();
-        $data['kajiancpl'] = $this->M_kajian->tampil3()->result();
+        //$data['kajiancpl'] = $this->M_kajian->tampil3()->result();
+        $data['kajianskl'] = $this->M_kajian->tampil5()->result();
         $data['cpl_kajian'] = $this->M_lulusan->tampil_kajian()->result();
+        $data['skl_kajian'] = $this->M_lulusan->tampil_kajian3()->result();
 
         $data['matkul'] = $this->M_matkul->tampil_matkul_baru()->result();
         $data['matkul2'] = $this->M_matkul->tampil_matkul_baru()->result_array();
@@ -39,7 +42,7 @@ class C_matriks extends CI_Controller{
 
         $data['kajian_matkul'] = $this->M_lulusan->tampil_kajian_mk()->result();
         $data['matkulkajian'] = $this->M_lulusan->tampil_kajian_mk3()->result();
-
+        $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
 		$this->load->view('templates_admin/header');
 		$this->load->view('templates_kurikulum/sidebar', $data);
 		$this->load->view('kurikulum/matriks/v_matriks', $data);
@@ -51,12 +54,12 @@ class C_matriks extends CI_Controller{
 		if($this->input->post()){
 				$id_lulusan = $this->input->post('id_lulusan');
 			    $id_jurusan = $this->input->post('id_jurusan');
-			    $id_user = $this->input->post('id_user');
+			   // $id_user = $this->input->post('id_user');
 				$categories = $this->input->post('id_cpl');
 
 				//$user_id = $this->user_model->registerUser($data);
 				foreach ($categories as $key => $id_cpl) {
-					$this->M_lulusan->insert_data($id_lulusan,$id_jurusan,$id_user,$id_cpl);
+					$this->M_lulusan->insert_data($id_lulusan,$id_jurusan,$id_cpl);
 				}redirect('kurikulum/C_matriks');
 		
 			}
@@ -67,28 +70,27 @@ class C_matriks extends CI_Controller{
 		if($this->input->post()){
 				$id_kajian = $this->input->post('id_kajian');
 			    $id_jurusan = $this->input->post('id_jurusan');
-			    $id_user = $this->input->post('id_user');
-				$categories = $this->input->post('id_cpl');
+				$categories = $this->input->post('id_skl');
 
 				//$user_id = $this->user_model->registerUser($data);
 				foreach ($categories as $key => $category) {
-					$this->M_lulusan->insert_kajian($id_kajian,$id_jurusan,$id_user,$category);
+					$this->M_lulusan->insert_kajian($id_kajian,$id_jurusan,$category);
 				}redirect('kurikulum/C_matriks');
 		
 			}
 	}
 
+
 	public function insert_kajianmk()
 	{
 		if($this->input->post()){
-				$id_kajian = $this->input->post('id_kajian');
+				$id_matkul = $this->input->post('id_matkul');
 			    $id_jurusan = $this->input->post('id_jurusan');
-			    $id_user = $this->input->post('id_user');
-				$categories = $this->input->post('id_matkul');
+				$categories = $this->input->post('id_kajian');
 
 				//$user_id = $this->user_model->registerUser($data);
 				foreach ($categories as $key => $category) {
-					$this->M_lulusan->insert_kajianmk($id_kajian,$id_jurusan,$id_user,$category);
+					$this->M_lulusan->insert_kajianmk($id_matkul,$id_jurusan,$category);
 				}redirect('kurikulum/C_matriks');
 		
 			}
@@ -96,21 +98,24 @@ class C_matriks extends CI_Controller{
 
 	public function delete()
     {
-        $this->M_lulusan->hapus_data();
+    	$id_lulusan = $this->input->post('id_lulusan');
+        $this->M_lulusan->hapus_data($id_lulusan);
         $this->session->set_flashdata('hapus_data','Data Berhasil Dihapus !!');
         redirect('kurikulum/C_matriks');
     }
 
     public function delete_kajian()
     {
-        $this->M_lulusan->hapus_data2();
+    	$id_kajian = $this->input->post('id_kajian');
+        $this->M_lulusan->hapus_data2($id_kajian);
         $this->session->set_flashdata('hapus_data','Data Berhasil Dihapus !!');
         redirect('kurikulum/C_matriks');
     }
 
     public function delete_kajianmk()
     {
-        $this->M_lulusan->hapus_data3();
+    	$id_matkul = $this->input->post('id_matkul');
+        $this->M_lulusan->hapus_data3($id_matkul);
         $this->session->set_flashdata('hapus_data','Data Berhasil Dihapus !!');
         redirect('kurikulum/C_matriks');
     }
@@ -135,7 +140,8 @@ class C_matriks extends CI_Controller{
     	$data['kajian'] = $this->M_kajian->tampil()->result();
         $data['kajian2'] = $this->M_kajian->tampil()->result_array();
         $data['cpl_kajian'] = $this->M_lulusan->tampil_kajian()->result();
-        $data['kajiancpl'] = $this->M_kajian->tampil3()->result();
+        //$data['kajiancpl'] = $this->M_kajian->tampil3()->result();
+        $data['kajianskl'] = $this->M_kajian->tampil5()->result();
 
     	$data['data'] = $this->M_lulusan->profil()->row();
 

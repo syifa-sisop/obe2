@@ -69,8 +69,8 @@
 
                                                 <td width="20px"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#ubah<?php echo $mbkm->id_mbkm  ?>"><i class="material-icons">edit</i></button></td>
 
-                                                <td width="20px"><?php echo anchor('kurikulum/C_mbkm/delete/'.$mbkm->id_mbkm, 
-                                                '<div class="btn btn-sm btn-danger"><i class="material-icons">delete_sweep</i></div>')?></td>
+                                                <td width="20px"><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus<?php echo $mbkm->id_mbkm  ?>"><i class="material-icons">delete_sweep</i></button></td>
+
                                         </tr>
                                          <?php endforeach;?>
                                     </tbody>
@@ -113,8 +113,7 @@
 
                                                 <td width="20px"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#ubah<?php echo $luar->id_mbkm  ?>"><i class="material-icons">edit</i></button></td>
 
-                                                <td width="20px"><?php echo anchor('kurikulum/C_mbkm/delete/'.$luar->id_mbkm, 
-                                                '<div class="btn btn-sm btn-danger"><i class="material-icons">delete_sweep</i></div>')?></td>
+                                                <td width="20px"><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus<?php echo $luar->id_mbkm  ?>"><i class="material-icons">delete_sweep</i></button></td>
                                         </tr>
                                          <?php endforeach;?>
                                     </tbody>
@@ -157,8 +156,7 @@
 
                                                 <td width="20px"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#ubah<?php echo $non->id_mbkm  ?>"><i class="material-icons">edit</i></button></td>
 
-                                                <td width="20px"><?php echo anchor('kurikulum/C_mbkm/delete/'.$non->id_mbkm, 
-                                                '<div class="btn btn-sm btn-danger"><i class="material-icons">delete_sweep</i></div>')?></td>
+                                                <td width="20px"><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus<?php echo $non->id_mbkm  ?>"><i class="material-icons">delete_sweep</i></button></td>
                                         </tr>
                                          <?php endforeach;?>
                                     </tbody>
@@ -360,6 +358,34 @@
                 </div>
             </div>
 
+            <!-- Modal Hapus MBKM-->
+                <?php foreach($mbkm2 as $mbkm_dt):?>
+
+                <div class="modal fade " id="hapus<?php echo $mbkm_dt['id_mbkm']; ?>" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="text-center">
+                            <h4 class="modal-title" id="defaultModalLabel">Form Hapus Data</h4></div>
+                        </div>
+                        <div class="modal-body">
+                            <?php echo form_open_multipart('kurikulum/C_mbkm/delete'.'/'.$mbkm_dt['id_mbkm']); ?>
+                            
+                                <p>Apakah anda yakin untuk menghapus data ini?</p>
+                                               
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link waves-effect">DELETE</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                            <?php echo form_close() ?>
+                        </div>
+                      </form>
+                    </div>
+                </div>
+            </div>
+
+        <?php endforeach; ?>
+
             <!-- Modal Ubah-------------------------------------------------------------------------------------------------------------------------------- -->
             <?php foreach($mbkm2 as $mbkm2):?>
 
@@ -426,5 +452,6 @@
 <!-- END Modal Ubah -->
 
         <?php endforeach; ?>
+
         </div>
     </section>

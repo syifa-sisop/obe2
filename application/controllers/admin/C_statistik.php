@@ -9,9 +9,9 @@ class C_statistik extends CI_Controller{
 	public function index()
 	{
 		$data['data'] = $this->M_prodi->tampil_fakultas()->result_array();
-
+		$data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
 		$this->load->view('templates_admin/header');
-		$this->load->view('templates_admin/sidebar');
+		$this->load->view('templates_admin/sidebar', $data);
 		$this->load->view('admin/statistik/v_fakultas', $data);
 		$this->load->view('templates_admin/footer');
 	}

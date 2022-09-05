@@ -14,9 +14,9 @@ class C_rps extends CI_Controller{
 
         $data['ajaran'] = $this->M_matkul->tampil_ajaran();
         $data['ajaran2'] = $this->M_matkul->tampil_ajaran2();
-
+        $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
 		$this->load->view('templates_admin/header');
-		$this->load->view('templates_admin/sidebar');
+		$this->load->view('templates_admin/sidebar', $data);
 		$this->load->view('admin/rps/v_rps', $data);
 		$this->load->view('templates_admin/footer');
 	}

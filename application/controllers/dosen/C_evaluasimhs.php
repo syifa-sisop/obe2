@@ -23,7 +23,7 @@ class C_evaluasimhs extends CI_Controller{
         $data['nilai_cpl'] = $this->M_nilai->tampil_data2($id_matkul, $id_pengampu)->result();
 
         //$data['cplmk2'] = $this->M_nilai->tampil_nilai_cpl($id_cplmk,$id_matkul)->result();
-
+        $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
 		$this->load->view('templates_admin/header');
 		$this->load->view('templates_dosen/sidebar2', $data);
 		$this->load->view('dosen/evaluasi/v_mahasiswa', $data);
@@ -38,6 +38,7 @@ class C_evaluasimhs extends CI_Controller{
 		$data['matkul'] = $this->M_matkul->tampil3()->result();
 		$data['data'] = $this->M_matkul->getDataByID($id_matkul)->row();
 		$data['abcd'] = $this->M_matkul->get_spesific($id_matkul, $id_pengampu)->result();
+        $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
 
 		//$data['evaluasi'] = $this->M_evaluasi->get_evaluasi($id_user)->result();
 
@@ -126,6 +127,7 @@ class C_evaluasimhs extends CI_Controller{
     {
     	$data['nilai']= $this->M_evaluasi->ambil_nilai($id_cplmk, $id_user)->result();
     	$data['nilai2']= $this->M_evaluasi->ambil_nilai2($id_cplmk, $id_user)->result();
+        $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
     	//$bobot_mhs = $get_data['nilai_mhs'];
 		//echo($bobot_mhs);
 
@@ -156,11 +158,11 @@ class C_evaluasimhs extends CI_Controller{
 		$this->load->view('dosen/evaluasi/v_hitung', $data);
 		$this->load->view('templates_admin/footer');
     }
-
     public function total_semua_cpl($id_cplmk, $id_matkul, $id_pengampu)
     {
         $data['jurusan'] = $this->M_jurusan->tampil()->result();
         $data['user'] = $this->M_profil->tampil_dosen()->result();
+        $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
         $data['prodi2'] = $this->M_jurusan->tampil_data()->result_array();
         $data['matkul'] = $this->M_matkul->tampil3()->result();
         $data['data'] = $this->M_matkul->getDataByID($id_matkul)->row();

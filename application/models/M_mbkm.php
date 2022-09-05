@@ -273,21 +273,21 @@ class M_mbkm extends CI_Model{
 
     }
 
-    public function hapus_cpl()
+    public function hapus_cpl($id_mbkm)
     {
-        $this->db->query("DELETE FROM mbkm_cpl ");
+        $this->db->query("DELETE FROM mbkm_cpl WHERE mbkm_cpl.id_mbkm = '$id_mbkm'");
 
     }
 
-    public function hapus_cpl2()
+    public function hapus_cpl2($id_mbkm)
     {
-        $this->db->query("DELETE FROM luar_cpl ");
+        $this->db->query("DELETE FROM luar_cpl WHERE luar_cpl.id_mbkm = '$id_mbkm'");
 
     }
 
-    public function hapus_cpl3()
+    public function hapus_cpl3($id_mbkm)
     {
-        $this->db->query("DELETE FROM non_cpl ");
+        $this->db->query("DELETE FROM non_cpl WHERE non_cpl.id_mbkm = '$id_mbkm'");
 
     }
 

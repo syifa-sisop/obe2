@@ -20,6 +20,7 @@ class C_statistik extends CI_Controller{
         $data['cpl'] = $this->M_nilai->tampil_cpl()->result();
         $data['cpl2'] = $this->M_nilai->tampil_cpl()->result_array();
         $data['total'] = $this->M_nilai->tampil_total()->result();
+        $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
 
         //$data['ambil_data'] = $this->M_nilai->ambil_data($id_cpl)->result_array();
 

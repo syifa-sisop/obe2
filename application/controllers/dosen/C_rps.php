@@ -1,6 +1,5 @@
 
 <?php 
-
 class C_rps extends CI_Controller{
     
 	function __construct()
@@ -8,6 +7,7 @@ class C_rps extends CI_Controller{
 		parent::__construct();
 		$this->my_login->check_login();
 	}
+
 	public function index($id_matkul, $id_pengampu)
 	{
         //$id_matkul = $this->input->post('id_matkul');
@@ -20,10 +20,12 @@ class C_rps extends CI_Controller{
 		$data['data2'] = $this->M_matkul->getDataByID($id_matkul)->result();
 		$data['data3'] = $this->M_matkul->getDataByID2($id_matkul)->result();
 		$data['data4'] = $this->M_matkul->getDataByID2($id_matkul)->result_array();
+        $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
 
 		$data['cplmk'] = $this->M_rumpun->cpl2($id_matkul)->result();
         $data['cplmk2'] = $this->M_rumpun->cpl2($id_matkul)->result_array();
 		$data['cpmk'] = $this->M_rumpun->cpmk($id_matkul)->result();
+        $data['cpmk2'] = $this->M_rumpun->cpmk($id_matkul)->result_array();
 		$data['subcpmk'] = $this->M_rumpun->subcpmk($id_matkul)->result();
 		$data['subcpmk2'] = $this->M_rumpun->subcpmk($id_matkul)->result_array();
 		$data['kajian'] = $this->M_rumpun->kajian($id_matkul)->result();
@@ -39,6 +41,8 @@ class C_rps extends CI_Controller{
 
         $data['media'] = $this->M_rumpun->media($id_matkul)->result();
         $data['media2'] = $this->M_rumpun->media($id_matkul)->result_array();
+
+        $data['kajian_matkul'] = $this->M_lulusan->tampil_kajian_mk5($id_matkul)->result_array();
 
         $data['print'] = $this->M_matkul->get_spesific($id_matkul, $id_pengampu)->result_array();
         $data['abcd'] = $this->M_matkul->get_spesific($id_matkul, $id_pengampu)->result();
@@ -162,12 +166,12 @@ class C_rps extends CI_Controller{
 
     public function ubah_kajian($id_matkul, $id_pengampu)
     {
-    	$id_bahan = $this->input->post('id_bahan');
+    	$id_bahan2 = $this->input->post('id_bahan2');
 
         $data = array(
-            'bahan_kajian'              => $this->input->post('bahan_kajian')
+            'id_kajian'              => $this->input->post('id_kajian')
         );
-        $update = $this->M_rumpun->updateFile2($id_bahan, $data);
+        $update = $this->M_rumpun->updateFile2($id_bahan2, $data);
 
         if ($update) {
             $this->session->set_flashdata('update_data','Data Berhasil Diupdate !!');
@@ -298,6 +302,7 @@ class C_rps extends CI_Controller{
 		        $data['data'] = $this->M_matkul->getDataByID($id_matkul)->row();
 		        $data['user'] = $this->M_profil->tampil_dosen()->result();
                 $data['abcd'] = $this->M_matkul->get_spesific($id_matkul, $id_pengampu)->result();
+                $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
 
 	        	$this->load->view('dosen/rps/v_updatecpl', $data);
 			}
@@ -319,6 +324,7 @@ class C_rps extends CI_Controller{
 		        $data['data'] = $this->M_matkul->getDataByID($id_matkul)->row();
 		        $data['user'] = $this->M_profil->tampil_dosen()->result();
                 $data['abcd'] = $this->M_matkul->get_spesific($id_matkul, $id_pengampu)->result();
+                $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
 
 	        	$this->load->view('dosen/rps/v_updatecpmk', $data);
 			}
@@ -340,6 +346,7 @@ class C_rps extends CI_Controller{
 		        $data['data'] = $this->M_matkul->getDataByID($id_matkul)->row();
 		        $data['user'] = $this->M_profil->tampil_dosen()->result();
                 $data['abcd'] = $this->M_matkul->get_spesific($id_matkul, $id_pengampu)->result();
+                $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
                 $data['cplmk2'] = $this->M_rumpun->cpl2($id_matkul)->result_array();
 
 	        	$this->load->view('dosen/rps/v_updatesubcpmk', $data);
@@ -362,6 +369,7 @@ class C_rps extends CI_Controller{
         $data['data'] = $this->M_matkul->getDataByID($id_matkul)->row();
         $data['user'] = $this->M_profil->tampil_dosen()->result();
         $data['abcd'] = $this->M_matkul->get_spesific($id_matkul, $id_pengampu)->result();
+        $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
 
         $this->load->view('dosen/rps/v_insertcpl', $data);
         }
@@ -383,6 +391,7 @@ class C_rps extends CI_Controller{
         $data['data'] = $this->M_matkul->getDataByID($id_matkul)->row();
         $data['user'] = $this->M_profil->tampil_dosen()->result();
         $data['abcd'] = $this->M_matkul->get_spesific($id_matkul, $id_pengampu)->result();
+        $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
 
         $this->load->view('dosen/rps/v_insertcpmk', $data);
         }
@@ -406,13 +415,14 @@ class C_rps extends CI_Controller{
         $data['user'] = $this->M_profil->tampil_dosen()->result();
         $data['abcd'] = $this->M_matkul->get_spesific($id_matkul, $id_pengampu)->result();
         $data['cplmk2'] = $this->M_rumpun->cpl2($id_matkul)->result_array();
+        $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
 
         $this->load->view('dosen/rps/v_insertsubcpmk', $data);
         }
     }
 
   
-    public function delete($id_matkul, $id_cplmk, $id_pengampu)
+    public function delete( $id_cplmk,$id_matkul, $id_pengampu)
     {
         $where = array('id_cplmk'=> $id_cplmk);
         $this->M_rumpun->hapus_data($where,'cpl_mk');
@@ -420,7 +430,7 @@ class C_rps extends CI_Controller{
         redirect('dosen/C_rps/index/'.$id_matkul.'/'.$id_pengampu);
     }
 
-    public function delete_cpmk($id_matkul, $id_cpmk, $id_pengampu)
+    public function delete_cpmk( $id_cpmk, $id_matkul,$id_pengampu)
     {
         $where = array('id_cpmk'=> $id_cpmk);
         $this->M_rumpun->hapus_data($where,'cpmk');
@@ -428,7 +438,7 @@ class C_rps extends CI_Controller{
         redirect('dosen/C_rps/index/'.$id_matkul.'/'.$id_pengampu);
     }
 
-    public function delete_subcpmk($id_matkul, $id_subcpmk, $id_pengampu)
+    public function delete_subcpmk( $id_subcpmk, $id_matkul,$id_pengampu)
     {
         $where = array('id_subcpmk'=> $id_subcpmk);
         $this->M_rumpun->hapus_data($where,'subcpmk');
@@ -436,15 +446,15 @@ class C_rps extends CI_Controller{
         redirect('dosen/C_rps/index/'.$id_matkul.'/'.$id_pengampu);
     }
 
-    public function delete_kajian($id_matkul, $id_bahan, $id_pengampu)
+    public function delete_kajian($id_matkul, $id_bahan2, $id_pengampu)
     {
-        $where = array('id_bahan'=> $id_bahan);
-        $this->M_rumpun->hapus_data($where,'bahan_kajian');
+        $where = array('id_bahan2'=> $id_bahan2);
+        $this->M_rumpun->hapus_data($where,'bahan_kajian2');
         $this->session->set_flashdata('hapus_data','Data Berhasil Dihapus !!');
         redirect('dosen/C_rps/index/'.$id_matkul.'/'.$id_pengampu);
     }
 
-    public function delete_utama($id_matkul, $id_utama, $id_pengampu)
+    public function delete_utama( $id_utama,$id_matkul, $id_pengampu)
     {
         $where = array('id_utama'=> $id_utama);
         $this->M_rumpun->hapus_data($where,'pustaka_utama');
@@ -452,7 +462,7 @@ class C_rps extends CI_Controller{
         redirect('dosen/C_rps/index/'.$id_matkul.'/'.$id_pengampu);
     }
 
-    public function delete_pendukung($id_matkul, $id_pendukung, $id_pengampu)
+    public function delete_pendukung($id_pendukung,$id_matkul,  $id_pengampu)
     {
         $where = array('id_pendukung'=> $id_pendukung);
         $this->M_rumpun->hapus_data($where,'pustaka_pendukung');
@@ -460,7 +470,7 @@ class C_rps extends CI_Controller{
         redirect('dosen/C_rps/index/'.$id_matkul.'/'.$id_pengampu);
     }
 
-    public function delete_syarat($id_matkul, $id_syarat, $id_pengampu)
+    public function delete_syarat($id_syarat, $id_matkul, $id_pengampu)
     {
         $where = array('id_syarat'=> $id_syarat);
         $this->M_rumpun->hapus_data($where,'syarat');
@@ -468,7 +478,15 @@ class C_rps extends CI_Controller{
         redirect('dosen/C_rps/index/'.$id_matkul.'/'.$id_pengampu);
     }
 
-    public function delete_detail($id_matkul, $id_detailrps, $id_pengampu)
+    public function delete_media($id_media, $id_matkul, $id_pengampu)
+    {
+        $where = array('id_media'=> $id_media);
+        $this->M_rumpun->hapus_data($where,'media');
+        $this->session->set_flashdata('hapus_data','Data Berhasil Dihapus !!');
+        redirect('dosen/C_rps/index/'.$id_matkul.'/'.$id_pengampu);
+    }
+
+    public function delete_detail( $id_detailrps,$id_matkul, $id_pengampu)
     {
         $where = array('id_detailrps'=> $id_detailrps);
         $this->M_rumpun->hapus_data($where,'detail_rps');

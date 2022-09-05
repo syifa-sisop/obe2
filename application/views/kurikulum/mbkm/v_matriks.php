@@ -36,6 +36,130 @@
   
                             </ul>
 
+                            <!-- Modal Hapus Dalam-->
+
+
+                <div class="modal fade " id="hapus_dalam" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="text-center">
+                            <h4 class="modal-title" id="defaultModalLabel">Form Hapus Data</h4></div>
+                        </div>
+                        <div class="modal-body">
+                            <?php echo form_open_multipart('kurikulum/C_matriks_mbkm/delete'); ?>
+
+                            <label for="matkul">Mata Kuliah</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                         
+                                          <select name="id_mbkm" class="form-control" required>
+                                                <option value="">-- Pilih Mata Kuliah --</option>
+                                         <?php foreach($dalam as $pro):?>
+                                                <option value="<?= $pro->id_mbkm; ?>"><?= $pro->nama_mbkm; ?></option>
+
+                                        <?php endforeach; ?>
+                                    </select>
+
+                                    </div>
+                                </div>
+                            
+                                <p>Apakah anda yakin untuk menghapus data ini?</p>
+                                               
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link waves-effect">DELETE</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                            <?php echo form_close() ?>
+                        </div>
+                      </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Hapus Luar-->
+
+
+                <div class="modal fade " id="hapus_luar" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="text-center">
+                            <h4 class="modal-title" id="defaultModalLabel">Form Hapus Data</h4></div>
+                        </div>
+                        <div class="modal-body">
+                            <?php echo form_open_multipart('kurikulum/C_matriks_mbkm/delete2'); ?>
+
+                            <label for="matkul">Mata Kuliah</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                         
+                                          <select name="id_mbkm" class="form-control" required>
+                                                <option value="">-- Pilih Mata Kuliah --</option>
+                                         <?php foreach($luar as $pro2):?>
+                                                <option value="<?= $pro2->id_mbkm; ?>"><?= $pro2->nama_mbkm; ?></option>
+
+                                        <?php endforeach; ?>
+                                    </select>
+
+                                    </div>
+                                </div>
+                            
+                                <p>Apakah anda yakin untuk menghapus data ini?</p>
+                                               
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link waves-effect">DELETE</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                            <?php echo form_close() ?>
+                        </div>
+                      </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Hapus Non-->
+
+
+                <div class="modal fade " id="hapus_non" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="text-center">
+                            <h4 class="modal-title" id="defaultModalLabel">Form Hapus Data</h4></div>
+                        </div>
+                        <div class="modal-body">
+                            <?php echo form_open_multipart('kurikulum/C_matriks_mbkm/delete3'); ?>
+
+                            <label for="matkul">Mata Kuliah</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                         
+                                          <select name="id_mbkm" class="form-control" required>
+                                                <option value="">-- Pilih Mata Kuliah --</option>
+                                         <?php foreach($non as $non4):?>
+                                                <option value="<?= $non4->id_mbkm; ?>"><?= $non4->nama_mbkm; ?></option>
+
+                                        <?php endforeach; ?>
+                                    </select>
+
+                                    </div>
+                                </div>
+                            
+                                <p>Apakah anda yakin untuk menghapus data ini?</p>
+                                               
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link waves-effect">DELETE</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                            <?php echo form_close() ?>
+                        </div>
+                      </form>
+                    </div>
+                </div>
+            </div>
+
+
                             <!-- Tab panes -->
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane fade in active" id="home_with_icon_title">
@@ -43,7 +167,9 @@
 
                                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#edit_dalam"><i class="material-icons">queue</i></button>
 
-                                    <a class="btn btn-danger" href="<?php echo base_url('kurikulum/C_matriks_mbkm/delete') ?>"><i class="material-icons">delete_sweep</i></a>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus_dalam"><i class="material-icons">delete_sweep</i></button>
+
+                                    <!--<a class="btn btn-danger" href="<?php echo base_url('kurikulum/C_matriks_mbkm/delete') ?>"><i class="material-icons">delete_sweep</i></a>-->
 
                                     <br></b><br>
                                     <div class="table-responsive">
@@ -110,7 +236,7 @@
                                 <div role="tabpanel" class="tab-pane fade" id="profile_with_icon_title">
                                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#edit_luar"><i class="material-icons">queue</i></button>
 
-                                    <a class="btn btn-danger" href="<?php echo base_url('kurikulum/C_matriks_mbkm/delete2') ?>"><i class="material-icons">delete_sweep</i></a>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus_luar"><i class="material-icons">delete_sweep</i></button>
 
                                     <br></b><br>
 
@@ -176,7 +302,7 @@
                                 <div role="tabpanel" class="tab-pane fade" id="settings_with_icon_title">
                                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#edit_non"><i class="material-icons">queue</i></button>
 
-                                    <a class="btn btn-danger" href="<?php echo base_url('kurikulum/C_matriks_mbkm/delete3') ?>"><i class="material-icons">delete_sweep</i></a>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus_non"><i class="material-icons">delete_sweep</i></button>
                            
                                     <br></b><br>
 
@@ -303,6 +429,8 @@
                 </div>
             </div>
 
+            
+
             <!-- Modal -->
                 <div class="modal fade" id="edit_luar" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-lg" role="document">
@@ -414,6 +542,10 @@
                     </div>
                 </div>
             </div>
+
+            
+
+
            
         </div>
     </section>

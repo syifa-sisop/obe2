@@ -28,7 +28,7 @@ class C_matriks_mbkm extends CI_Controller{
         $data['non2'] = $this->M_mbkm->tampil_non()->result_array();  
         $data['cpl_non'] = $this->M_mbkm->tampil_cpl3()->result(); 
         $data['noncpl'] = $this->M_mbkm->tampil_non_cpl()->result();
-
+        $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
 		$this->load->view('templates_admin/header');
 		$this->load->view('templates_kurikulum/sidebar', $data);
 		$this->load->view('kurikulum/mbkm/v_matriks', $data);
@@ -82,24 +82,26 @@ class C_matriks_mbkm extends CI_Controller{
         
             }
     }
-
     public function delete()
     {
-        $this->M_mbkm->hapus_cpl();
+        $id_mbkm = $this->input->post('id_mbkm');
+        $this->M_mbkm->hapus_cpl($id_mbkm);
         $this->session->set_flashdata('hapus_data','Data Berhasil Dihapus !!');
         redirect('kurikulum/C_matriks_mbkm');
     }
 
     public function delete2()
     {
-        $this->M_mbkm->hapus_cpl2();
+        $id_mbkm = $this->input->post('id_mbkm');
+        $this->M_mbkm->hapus_cpl2($id_mbkm);
         $this->session->set_flashdata('hapus_data','Data Berhasil Dihapus !!');
         redirect('kurikulum/C_matriks_mbkm');
     }
 
     public function delete3()
     {
-        $this->M_mbkm->hapus_cpl3();
+        $id_mbkm = $this->input->post('id_mbkm');
+        $this->M_mbkm->hapus_cpl3($id_mbkm);
         $this->session->set_flashdata('hapus_data','Data Berhasil Dihapus !!');
         redirect('kurikulum/C_matriks_mbkm');
     }

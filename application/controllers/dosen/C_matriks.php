@@ -13,7 +13,8 @@ class C_matriks extends CI_Controller{
         $data['jurusan'] = $this->M_jurusan->tampil()->result();
         $data['user'] = $this->M_profil->tampil_dosen()->result();
         $data['user2'] = $this->M_profil->tampil_dosen()->result_array();
-
+        $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
+        
         $data['id'] = $this->M_setting->tampil_profil()->row();
         $data['profil'] = $this->M_setting->tampil_profil()->result();
         $data['profil2'] = $this->M_setting->tampil_profil()->result_array();

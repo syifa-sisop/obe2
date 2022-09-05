@@ -64,8 +64,10 @@
 
                                                 <td width="20px"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#ubah<?php echo $matkul->id_matkul  ?>"><i class="material-icons">edit</i></button></td>
 
-                                                <td width="20px"><?php echo anchor('admin/C_matkul/delete_matkul/'.$matkul->id_matkul.'/'.$data2->id_jurusan.'/'.$data->id_tahun, 
-                                                '<div class="btn btn-sm btn-danger"><i class="material-icons">delete_sweep</i></div>')?></td>
+                                                <td width="20px"><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus<?php echo $matkul->id_matkul  ?>"><i class="material-icons">delete_sweep</i></button></td>
+
+                                                <!--<td width="20px"><?php echo anchor('admin/C_matkul/delete_matkul/'.$matkul->id_matkul.'/'.$data2->id_jurusan.'/'.$data->id_tahun, 
+                                                '<div class="btn btn-sm btn-danger"><i class="material-icons">delete_sweep</i></div>')?></td>-->
                                         </tr>
                                         <?php endforeach;?>
                                     </tbody>
@@ -228,6 +230,35 @@
  <?php endforeach;?>
 
 <!-- END Modal Ubah -->
+
+
+<!-- Modal Hapus Tahun Ajaran-->
+                 <?php foreach($matkul2 as $matkull):?>
+
+                <div class="modal fade " id="hapus<?php echo $matkull['id_matkul']; ?>" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="text-center">
+                            <h4 class="modal-title" id="defaultModalLabel">Form Hapus Data</h4></div>
+                        </div>
+                        <div class="modal-body">
+                            <?php echo form_open_multipart('admin/C_matkul/delete_matkul'.'/'.$matkull['id_matkul'].'/'.$data2->id_jurusan.'/'.$data->id_tahun); ?>
+                            
+                                <p>Apakah anda yakin untuk menghapus data ini?</p>
+                                               
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link waves-effect">DELETE</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                            <?php echo form_close() ?>
+                        </div>
+                      </form>
+                    </div>
+                </div>
+            </div>
+
+        <?php endforeach; ?>
 
       </div>
     </section>

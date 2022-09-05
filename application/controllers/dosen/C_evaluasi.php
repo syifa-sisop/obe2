@@ -22,7 +22,7 @@ class C_evaluasi extends CI_Controller{
 		$data['evaluasi2'] = $this->M_evaluasi->tampil($id_matkul)->result_array();
 		$data['detail'] = $this->M_rumpun->detail($id_matkul)->result();
 		$data['detail2'] = $this->M_rumpun->detail($id_matkul)->result_array();
-
+        $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
 		$this->load->view('templates_admin/header');
 		$this->load->view('templates_dosen/sidebar2', $data);
 		$this->load->view('dosen/evaluasi/v_evaluasi', $data);
@@ -42,13 +42,15 @@ class C_evaluasi extends CI_Controller{
         }
     }
 
+
     public function ubah($id_matkul, $id_pengampu)
     {
         $id_evaluasi = $this->input->post('id_evaluasi');
 
         $data = array(
             'id_detailrps'              => $this->input->post('id_detailrps'),
-            'asesmen'              => $this->input->post('asesmen')
+            'asesmen'              => $this->input->post('asesmen'),
+            'detail_asesmen'              => $this->input->post('detail_asesmen')
         );
         $update = $this->M_evaluasi->updateFile($id_evaluasi, $data);
 
@@ -60,7 +62,7 @@ class C_evaluasi extends CI_Controller{
             }
     }
 
-    public function delete($id_matkul, $id_evaluasi, $id_pengampu)
+    public function delete($id_evaluasi,$id_matkul,  $id_pengampu)
     {
         $where = array('id_evaluasi'=> $id_evaluasi);
         $this->M_rumpun->hapus_data($where,'evaluasi');
@@ -127,17 +129,20 @@ class C_evaluasi extends CI_Controller{
         $excel->getActiveSheet()->setCellValue('E6', 'Semester');
         $excel->getActiveSheet()->setCellValue('A7', 'Dosen Pengampu Lecturer');
         $excel->getActiveSheet()->setCellValue('A8', 'Bentuk Asesmen dan Evaluasi');
+        $excel->getActiveSheet()->setCellValue('A9', 'Detail Asesmen dan Evaluasi');
 
         $excel->getActiveSheet()->getStyle('A1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
         $excel->getActiveSheet()->getStyle('A2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
         $excel->getActiveSheet()->getStyle('A3')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
         $excel->getActiveSheet()->getStyle('A8')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        $excel->getActiveSheet()->getStyle('A9')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
         $excel->getActiveSheet()->getStyle('A5')->getFont()->setBold(true);
         $excel->getActiveSheet()->getStyle('A6')->getFont()->setBold(true);
         $excel->getActiveSheet()->getStyle('C6')->getFont()->setBold(true);
         $excel->getActiveSheet()->getStyle('E6')->getFont()->setBold(true);
         $excel->getActiveSheet()->getStyle('A7')->getFont()->setBold(true);
         $excel->getActiveSheet()->getStyle('A8')->getFont()->setBold(true);
+        $excel->getActiveSheet()->getStyle('A9')->getFont()->setBold(true);
         $excel->getActiveSheet()->getStyle('A1')->getFont()->setSize(14);
         $excel->getActiveSheet()->getStyle('A2')->getFont()->setSize(12);
         $excel->getActiveSheet()->getStyle('A3')->getFont()->setSize(12);
@@ -166,7 +171,8 @@ class C_evaluasi extends CI_Controller{
         $excel->getActiveSheet()->setCellValue('A10', 'Minggu Ke-');
         $excel->getActiveSheet()->setCellValue('B10', 'Sub Capaian Pembelajaran MK Lesson Learning Outcome (LLO)');
         $excel->getActiveSheet()->setCellValue('D10', 'Bentuk Asesmen (Assesment Mode)');
-        $excel->getActiveSheet()->setCellValue('F10', 'Bobot Weight (%)');
+        $excel->getActiveSheet()->setCellValue('F10', 'Detail Asesmen');
+        $excel->getActiveSheet()->setCellValue('G10', 'Bobot Weight (%)');
 
         $excel->getActiveSheet()->mergeCells('B10:C10');
         $excel->getActiveSheet()->mergeCells('D10:E10');
@@ -175,6 +181,7 @@ class C_evaluasi extends CI_Controller{
         $excel->getActiveSheet()->getStyle('B10')->getFont()->setBold(true);
         $excel->getActiveSheet()->getStyle('D10')->getFont()->setBold(true);
         $excel->getActiveSheet()->getStyle('F10')->getFont()->setBold(true);
+        $excel->getActiveSheet()->getStyle('G10')->getFont()->setBold(true);
 
         $baris = 11;
 
@@ -182,7 +189,8 @@ class C_evaluasi extends CI_Controller{
                 $excel->getActiveSheet()->setCellValue('A'.$baris, $evaluasii->minggu);
                 $excel->getActiveSheet()->setCellValue('B'.$baris, $evaluasii->subcpmk);
                 $excel->getActiveSheet()->setCellValue('D'.$baris, $evaluasii->asesmen);
-                $excel->getActiveSheet()->setCellValue('F'.$baris, $evaluasii->bobot);
+                $excel->getActiveSheet()->setCellValue('F'.$baris, $evaluasii->detail_asesmen);
+                $excel->getActiveSheet()->setCellValue('G'.$baris, $evaluasii->bobot);
 
                 $baris++;
         }

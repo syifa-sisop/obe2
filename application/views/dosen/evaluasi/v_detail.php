@@ -25,7 +25,7 @@
                                 <select name="id_evaluasi" id="id_evaluasi" class="form-control" required>
                                         <option value="">-- Pilih Minggu --</option>
                                          <?php foreach($detail2 as $detail):?>
-                                       <option value="<?= $detail['id_evaluasi']; ?>"><?= $detail['minggu']; ?> <?= $detail['subcpmk']; ?></option>
+                                       <option value="<?= $detail['id_evaluasi']; ?>">Minggu ke-<?= $detail['minggu']; ?></option>
 
                                     <?php endforeach; ?>
                                     </select>

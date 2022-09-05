@@ -33,7 +33,7 @@ class C_matriks extends CI_Controller{
         $data['non2'] = $this->M_mbkm->tampil_non()->result_array();  
         $data['cpl_non'] = $this->M_mbkm->tampil_cpl3()->result(); 
         $data['noncpl'] = $this->M_mbkm->tampil_non_cpl()->result();
-
+        $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
 		$this->load->view('templates_admin/header');
 		$this->load->view('templates_dosen/sidebar', $data);
 		$this->load->view('dosen/mbkm/v_matriks', $data);

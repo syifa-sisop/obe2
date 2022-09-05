@@ -6,6 +6,9 @@ class M_pengampu extends CI_Model{
         $this->db->select('*');
                 $this->db->from('pengampu_mk');
                 $this->db->join('dosen','pengampu_mk.id_dosen = dosen.id_dosen', 'LEFT');
+              //  $this->db->join('dosen','pengampu_mk.nama_dosen2 = dosen.id_dosen', 'LEFT');
+               // $this->db->join('dosen','pengampu_mk.nama_dosen3 = dosen.id_dosen', 'LEFT');
+               // $this->db->join('dosen','pengampu_mk.koordinator = dosen.id_dosen', 'LEFT');
                 $this->db->join('matkul','pengampu_mk.id_matkul = matkul.id_matkul', 'LEFT');
                 $this->db->join('tahun_ajaran','matkul.id_tahun = tahun_ajaran.id_tahun', 'LEFT');
                 $this->db->join('jurusan','matkul.id_jurusan = jurusan.id_jurusan', 'LEFT');
@@ -22,6 +25,9 @@ class M_pengampu extends CI_Model{
         $this->db->select('*');
                 $this->db->from('pengampu_mk');
                 $this->db->join('dosen','pengampu_mk.id_dosen = dosen.id_dosen', 'LEFT');
+                //$this->db->join('dosen','pengampu_mk.nama_dosen2 = dosen.id_dosen', 'LEFT');
+                //$this->db->join('dosen','pengampu_mk.nama_dosen3 = dosen.id_dosen', 'LEFT');
+               // $this->db->join('dosen','pengampu_mk.koordinator = dosen.id_dosen', 'LEFT');
                 $this->db->join('matkul','pengampu_mk.id_matkul = matkul.id_matkul', 'LEFT');
                 $this->db->join('tahun_ajaran','matkul.id_tahun = tahun_ajaran.id_tahun', 'LEFT');
                 $this->db->join('jurusan','matkul.id_jurusan = jurusan.id_jurusan', 'LEFT');
@@ -36,6 +42,9 @@ class M_pengampu extends CI_Model{
         $this->db->select('*');
                 $this->db->from('pengampu_mk');
                 $this->db->join('dosen','pengampu_mk.id_dosen = dosen.id_dosen', 'LEFT');
+               // $this->db->join('dosen','pengampu_mk.nama_dosen2 = dosen.id_dosen', 'LEFT');
+               // $this->db->join('dosen','pengampu_mk.nama_dosen3 = dosen.id_dosen', 'LEFT');
+               // $this->db->join('dosen','pengampu_mk.koordinator = dosen.id_dosen', 'LEFT');
                 $this->db->join('matkul','pengampu_mk.id_matkul = matkul.id_matkul', 'LEFT');
                 $this->db->join('tahun_ajaran','matkul.id_tahun = tahun_ajaran.id_tahun', 'LEFT');
                 $this->db->join('jurusan','matkul.id_jurusan = jurusan.id_jurusan', 'LEFT');
@@ -55,6 +64,9 @@ class M_pengampu extends CI_Model{
                 $this->db->join('pengampu_mk','matkul_mhs.id_pengampu = pengampu_mk.id_pengampu', 'LEFT');
                 $this->db->join('matkul','pengampu_mk.id_matkul = matkul.id_matkul', 'LEFT');
                 $this->db->join('dosen','pengampu_mk.id_dosen = dosen.id_dosen', 'LEFT');
+               // $this->db->join('dosen','pengampu_mk.nama_dosen2 = dosen.id_dosen', 'LEFT');
+               // $this->db->join('dosen','pengampu_mk.nama_dosen3 = dosen.id_dosen', 'LEFT');
+               // $this->db->join('dosen','pengampu_mk.koordinator = dosen.id_dosen', 'LEFT');
                 $this->db->join('jurusan','matkul.id_jurusan = jurusan.id_jurusan', 'LEFT');
                 $this->db->join('user','matkul_mhs.id_user = user.id_user', 'LEFT');
                 $this->db->join('mahasiswa','user.id_user = mahasiswa.id_user', 'LEFT');
@@ -138,5 +150,13 @@ class M_pengampu extends CI_Model{
     {
         $this->db->where($where);
         $this->db->delete($table);
+    }
+
+    public function hapus_data2($table, $where)
+    {
+        $spn = $this->db->delete($table, $where);
+        return $spn;
+
+        
     }
 }

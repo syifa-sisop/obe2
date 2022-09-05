@@ -15,7 +15,7 @@ class C_matkul extends CI_Controller{
 		$data['matkul'] = $this->M_pengampu->tampil_matkul_mhs()->result_array();
 		$data['matkul2'] = $this->M_pengampu->tampil_matkul_mhs()->result();
 		$data['pilih'] = $this->M_pengampu->tampil_matkul_pilih()->result_array();
-
+        $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
 		$this->load->view('templates_admin/header');
 		$this->load->view('templates_mahasiswa/sidebar', $data);
 		$this->load->view('mahasiswa/matkul/v_matkul', $data);
