@@ -23,11 +23,12 @@
                                 Pilih mata kuliah yang akan dilihat / dikelola 
                             </h2>
                         </div>
+
                         <div class="body">
                             <?php 
                             foreach($matkul as $data) :?>
      
-                                <a href="<?php echo base_url('dosen/C_prodi/ambil_data/'.$data->id_matkul.'/'.$data->id_pengampu) ?>"><button type="submit" class="btn btn-block btn-lg bg-primary waves-effect" name="id_matkul" value="<?= $data->id_matkul?>" name="id_pengampu" value="<?= $data->id_pengampu?>"><?php echo $data->nama_matkul ?></button></a><br><br>
+                                <a href="<?php echo base_url('dosen/C_prodi/ambil_data/'.$data->id_matkul.'/'.$data->id_pengampu) ?>"><button type="submit" class="btn btn-block btn-lg bg-primary waves-effect" name="id_matkul" value="<?= $data->id_matkul?>" name="id_pengampu" value="<?= $data->id_pengampu?>"><?php echo $data->nama_matkul ?> Kelas <?php echo $data->kelas ?></button></a><br><br>
 
                             <?php endforeach; ?>
                             <h2>

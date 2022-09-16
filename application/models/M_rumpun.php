@@ -182,10 +182,10 @@ class M_rumpun extends CI_Model{
     public function insert_cpmk($data)
     {        
         $item = [
-                'kode_cpmk'    => $this->input->post('kode_cpmk'),
-                'cpmk'    => $this->input->post('cpmk'),
-                'id_matkul'    => $this->input->post('id_matkul'),
-                'id_cpl'    => $this->input->post('id_cpl')
+                'kode_cpmk'    => $data['kode_cpmk'],
+                'cpmk'    => $data['cpmk'],
+                'id_matkul'    => $data['id_matkul'],
+                'id_cpl'    => $data['id_cpl']
         ];
         $this->db->insert('cpmk', $item);
          
@@ -220,6 +220,7 @@ class M_rumpun extends CI_Model{
         $this->db->join('cpl_mk','cpmk.id_cpl = cpl_mk.id_cpl', 'LEFT');
         $this->db->join('cpl','cpl_mk.id_cpl = cpl.id_cpl', 'LEFT');
         $this->db->where('cpmk.id_matkul', $id_matkul);
+        $this->db->where('cpl_mk.id_matkul', $id_matkul);
 
         $query = $this->db->get();
         return $query;

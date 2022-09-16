@@ -688,7 +688,7 @@
                                Tentang Mata Kuliah     <?php echo anchor('dosen/C_rps/print/'.$print['id_matkul'].'/'.$print['id_pengampu'] ,'<button class="btn btn-sm btn-primary mb-3" target="_blank" ><i class="material-icons">print</i></button>')?>
                                <a class="btn btn-success" href="<?php echo base_url('admin/C_rps/export/'. $print['id_matkul']) ?>" target="_blank">Export Excel</a>
                   <?php endforeach;?>
-                  
+              
                             </h2>
 
                         </div>
@@ -835,7 +835,7 @@
                                CPMK     <?php echo anchor('dosen/C_rps/insert_cpmk/'.$abcd->id_matkul.'/'.$abcd->id_pengampu,'<button class="btn btn-sm btn-primary mb-3"><i class="material-icons">queue</i></button>')?>                   
                             </h2>
 
-                        </div>
+                     </div>
                         <div class="body">
                             <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                             
@@ -852,21 +852,21 @@
 
                                         <?php
                                        
-                                        foreach($cpmk as $cpmk):?>
+                                        foreach($cpmk as $cpmk_new):?>
                                             
                                         <tr>
-                                           <td><?= $cpmk->kode_cpmk?></td>
-                                           <td><?= $cpmk->cpmk?></td>
-                                           <td><?= $cpmk->kode_cpl?></td>
+                                           <td><?= $cpmk_new->kode_cpmk?></td>
+                                           <td><?= $cpmk_new->cpmk?></td>
+                                           <td><?= $cpmk_new->kode_cpl?></td>
 
                                                 <td>
-                                                    <a href="<?php echo base_url('dosen/C_rps/update_cpmk/'.$cpmk->id_matkul .'/'.$cpmk->id_cpmk.'/'.$abcd->id_pengampu) ?>" name="id_cpmk" value="<?= $cpmk->id_cpmk?>"><i class="material-icons">edit</i></a>
+                                                    <a href="<?php echo base_url('dosen/C_rps/update_cpmk/'.$cpmk_new->id_matkul .'/'.$cpmk_new->id_cpmk.'/'.$abcd->id_pengampu) ?>" name="id_cpmk" value="<?= $cpmk_new->id_cpmk?>"><i class="material-icons">edit</i></a>
                                                 </td>
 
-                                                <td width="20px"><button type="button" class="btn " data-toggle="modal" data-target="#hapus_cpmk<?php echo $cpmk->id_cpmk  ?>"><i class="material-icons">delete_sweep</i></button></td>
+                                                <td width="20px"><button type="button" class="btn " data-toggle="modal" data-target="#hapus_cpmk<?php echo $cpmk_new->id_cpmk  ?>"><i class="material-icons">delete_sweep</i></button></td>
 
                                                 <!--<td>
-                                                    <a href="<?php echo base_url('dosen/C_rps/delete_cpmk/'.$cpmk->id_matkul .'/'.$cpmk->id_cpmk.'/'.$abcd->id_pengampu) ?>" name="id_cpmk" value="<?= $cpmk->id_cpmk?>"><i class="material-icons">delete_sweep</i></a>
+                                                    <a href="<?php echo base_url('dosen/C_rps/delete_cpmk/'.$cpmk_new->id_matkul .'/'.$cpmk_new->id_cpmk.'/'.$abcd->id_pengampu) ?>" name="id_cpmk" value="<?= $cpmk_new->id_cpmk?>"><i class="material-icons">delete_sweep</i></a>
                                                 </td>-->
                                         </tr>
                                          <?php endforeach;?>

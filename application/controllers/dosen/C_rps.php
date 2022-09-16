@@ -46,7 +46,6 @@ class C_rps extends CI_Controller{
 
         $data['print'] = $this->M_matkul->get_spesific($id_matkul, $id_pengampu)->result_array();
         $data['abcd'] = $this->M_matkul->get_spesific($id_matkul, $id_pengampu)->result();
-
 		$this->load->view('templates_admin/header');
 		$this->load->view('templates_dosen/sidebar2', $data);
 		$this->load->view('dosen/rps/v_rps', $data);
