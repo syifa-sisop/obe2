@@ -73,6 +73,15 @@ class M_setting extends CI_Model{
         return $query;
     }
 
+    public function tampil_profil22($id_jurusan)
+    {
+        $this->db->select('*');
+                $this->db->from('profil_lulusan');
+                $this->db->where('profil_lulusan.id_jurusan',$id_jurusan);
+        $query = $this->db->get();
+        return $query;
+    }
+
     public function tampil_profil4($id_jurusan)
     {
 

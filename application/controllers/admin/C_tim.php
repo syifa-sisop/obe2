@@ -17,6 +17,7 @@ class C_tim extends CI_Controller{
         //$data['dosen'] = $this->M_dosen->tampil()->result_array();
         $data['prodi'] = $this->M_prodi->tampil_prodi()->result();
         $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
+        $data['user'] = $this->M_profil->tampil_profil3()->result();
         $this->load->view('templates_admin/header');
         $this->load->view('templates_admin/sidebar', $data);
 		$this->load->view('admin/tim/v_prodi', $data);
@@ -35,6 +36,7 @@ class C_tim extends CI_Controller{
 
         $data['prodi']=$this->model_select->prodi();
         $data['data2'] = $this->M_prodi->getProdi($id_jurusan)->row();
+        $data['user'] = $this->M_profil->tampil_profil3()->result();
 
         $this->load->view('templates_admin/header');
         $this->load->view('templates_admin/sidebar', $data);

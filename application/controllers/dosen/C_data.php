@@ -7,6 +7,7 @@ class C_data extends CI_Controller{
 		$this->my_login->check_login();
 	}
 
+
 	public function index()
 	{
 		$data['setting'] = $this->M_setting->tampil();
@@ -27,6 +28,9 @@ class C_data extends CI_Controller{
 
         $data['kajian'] = $this->M_kajian->tampil()->result();
         $data['kajian2'] = $this->M_kajian->tampil()->result_array();
+
+        $data['skl'] = $this->M_skl->tampil()->result_array();
+        $data['skl2'] = $this->M_skl->tampil()->result();
 
         $data['user'] = $this->M_profil->tampil_dosen()->result();
         $data['user2'] = $this->M_profil->tampil_dosen()->result_array();

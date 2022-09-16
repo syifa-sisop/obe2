@@ -10,7 +10,7 @@ class C_matkul extends CI_Controller{
 
 	public function index()
 	{
-
+        $data['user'] = $this->M_profil->tampil_profil3()->result();
         $data['ajaran'] = $this->M_matkul->tampil_ajaran();
         $data['ajaran2'] = $this->M_matkul->tampil_ajaran2();
         $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
@@ -22,6 +22,7 @@ class C_matkul extends CI_Controller{
 
     public function kelola($id_tahun)
     {
+        $data['user'] = $this->M_profil->tampil_profil3()->result();
         $data['data'] = $this->M_matkul->getAjaran($id_tahun)->row();
         $data['prodi'] = $this->M_prodi->tampil_prodi()->result();
         $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
@@ -45,6 +46,7 @@ class C_matkul extends CI_Controller{
         $data['data2'] = $this->M_prodi->getProdi($id_jurusan)->row();
         $data['prodi2'] = $this->M_prodi->tampil_prodi()->result_array();
         $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
+        $data['user'] = $this->M_profil->tampil_profil3()->result();
 
         $this->load->view('templates_admin/header');
         $this->load->view('templates_admin/sidebar', $data);

@@ -13,6 +13,7 @@ class C_profil extends CI_Controller{
 	{
 		$data['admin'] = $this->M_profil->tampil()->result();
 		$data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
+		$data['user'] = $this->M_profil->tampil_profil3()->result();
 		$this->load->view('templates_admin/header');
 		$this->load->view('templates_admin/sidebar', $data);
 		$this->load->view('admin/profil/v_profil', $data);

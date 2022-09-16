@@ -1,5 +1,4 @@
 <?php 
-
 class C_dashboard extends CI_Controller{
 
 	function __construct()
@@ -11,6 +10,7 @@ class C_dashboard extends CI_Controller{
 
 	public function index()
 	{
+		$data['user'] = $this->M_profil->tampil_profil3()->result();
 		$data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
 		$this->load->view('templates_admin/header');
 		$this->load->view('templates_admin/sidebar', $data);

@@ -13,6 +13,7 @@
                         </div>
                         <div class="body">
                             <!-- Nav tabs -->
+
                             <ul class="nav nav-tabs" role="tablist">
 
                                 <li role="presentation" class="active">
@@ -29,6 +30,11 @@
                                 <li role="presentation">
                                     <a href="#profile_with_icon_title" data-toggle="tab">
                                         <i class="material-icons">local_library</i> CPL
+                                    </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#skl_with_icon_title" data-toggle="tab">
+                                        <i class="material-icons">class</i> SKL
                                     </a>
                                 </li>
                                 <li role="presentation">
@@ -138,6 +144,35 @@
                                            <td><?= $cpl['nama_aspek']?></td>
                                            <td class="align-justify"><?= $cpl['cpl']?></td>
                                            <td class="align-justify"><?= $cpl['sumber']?></td>
+                                        </tr>
+                                         <?php endforeach;?>
+                                    </tbody>
+                                </table>
+                            </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="skl_with_icon_title">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambah_skl">Tambah Data</button><br>
+                                   <br> <div class="table-responsive">
+                                <table  class="table table-bordered table-striped table-hover" width="1100px">
+                                    <thead>
+                                        <tr>
+                            
+                                            <th>Kode</th>
+                                            <th width="400px">Deskripsi SKL</th>
+                                            <th>Kode CPL</th>
+                                           
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                       
+                                        foreach($skl as $skl):?>
+                                        <tr>
+                                           <td><?= $skl['kode_skl']?></td>
+                                           <td class="align-justify"><?= $skl['skl']?></td>
+                                           <td class="align-justify"><?= $skl['kode_cpl']?></td>
+
+                                            
                                         </tr>
                                          <?php endforeach;?>
                                     </tbody>

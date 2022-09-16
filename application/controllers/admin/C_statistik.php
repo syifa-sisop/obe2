@@ -10,6 +10,7 @@ class C_statistik extends CI_Controller{
 	{
 		$data['data'] = $this->M_prodi->tampil_fakultas()->result_array();
 		$data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
+		$data['user'] = $this->M_profil->tampil_profil3()->result();
 		$this->load->view('templates_admin/header');
 		$this->load->view('templates_admin/sidebar', $data);
 		$this->load->view('admin/statistik/v_fakultas', $data);
@@ -19,9 +20,11 @@ class C_statistik extends CI_Controller{
 	public function prodi($id_fakultas)
 	{
         $data['prodi'] = $this->M_prodi->get_data($id_fakultas)->result();
+        $data['user'] = $this->M_profil->tampil_profil3()->result();
+        $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
 
 		$this->load->view('templates_admin/header');
-		$this->load->view('templates_admin/sidebar');
+		$this->load->view('templates_admin/sidebar', $data);
 		$this->load->view('admin/statistik/v_prodi', $data);
 		$this->load->view('templates_admin/footer');
 	}
@@ -35,9 +38,11 @@ class C_statistik extends CI_Controller{
         $data['cpl'] = $this->M_nilai->tampil_cpl2($id_jurusan)->result();
         $data['cpl2'] = $this->M_nilai->tampil_cpl2($id_jurusan)->result_array();
         $data['total'] = $this->M_nilai->tampil_total2($id_jurusan)->result();
+        $data['user'] = $this->M_profil->tampil_profil3()->result();
+        $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
 
         $this->load->view('templates_admin/header');
-		$this->load->view('templates_admin/sidebar');
+		$this->load->view('templates_admin/sidebar', $data);
 		$this->load->view('admin/statistik/v_statistik', $data);
 		$this->load->view('templates_admin/footer');
 	}

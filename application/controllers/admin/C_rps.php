@@ -15,6 +15,7 @@ class C_rps extends CI_Controller{
         $data['ajaran'] = $this->M_matkul->tampil_ajaran();
         $data['ajaran2'] = $this->M_matkul->tampil_ajaran2();
         $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
+        $data['user'] = $this->M_profil->tampil_profil3()->result();
 		$this->load->view('templates_admin/header');
 		$this->load->view('templates_admin/sidebar', $data);
 		$this->load->view('admin/rps/v_rps', $data);
@@ -25,8 +26,10 @@ class C_rps extends CI_Controller{
     {
         $data['data'] = $this->M_matkul->getAjaran($id_tahun)->row();
         $data['prodi'] = $this->M_prodi->tampil_prodi()->result();
+        $data['user'] = $this->M_profil->tampil_profil3()->result();
+        $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
         $this->load->view('templates_admin/header');
-        $this->load->view('templates_admin/sidebar');
+        $this->load->view('templates_admin/sidebar', $data);
         $this->load->view('admin/rps/v_prodi', $data);
         $this->load->view('templates_admin/footer');
     }
@@ -44,9 +47,11 @@ class C_rps extends CI_Controller{
         $data['data'] = $this->M_matkul->getAjaran($id_tahun)->row();
         $data['data2'] = $this->M_prodi->getProdi($id_jurusan)->row();
         $data['prodi2'] = $this->M_prodi->tampil_prodi()->result_array();
+        $data['user'] = $this->M_profil->tampil_profil3()->result();
+        $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
 
         $this->load->view('templates_admin/header');
-        $this->load->view('templates_admin/sidebar');
+        $this->load->view('templates_admin/sidebar', $data);
         $this->load->view('admin/rps/v_detail', $data);
         $this->load->view('templates_admin/footer');
     }
@@ -79,10 +84,12 @@ class C_rps extends CI_Controller{
 		$data['detail2'] = $this->M_rumpun->detail($id_matkul)->result_array();
 		$data['media'] = $this->M_rumpun->media($id_matkul)->result();
         $data['media2'] = $this->M_rumpun->media($id_matkul)->result_array();
+        $data['user'] = $this->M_profil->tampil_profil3()->result();
+        $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
 
 
 		$this->load->view('templates_admin/header');
-		$this->load->view('templates_admin/sidebar');
+		$this->load->view('templates_admin/sidebar', $data);
 		$this->load->view('kurikulum/rps/v_detail', $data);
 		$this->load->view('templates_admin/footer');
 	}

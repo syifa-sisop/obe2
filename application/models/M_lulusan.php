@@ -250,6 +250,18 @@ class M_lulusan extends CI_Model{
         return $query;
     }
 
+    public function tampil_kajian33($id_jurusan)
+    {
+ 
+        $this->db->select('*');
+                $this->db->from('skl');
+                // $this->db->join('profil_cpl','cpl.id_cpl = profil_cpl.id_cpl', 'LEFT');
+                // $this->db->order_by("cpl.id_cpl", "asc");
+                $this->db->where('skl.id_jurusan', $id_jurusan);
+        $query = $this->db->get();
+        return $query;
+    }
+
     public function tampil_kajian2($id_jurusan)
     {
         $this->db->select('*');

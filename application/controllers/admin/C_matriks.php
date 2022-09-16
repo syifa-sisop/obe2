@@ -10,6 +10,7 @@ class C_matriks extends CI_Controller{
 
 	public function index()
 	{
+		$data['user'] = $this->M_profil->tampil_profil3()->result();
 		$data['data'] = $this->M_prodi->tampil_fakultas()->result_array();
 		$data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
 		$this->load->view('templates_admin/header');
@@ -21,16 +22,18 @@ class C_matriks extends CI_Controller{
 	public function prodi($id_fakultas)
 	{
         $data['prodi'] = $this->M_prodi->get_data($id_fakultas)->result();
+        $data['user'] = $this->M_profil->tampil_profil3()->result();
+        $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
 
 		$this->load->view('templates_admin/header');
-		$this->load->view('templates_admin/sidebar');
+		$this->load->view('templates_admin/sidebar', $data);
 		$this->load->view('admin/matriks/v_prodi', $data);
 		$this->load->view('templates_admin/footer');
 	}
 
 	public function detail($id_jurusan)
 	{
-		
+	
 		$data['prodi'] = $this->M_prodi->getProdi($id_jurusan)->result();
 
 		$data['profil'] = $this->M_lulusan->get_profil($id_jurusan)->result();
@@ -40,8 +43,9 @@ class C_matriks extends CI_Controller{
 
 		$data['kajian'] = $this->M_lulusan->get_kajian($id_jurusan)->result();
 		$data['kajian2'] = $this->M_lulusan->get_kajian($id_jurusan)->result_array();
-		$data['cpl_kajian'] = $this->M_lulusan->get_kajian2($id_jurusan)->result();
-		$data['kajiancpl'] = $this->M_kajian->tampil4($id_jurusan)->result();
+		//$data['cpl_kajian'] = $this->M_lulusan->get_kajian2($id_jurusan)->result();
+		//$data['kajiancpl'] = $this->M_kajian->tampil4($id_jurusan)->result();
+		$data['skl_kajian'] = $this->M_lulusan->tampil_kajian33($id_jurusan)->result();
 
 		$data['matkul'] = $this->M_matkul->tampil23($id_jurusan)->result();
         $data['matkul2'] = $this->M_matkul->tampil23($id_jurusan)->result_array();
@@ -50,9 +54,11 @@ class C_matriks extends CI_Controller{
 
         $data['kajian_matkul'] = $this->M_lulusan->get_kajian_mk($id_jurusan)->result();
         $data['matkulkajian'] = $this->M_lulusan->tampil_kajian_mk4($id_jurusan)->result();
+        $data['user'] = $this->M_profil->tampil_profil3()->result();
+        $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
 
         $this->load->view('templates_admin/header');
-		$this->load->view('templates_admin/sidebar');
+		$this->load->view('templates_admin/sidebar', $data);
 		$this->load->view('admin/matriks/v_detail', $data);
 		$this->load->view('templates_admin/footer');
 	}

@@ -9,7 +9,8 @@ class C_dosen extends CI_Controller{
 
 	public function index()
 	{
-		
+
+		$data['user'] = $this->M_profil->tampil_profil3()->result();
     	$data['prodi2'] = $this->M_prodi->tampil_prodi()->result_array();
         $data['prodi'] = $this->M_prodi->tampil_prodi()->result();
         $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
@@ -21,6 +22,7 @@ class C_dosen extends CI_Controller{
 
     public function olah_data($id_jurusan)
     {
+        $data['user'] = $this->M_profil->tampil_profil3()->result();
         $data['dosen'] = $this->M_dosen->tampil($id_jurusan)->result_array();
         $data['dosen2'] = $this->M_dosen->tampil($id_jurusan)->result();
         $data['data2'] = $this->M_prodi->getProdi($id_jurusan)->row();

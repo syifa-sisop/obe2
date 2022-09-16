@@ -14,6 +14,16 @@ class M_skl extends CI_Model{
         return $query;
     }
 
+    public function tampil2($id_jurusan)
+    {
+        $this->db->select('*');
+                $this->db->from('skl');
+                $this->db->join('cpl','skl.id_cpl = cpl.id_cpl', 'LEFT');
+                $this->db->where('skl.id_jurusan',$id_jurusan);
+        $query = $this->db->get();
+        return $query;
+    }
+
     function insert_data($data)
     {
         //$session = $_SESSION;

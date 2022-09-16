@@ -26,7 +26,7 @@
                                 </li>
                                 <li role="presentation">
                                     <a href="#profile_with_icon_title" data-toggle="tab">
-                                        <i class="material-icons">face</i> CPL & BK
+                                        <i class="material-icons">face</i> SKL & BK
                                     </a>
                                 </li>
                                 <li role="presentation">
@@ -152,12 +152,12 @@
 
                                          <?php 
                                         $i = 0; $j = 0;
-                                        foreach($cpl_kajian as $cpl_kajian): 
+                                        foreach($skl_kajian as $skl_kajian): 
                                         $i++;
                                         ?>
                                            
                                         <tr>
-                                           <td class="align-justify"><?= $cpl_kajian->kode_cpl?>. <?= $cpl_kajian->cpl?></td>  
+                                           <td class="align-justify"><?= $skl_kajian->kode_skl?></td>  
                                            <?php foreach ($kajian2 as $key => $value) { 
                                             $j++;
                                             ?> 
@@ -167,11 +167,11 @@
                                             <label for="md_checkbox_31 <?=$i; ?><?= $j;?>"></label>
                                             <script>
                                                 <?php 
-                                                    foreach($kajiancpl as $kcpl){
+                                                    foreach($kajianskl as $kcpl){
                                                 ?>
-                                                        console.log("<?=$kcpl->id_cpl;?>")
+                                                        console.log("<?=$kcpl->id_skl;?>")
                                                         if(<?= $value['id_kajian']?> == <?=$kcpl->id_kajian;?>){
-                                                            if(<?= $cpl_kajian->id_cpl?> == <?=$kcpl->id_cpl;?>){
+                                                            if(<?= $skl_kajian->id_skl?> == <?=$kcpl->id_skl;?>){
                                                                 document.getElementById('md_checkbox_31 <?= $i; ?><?= $j; ?>').checked = true;
                                                             }
                                                         }

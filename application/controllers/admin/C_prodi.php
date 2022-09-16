@@ -16,6 +16,7 @@ class C_prodi extends CI_Controller{
         $data['prodi2'] = $this->M_prodi->tampil_prodi()->result_array();
         $data['dosen'] = $this->M_dosen->tampil2()->result_array();
         $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
+        $data['user'] = $this->M_profil->tampil_profil3()->result();
         $this->load->view('templates_admin/header');
         $this->load->view('templates_admin/sidebar', $data);
 		$this->load->view('admin/prodi/v_prodi', $data);

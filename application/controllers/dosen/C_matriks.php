@@ -32,8 +32,10 @@ class C_matriks extends CI_Controller{
         $data['kajian'] = $this->M_kajian->tampil()->result();
         $data['kajian3'] = $this->M_kajian->tampil()->result();
         $data['kajian2'] = $this->M_kajian->tampil()->result_array();
-        $data['kajiancpl'] = $this->M_kajian->tampil3()->result();
+        //$data['kajiancpl'] = $this->M_kajian->tampil3()->result();
+        $data['kajianskl'] = $this->M_kajian->tampil5()->result();
         $data['cpl_kajian'] = $this->M_lulusan->tampil_kajian()->result();
+        $data['skl_kajian'] = $this->M_lulusan->tampil_kajian3()->result();
 
         $data['matkul'] = $this->M_matkul->tampil_matkul_baru()->result();
         $data['matkul2'] = $this->M_matkul->tampil_matkul_baru()->result_array();
@@ -43,6 +45,7 @@ class C_matriks extends CI_Controller{
 
         $data['kajian_matkul'] = $this->M_lulusan->tampil_kajian_mk()->result();
         $data['matkulkajian'] = $this->M_lulusan->tampil_kajian_mk3()->result();
+       // $data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
 
 		$this->load->view('templates_admin/header');
 		$this->load->view('templates_dosen/sidebar', $data);
