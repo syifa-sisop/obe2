@@ -30,6 +30,7 @@ class C_nilai extends CI_Controller{
 		$data['matkul'] = $this->M_pengampu->tampil_matkul_mhs()->result_array();
 
 		$data['evaluasi2'] = $this->M_evaluasi->get_spesific($id_user, $id_matkul)->result();
+		$data['tahun'] = $this->M_matkul->tampil_ajaran_aktif()->row();
 
 		$this->load->view('templates_admin/header');
 		$this->load->view('templates_mahasiswa/sidebar', $data);

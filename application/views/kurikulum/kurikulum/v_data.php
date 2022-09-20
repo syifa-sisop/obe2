@@ -256,7 +256,7 @@
 
                                 <div role="tabpanel" class="tab-pane fade" id="messages_with_icon_title">
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambah_kajian">Tambah Data</button>
-                                    <div class="table-responsive">
+                                <div class="table-responsive">
                                 <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                     <thead>
                                         <tr>
@@ -354,7 +354,9 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Nama Dosen</th>
+                                            <th>Nama Dosen 1</th>
+                                            <th>Nama Dosen 2</th>
+                                            <th>Nama Dosen 3</th>
                                             <th>Mata Kuliah</th>
                                             <th>Kelas</th>
                                             <th>Semester</th>
@@ -367,6 +369,25 @@
                                         <tr>
                                             <td><?php echo $no++; ?></td>
                                             <td><?= $pengampu['nama_dosen']?></td>
+                                            <?php 
+                                                $dosen2 = $pengampu['nama_dosen2'];
+                                                $sql = $this->db->query("SELECT nama_dosen FROM dosen where id_dosen = '$dosen2'");
+                                               foreach ($sql->result() as $row)
+                                                    { 
+                                                            
+                                                             echo "<td>" . $row->nama_dosen . "</td>";
+                                                    }
+                                             ?>
+
+                                             <?php 
+                                                $dosen3 = $pengampu['nama_dosen3'];
+                                                $sql = $this->db->query("SELECT nama_dosen FROM dosen where id_dosen = '$dosen3'");
+                                               foreach ($sql->result() as $row)
+                                                    { 
+                                                            
+                                                             echo "<td>" . $row->nama_dosen . "</td>";
+                                                    }
+                                             ?>
                                             <td><?= $pengampu['nama_matkul']?></td>
                                             <td><?= $pengampu['kelas']?></td>
                                             <td><?= $pengampu['semester']?></td> 
