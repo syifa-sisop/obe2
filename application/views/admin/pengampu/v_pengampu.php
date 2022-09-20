@@ -30,7 +30,6 @@
 
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card bg-brown"><p align="center">Data Pengampu Mata Kuliah Prodi <?= $data2->nama?> Tahun Ajaran <?= $data->tahun_ajaran?> Semester <?= $data->semester_ajaran?></p></div>
-
             <div class="card">
                         <div class="header">
 

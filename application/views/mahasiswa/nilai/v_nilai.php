@@ -16,7 +16,9 @@
                                     <thead>
                                         <tr>
                                             <th>Prodi</th>
-                                            <th>Nama Dosen</th>
+                                            <th>Nama Dosen 1</th>
+                                            <th>Nama Dosen 2</th>
+                                            <th>Nama Dosen 3</th>
                                             <th>Mata Kuliah</th>
                                             <th>Kelas</th>
                                             <th>Semester</th>
@@ -32,6 +34,25 @@
                                            
                                             <td><?= $matkul['nama']?></td>
                                             <td><?= $matkul['nama_dosen']?></td>
+                                            <?php 
+                                                $dosen2 = $matkul['nama_dosen2'];
+                                                $sql = $this->db->query("SELECT nama_dosen FROM dosen where id_dosen = '$dosen2'");
+                                               foreach ($sql->result() as $row)
+                                                    { 
+                                                            
+                                                             echo "<td>" . $row->nama_dosen . "</td>";
+                                                    }
+                                             ?>
+
+                                             <?php 
+                                                $dosen3 = $matkul['nama_dosen3'];
+                                                $sql = $this->db->query("SELECT nama_dosen FROM dosen where id_dosen = '$dosen3'");
+                                               foreach ($sql->result() as $row)
+                                                    { 
+                                                            
+                                                             echo "<td>" . $row->nama_dosen . "</td>";
+                                                    }
+                                             ?>
                                             <td><?= $matkul['nama_matkul']?></td>
                                             <td><?= $matkul['kelas']?></td>
                                             <td><?= $matkul['semester']?></td>                

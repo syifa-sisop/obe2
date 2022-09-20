@@ -36,7 +36,6 @@ class C_pengampu extends CI_Controller{
 	public function olah_data($id_jurusan,$id_tahun)
 	{
 		$data['data'] = $this->M_matkul->getAjaran($id_tahun)->row();
-
 		$data['pengampu'] = $this->M_pengampu->tampil($id_jurusan, $id_tahun)->result_array();
 		$data['pengampu2'] = $this->M_pengampu->tampil($id_jurusan, $id_tahun)->result();
 		$data['dosen2'] = $this->M_dosen->tampil($id_jurusan)->result_array();

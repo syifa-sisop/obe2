@@ -17,6 +17,7 @@ class M_pengampu extends CI_Model{
         $query = $this->db->get();
         return $query;
     }
+    
 
     public function tampil_data()
     {
