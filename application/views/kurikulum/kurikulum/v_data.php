@@ -268,7 +268,7 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                       
+                                    
                                         foreach($kajian as $kajian):?>
                                         <tr>
                                            <td><?= $kajian->nama_kajian?></td>

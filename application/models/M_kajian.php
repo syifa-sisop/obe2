@@ -10,6 +10,7 @@ class M_kajian extends CI_Model{
                 $this->db->from('kajian');
                 //$this->db->join('skl','kajian.id_skl = skl.id_skl', 'LEFT');
                 $this->db->where('kajian.id_jurusan',$jurusan);
+                $this->db->order_by('id_kajian','ASC');
         $query = $this->db->get();
         return $query;
     }
@@ -22,8 +23,6 @@ class M_kajian extends CI_Model{
         $query = $this->db->get();
         return $query;
     }
-
-   
 
     public function tampil5()
     {

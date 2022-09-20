@@ -3,7 +3,7 @@
 class C_data extends CI_Controller{
 	function __construct()
 	{
-        
+    
 		parent::__construct();
 		$this->my_login->check_login();
 	}
@@ -354,7 +354,7 @@ class C_data extends CI_Controller{
         $spn1 = $this->M_setting->hapus_data('kajian_skl', $where1);
         $spn2 = $this->M_setting->hapus_data('bahan_kajian2', $where1);
         $spn3 = $this->M_setting->hapus_data('kajian_matkul', $where1);
-        $spn4 = $this->M_setting->hapus_data('kajian_cpl', $where1);
+        //$spn4 = $this->M_setting->hapus_data('kajian_cpl', $where1);
         $spn5 = $this->M_setting->hapus_data('kajian', $where1);
 
         if($spn1>=1){
@@ -366,10 +366,7 @@ class C_data extends CI_Controller{
             $this->session->set_flashdata('hapus_data','Data Berhasil Dihapus !!');
             redirect('kurikulum/C_data');
             }
-            if($spn4>=1){
-            $this->session->set_flashdata('hapus_data','Data Berhasil Dihapus !!');
-            redirect('kurikulum/C_data');
-            }
+           
             if($spn5>=1){
             $this->session->set_flashdata('hapus_data','Data Berhasil Dihapus !!');
             redirect('kurikulum/C_data');
