@@ -57,12 +57,39 @@
                                     <tbody>
                                         <tr>
                                         <td></td>
-                                        <td colspan="2"><?= $data->koordinator?></td>
+                                        <?php 
+                                                $koordinator = $data->koordinator;
+                                                $sql = $this->db->query("SELECT nama_dosen FROM dosen where id_dosen = '$koordinator'");
+                                               foreach ($sql->result() as $row)
+                                                    { 
+                                                            
+                                                             echo "<td colspan ='2'>" . $row->nama_dosen . "</td>";
+                                                    }
+                                             ?>
+                                        
                                         <td><?= $data->koordinator_jurusan?></td>
                                         <td colspan="2">
-                                        <?php foreach($rinci as $rinci):?>
-                                           <?= $rinci->nama_dosen?><br>
-                                        <?php endforeach;?>
+                                         <?php foreach($data2 as $data2):?>
+                                           <?= $data2->nama_dosen?><br>
+                                           <?php 
+                                                $dosen2 = $data2->nama_dosen2;
+                                                $sql = $this->db->query("SELECT DISTINCT nama_dosen FROM dosen where id_dosen = '$dosen2'");
+                                               foreach ($sql->result() as $row)
+                                                    { 
+                                                            
+                                                             echo   $row->nama_dosen ;
+                                                    }
+                                             ?><br>
+                                              <?php 
+                                                $dosen3 = $data2->nama_dosen3;
+                                                $sql = $this->db->query("SELECT DISTINCT nama_dosen FROM dosen where id_dosen = '$dosen3'");
+                                               foreach ($sql->result() as $row)
+                                                    { 
+                                                            
+                                                             echo   $row->nama_dosen ;
+                                                    }
+                                             ?><br>
+                                        <?php endforeach ?>
                                         </td>
                                            
                                         </tr>
@@ -300,7 +327,7 @@
 
                     head.appendChild(style);
 
-                   window.print();
+                  window.print();
                   </script>
                 
                 </div>

@@ -724,10 +724,35 @@
                                             <th >Kategori MK</th>
                                             <th>: <?= $data->jenis_mk ?></th>
                                         </tr>
+                                   
                                         <?php foreach($data2 as $data2):?>
                                         <tr>
-                                            <th >Dosen Pengampu MK</th>
+                                            <th >Dosen Pengampu 1 MK Kelas <?php echo $data2->kelas ?></th>
                                             <th>: <?= $data2->nama_dosen; ?> </th>
+                                        </tr>
+                                        <tr>
+                                            <th >Dosen Pengampu 2 MK Kelas <?php echo $data2->kelas ?></th>
+                                            <?php 
+                                                $dosen2 = $data2->nama_dosen2;
+                                                $sql = $this->db->query("SELECT nama_dosen FROM dosen where id_dosen = '$dosen2'");
+                                               foreach ($sql->result() as $row)
+                                                    { 
+                                                            
+                                                             echo "<th>" . $row->nama_dosen . "</th>";
+                                                    }
+                                             ?>
+                                        </tr>
+                                        <tr>
+                                            <th >Dosen Pengampu 3 MK Kelas <?php echo $data2->kelas ?></th>
+                                            <?php 
+                                                $dosen3 = $data2->nama_dosen3;
+                                                $sql = $this->db->query("SELECT nama_dosen FROM dosen where id_dosen = '$dosen3'");
+                                               foreach ($sql->result() as $row)
+                                                    { 
+                                                            
+                                                             echo "<th>" . $row->nama_dosen . "</th>";
+                                                    }
+                                             ?>
                                         </tr>
                                         <?php endforeach ?>
 
