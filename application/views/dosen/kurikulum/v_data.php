@@ -171,7 +171,7 @@
                             </div>
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade" id="skl_with_icon_title">
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambah_skl">Tambah Data</button><br>
+              
                                    <br> <div class="table-responsive">
                                 <table  class="table table-bordered table-striped table-hover" width="1100px">
                                     <thead>
