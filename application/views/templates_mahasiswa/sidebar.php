@@ -100,12 +100,12 @@
                             <span>Nilai</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="">
+                    <!--<li>
+                        <a href="<?php echo base_url('mahasiswa/C_profil') ?>">
                             <i class="material-icons">settings</i>
                             <span>Pengaturan Akun</span>
                         </a>
-                    </li>
+                    </li>-->
 
                     <li>
                         <a href="<?php echo base_url('C_registrasi/logout') ?>">
