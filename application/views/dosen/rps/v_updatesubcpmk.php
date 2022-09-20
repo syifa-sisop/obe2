@@ -291,6 +291,7 @@ $("#cpl").html(respond);
                                 </table>
 
                         </div>
+                        
                         <?php foreach($subcpmk2 as $dosen):?>
                         <?php echo form_open_multipart('dosen/C_rps/update_subcpmk/'.$data->id_matkul.'/'.$dosen->id_subcpmk.'/'.$data->id_pengampu); ?>
                         <div class="body">

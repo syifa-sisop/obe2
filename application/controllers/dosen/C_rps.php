@@ -7,6 +7,7 @@ class C_rps extends CI_Controller{
 		parent::__construct();
 		$this->my_login->check_login();
 	}
+    
 
 	public function index($id_matkul, $id_pengampu)
 	{
@@ -339,7 +340,8 @@ class C_rps extends CI_Controller{
 				redirect('dosen/C_rps/index/'.$id_matkul.'/'.$id_pengampu);
 			}
 			else{
-				$data['subcpmk2'] = $this->M_rumpun->get_subcpmk($id_subcpmk);
+
+				$data['subcpmk2'] = $this->M_rumpun->get_subcpmk2($id_subcpmk);
 				//$data['prodi']=$this->model_select->prodi();
 				$data['cpmk2'] = $this->M_rumpun->cpmk($id_matkul)->result();
 		        $data['data'] = $this->M_matkul->getDataByID($id_matkul)->row();

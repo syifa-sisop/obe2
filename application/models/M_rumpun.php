@@ -227,10 +227,13 @@ class M_rumpun extends CI_Model{
     }
 
     public function subcpmk($id_matkul){
+        $session = $_SESSION;
+        $jurusan = $this->session->userdata('id_jurusan');
         $this->db->from('subcpmk');
         $this->db->join('cpl_mk','subcpmk.id_cplmk = cpl_mk.id_cplmk', 'LEFT');
         $this->db->join('cpl','cpl_mk.id_cpl = cpl.id_cpl', 'LEFT');
         $this->db->where('subcpmk.id_matkul', $id_matkul);
+        $this->db->where('cpl_mk.id_matkul', $id_matkul);
         $query = $this->db->get();
         return $query;
     }
@@ -301,12 +304,25 @@ class M_rumpun extends CI_Model{
 
     public function get_subcpmk($id_subcpmk)
     {
+        $session = $_SESSION;
+        $jurusan = $this->session->userdata('id_jurusan');
         return $this->db
                     ->where('id_subcpmk',$id_subcpmk)
                     ->join('cpl_mk','subcpmk.id_cplmk = cpl_mk.id_cpl', 'LEFT')
                     ->join('cpl','cpl_mk.id_cpl = cpl.id_cpl', 'LEFT')
                     ->get('subcpmk')
                     ->result();
+    }
+
+    public function get_subcpmk2($id_subcpmk)
+    {
+        $this->db->from('subcpmk');
+        $this->db->join('cpl_mk','subcpmk.id_cplmk = cpl_mk.id_cplmk', 'LEFT');
+        $this->db->join('cpl','cpl_mk.id_cpl = cpl.id_cpl', 'LEFT');
+        $this->db->where('subcpmk.id_subcpmk', $id_subcpmk);
+        //$this->db->where('cpl_mk.id_matkul', $id_matkul);
+        $query = $this->db->get();
+        return $query->result();
     }
 
     function update_data($data)
