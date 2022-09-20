@@ -60,7 +60,7 @@
                         position: relative;
                         border-bottom: 1px solid #e9e9e9;
                         background: url("<?php echo base_url()?>assets/dashboard/images/hijau1.jpg") no-repeat no-repeat;
-                        height: 250px; }
+                        height: 300px; }
                 </style>
                  <center><div class="image">
                    <img src="<?php echo base_url()?>assets/dashboard/images/logoupnbaru.png" width="120" height="120" alt="User" />
@@ -68,7 +68,16 @@
 
                    <?php foreach($user as $user) :?>
                     <div class="opening"><strong style="color:black;"><h4><?php echo $user->nama; ?></h4></strong></div>
-                    <div class="email"><?php echo $user->nama_dosen; ?></div></center>
+                    <div class="email"><?php echo $user->nama_dosen; ?></div>
+                    <?php if($user->level == 1) {?>
+                    <div class="email">Login sebagai : Admin</div></center>
+                    <?php  }if($user->level ==2 ){?>
+                    <div class="email">Login sebagai : Tim Kurikulum</div></center>
+                    <?php  }if($user->level ==3 ){?>
+                    <div class="email">Login sebagai : Dosen Pengampu</div></center>
+                    <?php  }if($user->level ==4 ){?>
+                    <div class="email">Login sebagai : Mahasiswa</div></center>
+                    <?php  }?>
                 <?php endforeach; ?>
 
                 </div>
