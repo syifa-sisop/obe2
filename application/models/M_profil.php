@@ -66,7 +66,7 @@ class M_profil extends CI_Model{
                 $this->db->from('mahasiswa');
                 $this->db->where('mahasiswa.id_user',$id_user);
                 $this->db->join('jurusan','mahasiswa.id_jurusan = jurusan.id_jurusan', 'LEFT');
-                //$this->db->join('dosen','mahasiswa.id_dosen = dosen.id_dosen', 'LEFT');
+                $this->db->join('user','mahasiswa.id_user = user.id_user', 'LEFT');
         $query = $this->db->get();
         return $query;
     }
